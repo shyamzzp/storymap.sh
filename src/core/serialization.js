@@ -1,7 +1,7 @@
 // Storymaps.io — AGPL-3.0 — see LICENCE for details
 // Serialization / deserialization (pure functions)
 
-import { CARD_COLORS, isValidUrl } from '/src/core/constants.js';
+import { CARD_COLORS, isValidUrl, ROW_LABELS } from '/src/core/constants.js';
 import { state, createColumn, createStory, createRefColumn } from '/src/core/state.js';
 import { generateId } from '/src/core/constants.js';
 
@@ -76,6 +76,7 @@ export const serialize = () => ({
         legend: state.legend.map(entry => ({ color: entry.color, label: entry.label }))
     }),
     ...(state.notes && { notes: state.notes }),
+    ...(state.labels && { labels: { ...ROW_LABELS, ...state.labels } }),
     ...(state.partialMaps.length > 0 && {
         partialMaps: state.partialMaps.map(pm => ({
             id: pm.id,
@@ -133,6 +134,7 @@ const deserializeV1 = (data) => {
         label: entry.label || ''
     })) : [];
     state.notes = data.notes || '';
+    state.labels = { ...ROW_LABELS, ...(data.labels && typeof data.labels === 'object' ? data.labels : {}) };
 
     // Deserialize partial maps (positional arrays, like main map)
     state.partialMaps = Array.isArray(data.partialMaps) ? data.partialMaps.map(pm => {

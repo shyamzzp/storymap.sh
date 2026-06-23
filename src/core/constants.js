@@ -45,6 +45,14 @@ export const DEFAULT_CARD_COLORS = {
     story: '#fef08a'        // yellow
 };
 
+// Default text for the left-side backbone row labels. These are editable per
+// board (double-click the label) and persisted with the map; change the values
+// here to alter the defaults for new boards.
+export const ROW_LABELS = {
+    users: 'Users',
+    activities: 'Activities'
+};
+
 export const STATUS_OPTIONS = {
     done: { label: 'Done', color: '#22c55e' },
     'in-progress': { label: 'In Progress', color: '#eab308' },

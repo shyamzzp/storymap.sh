@@ -1,7 +1,7 @@
 // Storymaps.io — AGPL-3.0 — see LICENCE for details
 // State management, undo/redo, and factory functions
 
-import { generateId, CARD_COLORS } from '/src/core/constants.js';
+import { generateId, CARD_COLORS, ROW_LABELS } from '/src/core/constants.js';
 import { showConfirm } from '/src/core/modals.js';
 
 export const DEFAULT_NOTES = 'Thanks for trying Storymaps.io! \n\nIf you find it useful, please consider starring the open-source repo: https://github.com/jackgleeson/storymaps.io\n\nHave a great day!';
@@ -16,6 +16,7 @@ export const state = {
     legend: [],
     notes: '',
     partialMaps: [],
+    labels: { ...ROW_LABELS },
     mapLoaded: false
 };
 
@@ -265,6 +266,7 @@ export const initState = () => {
     const column = createColumn('New Step', CARD_COLORS.green, null, false);
     state.name = '';
     state.columns = [column];
+    state.labels = { ...ROW_LABELS };
     state.partialMaps = [];
     partialMapEditState.activeId = null;
     partialMapEditState.expandedIds.clear();

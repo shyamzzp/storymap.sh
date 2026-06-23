@@ -958,6 +958,44 @@ export const createStoryColumn = (col, slice, rowType = null) => {
     return columnEl;
 };
 
+// Build a row label that can be renamed in place by double-clicking. The custom
+// text is stored on state.labels[rowTypeKey] and persisted via saveToStorage.
+const createRowLabel = (rowType, rowTypeKey) => {
+    const current = _state.labels?.[rowTypeKey] || rowType;
+    const label = el('span', 'row-type-label', { text: current });
+    label.title = 'Double-click to rename';
+
+    label.addEventListener('dblclick', () => {
+        if (label.isContentEditable) return;
+        label.contentEditable = 'true';
+        label.classList.add('editing');
+        label.focus();
+        const range = document.createRange();
+        range.selectNodeContents(label);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    });
+
+    const commit = (revert) => {
+        if (!label.isContentEditable) return;
+        label.contentEditable = 'false';
+        label.classList.remove('editing');
+        if (!_state.labels) _state.labels = {};
+        const value = revert ? (_state.labels[rowTypeKey] || rowType) : (label.textContent.trim() || rowType);
+        _state.labels[rowTypeKey] = value;
+        label.textContent = value;
+        if (!revert) _saveToStorage?.();
+    };
+
+    label.addEventListener('blur', () => commit(false));
+    label.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); label.blur(); }
+        else if (e.key === 'Escape') { e.preventDefault(); commit(true); }
+    });
+    return label;
+};
+
 export const createEmptyBackboneRow = (rowType) => {
     const rowTypeKey = rowType.toLowerCase(); // 'users' or 'activities'
     const containerClass = rowType === 'Users' ? 'users-row empty-backbone-row' :
@@ -966,7 +1004,7 @@ export const createEmptyBackboneRow = (rowType) => {
     const container = el('div', containerClass);
 
     const labelContainer = el('div', 'row-label-container');
-    const label = el('span', 'row-type-label', { text: rowType });
+    const label = createRowLabel(rowType, rowTypeKey);
     labelContainer.appendChild(label);
     container.appendChild(labelContainer);
 
@@ -1041,7 +1079,7 @@ export const createBackboneRow = (rowType, cardMap) => {
     const container = el('div', containerClass);
 
     const labelContainer = el('div', 'row-label-container');
-    const label = el('span', 'row-type-label', { text: rowType });
+    const label = createRowLabel(rowType, rowTypeKey);
     labelContainer.appendChild(label);
     container.appendChild(labelContainer);
 

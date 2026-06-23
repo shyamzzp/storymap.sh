@@ -1992,6 +1992,16 @@ input.partials-entry-name-input:focus {
     color: var(--color-text-faint);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    cursor: pointer;
+}
+.row-type-label.editing {
+    text-transform: none;
+    cursor: text;
+    color: var(--color-text-primary);
+    outline: 1px solid var(--color-teal);
+    border-radius: 3px;
+    padding: 1px 3px;
+    background: var(--color-bg-surface);
 }
 
 /* Stories Row */
