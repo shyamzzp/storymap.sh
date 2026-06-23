@@ -112,6 +112,7 @@ export const render = () => {
     const editingPmId = partialMapEditState.activeId;
     const editingColIds = _getEditingPartialColIds();
     _dom.storyMap.classList.toggle('partial-editing', !!editingPmId);
+    _dom.storyMap.classList.toggle('view-detail', _state.viewMode === 'detail');
 
     const expandedIds = partialMapEditState.expandedIds;
     const hasAnyExpanded = expandedIds.size > 0 && !editingPmId;

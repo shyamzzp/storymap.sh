@@ -2033,6 +2033,60 @@ input.partials-entry-name-input:focus {
     position: relative;
 }
 
+/* View mode toggle (header nav) */
+.view-toggle {
+    display: inline-flex;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+}
+.view-toggle-btn {
+    font: inherit;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-surface);
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background .12s, color .12s;
+}
+.view-toggle-btn + .view-toggle-btn { border-left: 1px solid var(--color-border); }
+.view-toggle-btn:hover { background: var(--color-hover-bg); color: var(--color-text-primary); }
+.view-toggle-btn.active { background: var(--color-teal); color: #fff; }
+
+/* Detail view: larger cards that show their details inline (no modal) */
+.card-detail-body { display: none; }
+.story-map.view-detail { --card-width: 280px; }
+.story-map.view-detail .story-card {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 110px;
+}
+.story-map.view-detail .btn-expand { display: none; }
+.story-map.view-detail .card-detail-body {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 6px;
+    padding: 6px 8px;
+    font: inherit;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 52px;
+}
+.story-map.view-detail .card-detail-body::placeholder { color: rgba(0, 0, 0, 0.35); }
+.story-map.view-detail .card-detail-body:focus {
+    outline: none;
+    border-color: var(--color-teal);
+    background: var(--color-bg-surface);
+}
+
 /* Disable hover effects when main menu is open (prevents print artifacts) */
 body.main-menu-open .story-card:hover,
 body.main-menu-open .step:hover {

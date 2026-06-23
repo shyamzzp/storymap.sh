@@ -213,6 +213,26 @@ const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 const { applySearchFilter, hasActiveFilters, closeSearch, openSearch, closeFilterPanel, itemMatchesFilters } = search;
 
+// View mode (Summary = compact cards + modal details; Detail = larger cards
+// with details inline, no modal). Persisted with the board.
+const updateViewModeUI = () => {
+    const detail = state.viewMode === 'detail';
+    dom.storyMap?.classList.toggle('view-detail', detail);
+    dom.viewSummaryBtn?.classList.toggle('active', !detail);
+    dom.viewDetailBtn?.classList.toggle('active', detail);
+    dom.viewSummaryBtn?.setAttribute('aria-pressed', String(!detail));
+    dom.viewDetailBtn?.setAttribute('aria-pressed', String(detail));
+};
+
+const setViewMode = (mode) => {
+    const next = mode === 'detail' ? 'detail' : 'summary';
+    if (state.viewMode !== next) {
+        state.viewMode = next;
+        saveToStorage();
+    }
+    updateViewModeUI();
+};
+
 const initEventListeners = () => {
     dom.logoLink.addEventListener('click', async (e) => {
         if (!state.mapId) return;
@@ -221,6 +241,9 @@ const initEventListeners = () => {
             window.location.href = BASE_PATH;
         }
     });
+
+    dom.viewSummaryBtn?.addEventListener('click', () => setViewMode('summary'));
+    dom.viewDetailBtn?.addEventListener('click', () => setViewMode('detail'));
 
     welcome.initListeners();
 
@@ -1351,6 +1374,11 @@ const initEventListeners = () => {
             e.preventDefault();
             openSearch();
         }
+        // View mode shortcuts: 1 = Summary, 2 = Detail (when not typing)
+        if (!isTextInput && !e.ctrlKey && !e.metaKey && !e.altKey && (e.key === '1' || e.key === '2')) {
+            e.preventDefault();
+            setViewMode(e.key === '2' ? 'detail' : 'summary');
+        }
         if (e.key === 'Escape' && fullscreenMode) {
             const now = Date.now();
             if (now - lastFullscreenEsc < 500) {
@@ -1736,6 +1764,8 @@ const init = async () => {
     } else {
         showWelcomeScreen();
     }
+
+    updateViewModeUI();
 };
 
 init();

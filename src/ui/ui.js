@@ -898,7 +898,13 @@ export const createStoryCard = (story, columnId, sliceId, isBackboneRow = false,
         isBackboneRow ? () => _deleteColumn(columnId) : null
     );
 
-    card.append(textarea, createExpandButton(story), optionsMenu, buildIndicators(story, card));
+    // Inline details — shown only in Detail view (toggled via the .view-detail
+    // class on the board); editable in place so no modal is needed.
+    const detailBody = createTextarea('card-detail-body', 'Add details...', story.body || '',
+        (val) => { story.body = val; card.classList.toggle('has-body', !!(val && val.trim())); },
+        () => _logTextEdit?.('card body', story.id));
+
+    card.append(textarea, createExpandButton(story), optionsMenu, buildIndicators(story, card), detailBody);
 
     // Column selection on story card background click
     card.addEventListener('mousedown', (e) => {

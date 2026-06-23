@@ -17,6 +17,7 @@ export const state = {
     notes: '',
     partialMaps: [],
     labels: { ...ROW_LABELS },
+    viewMode: 'summary',
     mapLoaded: false
 };
 
@@ -267,6 +268,7 @@ export const initState = () => {
     state.name = '';
     state.columns = [column];
     state.labels = { ...ROW_LABELS };
+    state.viewMode = 'summary';
     state.partialMaps = [];
     partialMapEditState.activeId = null;
     partialMapEditState.expandedIds.clear();

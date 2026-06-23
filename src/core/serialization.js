@@ -90,6 +90,7 @@ export const serialize = () => ({
     }),
     ...(state.notes && { notes: state.notes }),
     ...(state.labels && { labels: { ...ROW_LABELS, ...state.labels } }),
+    ...(state.viewMode && state.viewMode !== 'summary' && { viewMode: state.viewMode }),
     ...(state.partialMaps.length > 0 && {
         partialMaps: state.partialMaps.map(pm => ({
             id: pm.id,
@@ -148,6 +149,7 @@ const deserializeV1 = (data) => {
     })) : [];
     state.notes = data.notes || '';
     state.labels = { ...ROW_LABELS, ...(data.labels && typeof data.labels === 'object' ? data.labels : {}) };
+    state.viewMode = data.viewMode === 'detail' ? 'detail' : 'summary';
 
     // Deserialize partial maps (positional arrays, like main map)
     state.partialMaps = Array.isArray(data.partialMaps) ? data.partialMaps.map(pm => {
