@@ -17,11 +17,20 @@ const serializeCard = (card) => {
     if (card.status) obj.status = card.status;
     if (card.points != null) obj.points = card.points;
     if (card.tags?.length) obj.tags = card.tags;
+    if (card.comments?.length) obj.comments = card.comments.map(c => ({ id: c.id, text: c.text, ts: c.ts, author: c.author }));
     return obj;
 };
 
+// Normalize a stored comments array into the runtime shape.
+const deserializeComments = (arr) => (Array.isArray(arr) ? arr : []).map(c => ({
+    id: c.id || generateId(),
+    text: String(c.text || ''),
+    ts: c.ts || null,
+    author: c.author || ''
+}));
+
 const deserializeCard = (obj) => {
-    return createStory(
+    const card = createStory(
         obj.name || obj.n || '',
         obj.color || obj.c || null,
         sanitizeUrl(obj.url || obj.u),
@@ -31,10 +40,12 @@ const deserializeCard = (obj) => {
         Array.isArray(obj.tags || obj.tg) ? (obj.tags || obj.tg) : [],
         obj.body || obj.b || ''
     );
+    card.comments = deserializeComments(obj.comments);
+    return card;
 };
 
 const deserializeColumn = (obj) => {
-    return createColumn(
+    const col = createColumn(
         obj.name || obj.n || '',
         obj.color || obj.c || null,
         sanitizeUrl(obj.url || obj.u),
@@ -44,6 +55,8 @@ const deserializeColumn = (obj) => {
         Array.isArray(obj.tags || obj.tg) ? (obj.tags || obj.tg) : [],
         obj.body || obj.b || ''
     );
+    col.comments = deserializeComments(obj.comments);
+    return col;
 };
 
 export const serialize = () => ({

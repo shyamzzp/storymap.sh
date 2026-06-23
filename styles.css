@@ -5915,6 +5915,51 @@ body.read-only-mode {
     color: rgba(0, 0, 0, 0.3);
 }
 
+/* Card comments */
+.card-expand-comments {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-border);
+}
+.comments-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    margin: 0 0 10px;
+}
+.comments-count { color: var(--color-text-faint); font-weight: 500; }
+.comments-empty { font-size: 13px; color: var(--color-text-faint); margin: 0 0 10px; }
+.comments-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; max-height: 28vh; overflow-y: auto; }
+.comment-item {
+    background: var(--color-bg-surface-alt);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 8px;
+    padding: 8px 10px;
+}
+.comment-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.comment-author { font-size: 12px; font-weight: 700; color: var(--color-text-primary); }
+.comment-time { font-size: 11px; color: var(--color-text-faint); }
+.comment-delete {
+    margin-left: auto; border: none; background: transparent; cursor: pointer;
+    color: var(--color-text-faint); font-size: 16px; line-height: 1; padding: 0 2px;
+}
+.comment-delete:hover { color: #ef4444; }
+.comment-text { font-size: 13px; color: var(--color-text-primary); white-space: pre-wrap; word-break: break-word; }
+.comment-form { display: flex; flex-direction: column; gap: 8px; }
+.comment-input {
+    width: 100%; box-sizing: border-box; resize: vertical; min-height: 40px;
+    font: inherit; font-size: 13px;
+    background: var(--color-input-bg); color: var(--color-text-primary);
+    border: 1px solid var(--color-input-border); border-radius: 8px; padding: 8px 10px;
+}
+.comment-input:focus { outline: none; border-color: var(--color-teal); }
+.comment-add-btn {
+    align-self: flex-end;
+    background: var(--color-teal); color: #fff; border: none; border-radius: 8px;
+    padding: 7px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
+}
+.comment-add-btn:hover { filter: brightness(.95); }
+
 .card-expand-name::-webkit-scrollbar,
 .card-expand-body::-webkit-scrollbar {
     width: 4px;
