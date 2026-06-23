@@ -32,6 +32,11 @@ const stateHash = () => JSON.stringify([
     ydoc.getText('notes').toString(),
 ]);
 
+// Offline/static mode: when true, the real-time WebSocket backend is skipped.
+// The Yjs document still works fully locally (editing + localStorage persistence).
+// Set `window.STORYMAP_OFFLINE = false` before app.js loads to re-enable sync.
+const OFFLINE_MODE = (typeof window === 'undefined') || (window.STORYMAP_OFFLINE !== false);
+
 // Yjs modules — lazy-loaded to avoid blocking the welcome screen
 let Y = null;
 let WebsocketProvider = null;
@@ -589,8 +594,9 @@ export const createYjsDoc = async (mapId) => {
         }
     });
 
-    // Connect via WebSocket
-    if (mapId) {
+    // Connect via WebSocket (skipped in offline/static mode — Yjs still works
+    // locally, so editing and localStorage persistence are unaffected).
+    if (mapId && !OFFLINE_MODE) {
         const wsProto = location.protocol === 'https:' ? 'wss:' : 'ws:';
         provider = new WebsocketProvider(`${wsProto}//${location.host}`, mapId, ydoc);
 
@@ -600,7 +606,11 @@ export const createYjsDoc = async (mapId) => {
             const timeout = setTimeout(resolve, 10_000);
             provider.once('sync', () => { clearTimeout(timeout); resolve(); });
         });
-        // Seed Yjs from state for new maps (samples, imports, copies)
+    }
+
+    // Seed Yjs from state for new maps (samples, imports, copies). This also
+    // populates the local-only document when running in offline mode.
+    if (mapId) {
         const ytext = ydoc.getText('notes');
         if (ytext.length === 0 && _state.notes) {
             ydoc.transact(() => {

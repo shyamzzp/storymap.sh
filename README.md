@@ -23,16 +23,26 @@ Everything client-side renders identically: the welcome screen, the board, the
 full colour palette, light/dark themes, exports (JSON/YAML/CSV), and image
 rendering.
 
-### What needs the original backend
+### Offline / static mode
 
-A few features call storymaps.io's server and won't function on a local mirror:
+This mirror runs **standalone with static, local data** — no backend required:
 
-- **Real-time collaboration / shared boards** — the board content behind share
-  URLs (e.g. `/85s8v6mv`) syncs over a Yjs **WebSocket** to the live backend, so
-  it cannot be reconstructed from static files.
-- **`/api/*` endpoints** — e.g. `/api/stats`, new-map IDs, server-side backups.
+- **Built-in templates** work fully — pick one from the welcome screen (Coffee
+  Ordering App, Holiday Rentals, etc.) or open `/sample/<name>` directly.
+- **Create, edit, and persist** boards locally. Maps are saved to the browser's
+  `localStorage` and restored on reload.
+- **Real-time sync is disabled.** `src/core/yjs.js` defines `OFFLINE_MODE`
+  (default **on**), which skips the Yjs **WebSocket** connection. Editing still
+  works because Yjs is a local CRDT; only cross-device collaboration is off. To
+  re-enable sync against a real backend, set `window.STORYMAP_OFFLINE = false`
+  before `app.js` loads.
+- `api/stats` is included as a small **static snapshot** so the welcome counter
+  shows a value. Other `/api/*` calls (server backups, locks) fail silently and
+  are non-essential.
 
-The UI, layout, and colour system are fully intact regardless.
+Shared boards behind live URLs (e.g. `/85s8v6mv`) can't be reconstructed — their
+content lived only in the original server's Yjs store — so an unknown map URL
+gracefully falls back to the welcome screen.
 
 ## Structure
 
