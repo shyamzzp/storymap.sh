@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Storymap — User Story Mapping Board</title>
+    <meta name="description" content="A free user story mapping board. Visualise your product backlog, organise stories by activities and releases.">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2314b8a6'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white'>S</text></svg>">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <span class="logo">
+                <span class="logo-mark">S</span>
+                <span class="logo-text">Storymap</span>
+            </span>
+            <input id="board-name" class="board-name" type="text" value="Coffee Ordering App" aria-label="Board name">
+        </div>
+
+        <div class="header-actions">
+            <div class="menu-group">
+                <button class="btn" data-menu="status">Status <span class="caret">▾</span></button>
+            </div>
+            <div class="menu-group">
+                <button class="btn" data-menu="color">Color <span class="caret">▾</span></button>
+            </div>
+            <button class="btn" id="add-activity">+ Activity</button>
+            <button class="btn" id="add-release">+ Release</button>
+            <span class="divider"></span>
+            <button class="btn" id="export-json">Export JSON</button>
+            <button class="btn" id="clear-all">Clear All</button>
+            <span class="divider"></span>
+            <button class="btn btn-icon" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+            <button class="btn btn-primary" id="share">Share</button>
+        </div>
+    </header>
+
+    <main class="story-map-wrapper">
+        <div id="story-map" class="story-map"></div>
+    </main>
+
+    <!-- Floating colour-picker popover (built by JS) -->
+    <div id="color-popover" class="popover hidden" role="menu" aria-label="Card colour"></div>
+    <!-- Floating status popover -->
+    <div id="status-popover" class="popover hidden" role="menu" aria-label="Card status"></div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
