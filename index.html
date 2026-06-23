@@ -2,51 +2,2198 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Storymap — User Story Mapping Board</title>
-    <meta name="description" content="A free user story mapping board. Visualise your product backlog, organise stories by activities and releases.">
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2314b8a6'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white'>S</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Storymaps.io - Free User Story Mapping Tool with Jira, Linear, Asana & Phabricator Import/Export</title>
+    <meta name="description" content="Free online user story mapping tool for agile teams. Visualise your product backlog, plan releases, collaborate in real-time, and export to Jira, Linear, Asana & Phabricator. No signup required.">
+    <link rel="canonical" href="https://storymaps.io/">
+
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:title" content="Storymaps.io - Free User Story Mapping Tool">
+    <meta property="og:description" content="Free online user story mapping tool for agile teams. Visualise your product backlog, plan releases, collaborate in real-time, and export to Jira, Linear, Asana & Phabricator. No signup required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://storymaps.io/">
+    <meta property="og:image" content="https://storymaps.io/resources/screenshot.png">
+    <meta property="og:image:width" content="1532">
+    <meta property="og:image:height" content="886">
+    <meta property="og:image:alt" content="Storymaps.io user story mapping interface showing a colourful board with user stories organised by activities and releases">
+    <meta property="og:site_name" content="Storymaps.io">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Storymaps.io - Free User Story Mapping Tool">
+    <meta name="twitter:description" content="Free online user story mapping tool for agile teams. Visualise your product backlog, plan releases, collaborate in real-time, and export to Jira, Linear, Asana & Phabricator. No signup required.">
+    <meta name="twitter:image" content="https://storymaps.io/resources/screenshot.png">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "@id": "https://storymaps.io/#app",
+            "name": "Storymaps.io",
+            "description": "Free online user story mapping tool for agile teams. Visualise your product backlog, plan releases, collaborate in real-time, and export to Jira, Linear, Asana & Phabricator. No signup required.",
+            "url": "https://storymaps.io/",
+            "image": "https://storymaps.io/resources/screenshot.png",
+            "inLanguage": "en",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "featureList": [
+                "Real-time collaboration",
+                "Drag and drop",
+                "No signup required",
+                "Import from Jira",
+                "Export to Jira",
+                "Import from Phabricator",
+                "Export to Phabricator",
+                "Import from Asana",
+                "Export to Asana",
+                "Import from Linear",
+                "Export to Linear"
+            ],
+            "keywords": "user story mapping, story map, agile, product backlog, release planning, open source story maps, scrum, product management, user stories, collaborative planning"
+        }
+    </script>
+    <!-- Structured Data -->
+
+    <script>
+    (function() {
+        try {
+            var s = localStorage.getItem('darkMode');
+            var p = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (s !== null ? s === 'true' : p) document.documentElement.classList.add('dark-mode');
+        } catch(e) {}
+    })();
+    </script>
+
+    <script type="importmap">
+    { "imports": { "yjs": "/vendor/yjs.bundle.js", "#js-yaml": "/vendor/js-yaml.bundle.js" } }
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/fonts.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preload" as="image" href="/resources/screenshot.png">
+    <link rel="preload" as="fetch" href="/api/stats" crossorigin>
+    <link rel="modulepreload" href="/src/core/constants.js">
+    <link rel="modulepreload" href="/src/core/state.js">
+    <link rel="modulepreload" href="/src/core/serialization.js">
+    <link rel="modulepreload" href="/src/ui/navigation.js">
+    <link rel="modulepreload" href="/src/ui/presence.js">
+    <link rel="modulepreload" href="/src/core/lock.js">
+    <link rel="modulepreload" href="/src/core/yjs.js">
+    <link rel="modulepreload" href="/src/ui/ui.js">
+    <link rel="modulepreload" href="/src/ui/render.js">
+    <link rel="modulepreload" href="/src/features/notepad.js">
+    <link rel="modulepreload" href="/src/core/log.js">
+    <link rel="modulepreload" href="/src/transfer/exports.js">
+    <link rel="modulepreload" href="/src/transfer/import-helpers.js">
+    <link rel="modulepreload" href="/src/transfer/jira-imports.js">
+    <link rel="modulepreload" href="/src/transfer/asana-imports.js">
+    <link rel="modulepreload" href="/src/transfer/phabricator-imports.js">
+    <link rel="modulepreload" href="/src/transfer/yaml.js">
+    <link rel="modulepreload" href="/src/transfer/csv.js">
+    <link rel="modulepreload" href="/src/features/tour.js">
+    <noscript>
+        <div style="padding: 40px; text-align: center; font-family: sans-serif;">
+            <h1>Storymaps.io - Free User Story Mapping Tool</h1>
+            <p>Create, share, and collaborate on user story maps in real-time. Export to Jira, Linear, Phabricator or Asana.</p>
+            <p>This application requires JavaScript to run. Please enable JavaScript in your browser settings.</p>
+        </div>
+    </noscript>
 </head>
 <body>
     <header class="header">
-        <div class="header-left">
-            <span class="logo">
-                <span class="logo-mark">S</span>
-                <span class="logo-text">Storymap</span>
-            </span>
-            <input id="board-name" class="board-name" type="text" value="Coffee Ordering App" aria-label="Board name">
+        <a href="/" class="logo" id="logoLink">
+            <svg class="logo-icon" viewBox="0 0 24 24" width="28" height="28" fill="none">
+                <rect x="3" y="3" width="7" height="7" rx="1" fill="#fef08a" stroke="#d4aa00" stroke-width="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1" fill="#fecdd3" stroke="#e88a9a" stroke-width="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1" fill="#a5f3fc" stroke="#67c5d6" stroke-width="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1" fill="#14b8a6" stroke="#0d9488" stroke-width="1"/>
+            </svg>
+            <span class="logo-text">Storymaps.io</span>
+        </a>
+<!--         <a href="https://www.reddit.com/r/userstorymapping/" target="_blank" rel="noopener" class="community-link">-->
+<!--            Community <span class="badge-new">new</span>-->
+<!--        </a>-->
+<!--        <a href="https://github.com/jackgleeson/storymaps.io/issues" target="_blank" rel="noopener" class="community-link">-->
+<!--            Bug Reports-->
+<!--        </a>-->
+        <input type="text" class="board-name hidden" id="boardName" placeholder="Untitled Story Map">
+        <div class="search-bar hidden" id="searchBar">
+            <input type="text" id="searchInput" placeholder="Search cards...">
+            <button class="search-filter-btn" id="searchFilterBtn" title="Filter by status, color, or tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                <span class="filter-count hidden" id="filterCount">0</span>
+            </button>
+            <button class="search-close" id="searchClose">&times;</button>
         </div>
-
+        <div class="filter-panel hidden" id="filterPanel">
+            <div class="filter-section">
+                <div class="filter-section-title">Status</div>
+                <div class="filter-status-list" id="filterStatusList"></div>
+            </div>
+            <div class="filter-section">
+                <div class="filter-section-title">Color</div>
+                <div class="filter-color-list" id="filterColorList"></div>
+            </div>
+            <div class="filter-section">
+                <div class="filter-section-title">Tags</div>
+                <div class="filter-tags-list" id="filterTagsList"></div>
+            </div>
+            <div class="filter-actions">
+                <button class="filter-clear-btn" id="filterClearBtn">Clear All</button>
+                <button class="filter-done-btn" id="filterDoneBtn">Done</button>
+            </div>
+        </div>
         <div class="header-actions">
-            <div class="menu-group">
-                <button class="btn" data-menu="status">Status <span class="caret">▾</span></button>
+            <span class="active-mappers" id="activeMappers"></span>
+            <span class="viewer-count" id="viewerCount"><span class="viewer-name" id="viewerName"></span><span class="viewer-live" id="viewerLive"></span></span>
+            <button class="btn btn-secondary btn-icon" id="searchBtn" title="Search (Ctrl+F)" aria-label="Search" style="display:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><line x1="15.5" y1="15.5" x2="21" y2="21"/></svg></button>
+            <button class="btn btn-secondary btn-icon" id="undoBtn" title="Undo (Ctrl+Z)" aria-label="Undo" disabled style="display:none">↩</button>
+            <button class="btn btn-secondary btn-icon" id="redoBtn" title="Redo (Ctrl+Y)" aria-label="Redo" disabled style="display:none">↪</button>
+            <div class="share-dropdown">
+                <button class="btn" id="shareBtn" title="Share"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span class="btn-label">Share</span></button>
+                <div class="share-menu" id="shareMenu">
+                    <button class="share-menu-item" id="shareCopyLink">Share URL</button>
+                    <button class="share-menu-item" id="shareScreenshot">Share as image</button>
+                    <button class="share-menu-item" id="shareDownload">Download image</button>
+                </div>
             </div>
-            <div class="menu-group">
-                <button class="btn" data-menu="color">Color <span class="caret">▾</span></button>
+            <button class="btn" id="buildAiBtn" title="Build with AI" style="display:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#f59e0b"/></svg><span class="btn-label">Build</span></button>
+            <div class="dropdown">
+                <button class="btn btn-secondary btn-icon" id="menuBtn" title="Menu" aria-label="Menu">&#9776;</button>
+                <div class="dropdown-menu" id="mainMenu">
+                    <button class="dropdown-item" id="newMapBtn"><span class="menu-icon">📄</span> New</button>
+                    <button class="dropdown-item" id="copyExistingBtn" title="Duplicate this map to a new URL"><span class="menu-icon">📑</span> Copy this map</button>
+                    <div class="dropdown-submenu">
+                        <button class="dropdown-item dropdown-submenu-trigger" id="samplesSubmenuTrigger"><span><span class="menu-icon">📚</span> Samples</span></button>
+                        <div class="dropdown-submenu-content" id="samplesSubmenu">
+                            <button class="dropdown-item" data-sample="coffee-ordering">Coffee Ordering App</button>
+                            <button class="dropdown-item" data-sample="holiday-rentals">Holiday Rentals App</button>
+                            <button class="dropdown-item" data-sample="recipe-app">Recipe Sharing App</button>
+                            <button class="dropdown-item" data-sample="subscription-tracker">Subscription Tracker</button>
+                            <button class="dropdown-item" data-sample="mobile-banking">Mobile Banking</button>
+                            <button class="dropdown-item" data-sample="brochure-site">Brochure Site</button>
+                        </div>
+                    </div>
+                    <button class="dropdown-item" id="tourMenuBtn"><span class="menu-icon">🎓</span> Take a Tour</button>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-submenu">
+                        <button class="dropdown-item dropdown-submenu-trigger" id="importSubmenuTrigger"><span><span class="menu-icon">📥</span> Import</span></button>
+                        <div class="dropdown-submenu-content" id="importSubmenu">
+                            <div class="submenu-group-label">File</div>
+                            <div class="integration-icons file-icons">
+                                <button class="integration-icon" id="importJsonMenuItem" title="JSON"><svg width="24" height="24" viewBox="0 0 1321.45 1333.33" fill="#E8960C" fill-rule="evenodd" clip-rule="evenodd"><path d="M221.37 618.44h757.94V405.15H755.14c-23.5 0-56.32-12.74-71.82-28.24-15.5-15.5-25-43.47-25-66.97V82.89H88.39c-1.99 0-3.49 1-4.49 2-1.5 1-2 2.5-2 4.5v1155.04c0 1.5 1 3.5 2 4.5 1 1.49 3 1.99 4.49 1.99H972.8c2 0 1.89-.99 2.89-1.99 1.5-1 3.61-3 3.61-4.5v-121.09H221.36c-44.96 0-82-36.9-82-81.99V700.44c0-45.1 36.9-82 82-82zm126.51 117.47h75.24v146.61c0 30.79-2.44 54.23-7.33 70.31-4.92 16.03-14.8 29.67-29.65 40.85-14.86 11.12-33.91 16.72-57.05 16.72-24.53 0-43.51-3.71-56.94-11.06-13.5-7.36-23.89-18.1-31.23-32.3-7.35-14.14-11.69-31.67-12.99-52.53l71.5-10.81c.11 11.81 1.07 20.61 2.81 26.33 1.76 5.78 4.75 10.37 9 13.95 2.87 2.33 6.94 3.46 12.25 3.46 8.4 0 14.58-3.46 18.53-10.37 3.9-6.92 5.87-18.6 5.87-35V735.92zm112.77 180.67l71.17-4.97c1.54 12.81 4.69 22.62 9.44 29.28 7.74 10.88 18.74 16.34 33.09 16.34 10.68 0 18.93-2.76 24.68-8.36 5.81-5.58 8.7-12.07 8.7-19.41 0-6.97-2.71-13.26-8.2-18.79-5.47-5.53-18.23-10.68-38.28-15.65-32.89-8.17-56.27-19.1-70.26-32.74-14.12-13.57-21.18-30.92-21.18-52.03 0-13.83 3.61-26.89 10.85-39.21 7.22-12.38 18.07-22.06 32.59-29.09 14.52-7.04 34.4-10.56 59.65-10.56 31 0 54.62 6.41 70.88 19.29 16.28 12.81 25.92 33.24 29.04 61.27l-70.5 4.65c-1.87-12.25-5.81-21.17-11.81-26.7-6.05-5.6-14.35-8.36-24.9-8.36-8.71 0-15.31 2.07-19.73 6.16-4.4 4.09-6.59 9.12-6.59 15.02 0 4.27 1.81 8.11 5.37 11.57 3.45 3.59 11.8 6.85 25.02 9.93 32.75 7.86 56.2 15.84 70.31 23.87 14.18 8.05 24.52 17.98 30.96 29.92 6.44 11.88 9.66 25.2 9.66 39.96 0 17.29-4.3 33.24-12.88 47.89-8.63 14.58-20.61 25.7-36.08 33.24-15.41 7.54-34.85 11.31-58.33 11.31-41.24 0-69.81-8.86-85.68-26.52-15.88-17.65-24.85-40.09-26.96-67.3zm248.74-45.5c0-44.05 11.02-78.36 33.09-102.87 22.09-24.57 52.82-36.82 92.24-36.82 40.38 0 71.5 12.07 93.34 36.13 21.86 24.13 32.77 57.94 32.77 101.37 0 31.54-4.75 57.36-14.3 77.54-9.54 20.18-23.37 35.89-41.4 47.13-18.07 11.24-40.55 16.84-67.48 16.84-27.33 0-49.99-4.83-67.94-14.52-17.92-9.74-32.49-25.07-43.62-46.06-11.13-20.92-16.72-47.19-16.72-78.74zm74.89.19c0 27.21 4.57 46.81 13.68 58.68 9.13 11.88 21.57 17.85 37.26 17.85 16.1 0 28.65-5.84 37.45-17.47 8.87-11.68 13.28-32.54 13.28-62.77 0-25.39-4.63-43.92-13.84-55.61-9.26-11.76-21.75-17.6-37.56-17.6-15.13 0-27.34 5.97-36.49 17.85-9.21 11.88-13.78 31.61-13.78 59.07zm209.08-135.36h69.99l90.98 149.05V735.91h70.83v269.96h-70.83l-90.48-148.24v148.24h-70.49V735.91zm67.71-117.47h178.37c45.1 0 82 37.04 82 82v340.91c0 44.96-37.03 81.99-82 81.99h-178.37v147c0 17.5-6.99 32.99-18.5 44.5-11.5 11.49-27 18.5-44.5 18.5H62.97c-17.5 0-32.99-7-44.5-18.5-11.49-11.5-18.5-27-18.5-44.5V63.49c0-17.5 7-33 18.5-44.5S45.97.49 62.97.49H700.1c1.5-.5 3-.5 4.5-.5 7 0 14 3 19 7.49h1c1 .5 1.5 1 2.5 2l325.46 329.47c5.5 5.5 9.5 13 9.5 21.5 0 2.5-.5 4.5-1 7v250.98zM732.61 303.47V96.99l232.48 235.47H761.6c-7.99 0-14.99-3.5-20.5-8.49-4.99-5-8.49-12.5-8.49-20.5z"/></svg><span>JSON</span></button>
+                                <button class="integration-icon" id="importYamlMenuItem" title="YAML"><svg width="24" height="24" viewBox="0 0 480 511.65" fill="#CB2A2A" fill-rule="evenodd" clip-rule="evenodd"><path d="M84.68 237.33H375.8v-81.86h-86.02c-9.02 0-21.62-4.88-27.56-10.83-5.95-5.95-9.6-16.68-9.6-25.7V31.81H33.92c-.77 0-1.34.39-1.72.77-.58.38-.77.96-.77 1.73v443.23c0 .58.38 1.34.77 1.73.38.57 1.15.77 1.72.77h339.39c.76 0 .72-.39 1.1-.77.58-.39 1.39-1.15 1.39-1.73v-46.46H84.68c-17.25 0-31.47-14.16-31.47-31.47V268.79c0-17.31 14.16-31.46 31.47-31.46zm1.86 52.82h29.79l17.57 29.23 17.48-29.23h29.63l-33.71 50.47v36.36h-26.92v-36.36l-33.84-50.47zm143.04 72.52h-30.4l-4.36 14.31h-27.39l32.68-86.83h29.37l32.54 86.83h-28.09l-4.35-14.31zm-5.68-18.79-9.48-31.21-9.52 31.21h19zm44.32-53.73h35.4l13.48 52.84 13.52-52.84h35.23v86.83H343.9v-66.19l-16.94 66.19h-19.89l-16.9-66.19v66.19h-21.95v-86.83zm109.98 0H405v65.49h41.96v21.34H378.2v-86.83zm28.98-52.82h41.36c17.3 0 31.46 14.2 31.46 31.46v130.82c0 17.26-14.2 31.47-31.46 31.47h-41.36v56.4c0 6.72-2.69 12.66-7.1 17.08-4.41 4.41-10.36 7.09-17.07 7.09H24.17c-6.71 0-12.66-2.68-17.07-7.09C2.69 500.14 0 494.2 0 487.48V24.37C0 17.65 2.69 11.7 7.1 7.29 11.51 2.88 17.65.19 24.17.19h244.49c.58-.19 1.16-.19 1.73-.19 2.69 0 5.37 1.15 7.29 2.88h.38c.39.19.58.38.96.77l124.9 126.43c2.11 2.1 3.64 4.98 3.64 8.24 0 .96-.19 1.73-.38 2.69v96.32zM281.13 116.45V37.22l89.22 90.36h-78.09c-3.07 0-5.75-1.34-7.86-3.26-1.92-1.92-3.27-4.8-3.27-7.87z"/></svg><span>YAML</span></button>
+                                <button class="integration-icon" id="importCsvMenuItem" title="CSV"><svg width="24" height="24" viewBox="0 0 115.28 122.88" fill="#22A559"><path fill-rule="evenodd" clip-rule="evenodd" d="M25.38,57h64.88V37.34H69.59c-2.17,0-5.19-1.17-6.62-2.6c-1.43-1.43-2.3-4.01-2.3-6.17V7.64l0,0H8.15 c-0.18,0-0.32,0.09-0.41,0.18C7.59,7.92,7.55,8.05,7.55,8.24v106.45c0,0.14,0.09,0.32,0.18,0.41c0.09,0.14,0.28,0.18,0.41,0.18 c22.78,0,58.09,0,81.51,0c0.18,0,0.17-0.09,0.27-0.18c0.14-0.09,0.33-0.28,0.33-0.41v-11.16H25.38c-4.14,0-7.56-3.4-7.56-7.56 V64.55C17.82,60.4,21.22,57,25.38,57L25.38,57z M45.88,82.35l6.29,1.9c-0.42,1.76-1.09,3.24-2,4.42c-0.91,1.18-2.03,2.08-3.38,2.68 c-1.35,0.6-3.06,0.9-5.14,0.9c-2.53,0-4.59-0.37-6.19-1.1c-1.6-0.74-2.98-2.03-4.14-3.87c-1.16-1.84-1.75-4.21-1.75-7.09 c0-3.84,1.02-6.79,3.06-8.85c2.05-2.06,4.94-3.09,8.68-3.09c2.92,0,5.23,0.59,6.9,1.77c1.67,1.18,2.92,3,3.73,5.45l-6.32,1.4 c-0.22-0.7-0.45-1.22-0.7-1.54c-0.41-0.55-0.9-0.97-1.48-1.26c-0.58-0.3-1.23-0.44-1.95-0.44c-1.63,0-2.88,0.65-3.75,1.96 c-0.65,0.97-0.98,2.49-0.98,4.56c0,2.57,0.39,4.33,1.17,5.29c0.78,0.95,1.88,1.43,3.3,1.43c1.37,0,2.41-0.38,3.11-1.16 C45.06,84.93,45.56,83.82,45.88,82.35L45.88,82.35z M54.47,84.17l6.81-0.43c0.15,1.1,0.45,1.95,0.9,2.52 c0.74,0.94,1.79,1.41,3.17,1.41c1.02,0,1.81-0.24,2.36-0.72c0.56-0.48,0.83-1.04,0.83-1.67c0-0.6-0.26-1.14-0.78-1.62 c-0.52-0.48-1.75-0.92-3.66-1.35c-3.15-0.7-5.38-1.64-6.72-2.82c-1.35-1.17-2.03-2.66-2.03-4.48c0-1.19,0.35-2.31,1.04-3.37 c0.69-1.06,1.73-1.9,3.12-2.5c1.39-0.61,3.29-0.91,5.71-0.91c2.97,0,5.23,0.55,6.78,1.66c1.56,1.1,2.48,2.86,2.78,5.27l-6.75,0.4 c-0.18-1.05-0.56-1.82-1.13-2.3c-0.58-0.48-1.37-0.72-2.38-0.72c-0.83,0-1.46,0.18-1.89,0.53c-0.42,0.35-0.63,0.78-0.63,1.29 c0,0.37,0.17,0.7,0.51,0.99c0.33,0.31,1.13,0.59,2.39,0.85c3.14,0.68,5.38,1.36,6.73,2.05c1.36,0.69,2.35,1.55,2.96,2.57 c0.62,1.02,0.92,2.17,0.92,3.44c0,1.49-0.41,2.86-1.23,4.12c-0.83,1.25-1.97,2.21-3.45,2.86c-1.48,0.65-3.34,0.97-5.58,0.97 c-3.95,0-6.68-0.76-8.2-2.28C55.53,88.44,54.67,86.51,54.47,84.17L54.47,84.17z M76.91,68.63h7.5l5.23,16.71l5.16-16.71h7.28 l-8.62,23.22h-7.77L76.91,68.63L76.91,68.63z M97.79,57h9.93c4.16,0,7.56,3.41,7.56,7.56v31.42c0,4.15-3.41,7.56-7.56,7.56h-9.93 v13.55c0,1.61-0.65,3.04-1.7,4.1c-1.06,1.06-2.49,1.7-4.1,1.7c-29.44,0-56.59,0-86.18,0c-1.61,0-3.04-0.64-4.1-1.7 c-1.06-1.06-1.7-2.49-1.7-4.1V5.85c0-1.61,0.65-3.04,1.7-4.1c1.06-1.06,2.53-1.7,4.1-1.7h58.72C64.66,0,64.8,0,64.94,0 c0.64,0,1.29,0.28,1.75,0.69h0.09c0.09,0.05,0.14,0.09,0.23,0.18l29.99,30.36c0.51,0.51,0.88,1.2,0.88,1.98 c0,0.23-0.05,0.41-0.09,0.65V57L97.79,57z M67.52,27.97V8.94l21.43,21.7H70.19c-0.74,0-1.38-0.32-1.89-0.78 C67.84,29.4,67.52,28.71,67.52,27.97L67.52,27.97z"/></svg><span>CSV</span></button>
+                            </div>
+                            <div class="submenu-group-label">Integrations</div>
+                            <div class="integration-icons">
+                                <button class="integration-icon" data-integration="jira" title="Jira"><svg width="24" height="24" viewBox="0 0 24 24" fill="#0052CC"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.005 1.005 0 0 0 23.013 0z"/></svg><span>Jira</span></button>
+                                <button class="integration-icon" data-integration="asana" title="Asana"><svg width="24" height="24" viewBox="0 0 24 24" fill="#F06A6A"><circle cx="12" cy="4.5" r="4"/><circle cx="4.5" cy="15" r="4"/><circle cx="19.5" cy="15" r="4"/></svg><span>Asana</span></button>
+                                <button class="integration-icon" data-integration="phabricator" title="Phabricator"><svg width="24" height="24" viewBox="0 0 592 592"><path fill="#069" d="M592.2,51.8V0H329.5C329.2,181.6,181.9,328.8.2,328.9V592h52l6.7-116.3a475.94,475.94,0,0,0,69-13.7l50.4,104.4,96.5-40-38-109.6a489.27,489.27,0,0,0,58.3-39l86.6,77.3,73.9-73.9-77.1-86.8a477.47,477.47,0,0,0,39-58.3L527,274.3l40-96.5L462.6,127.2a486.82,486.82,0,0,0,13.6-68.8Z"/><path fill="#900" d="M0,0V199.8c110.4,0,200-89.4,200.2-199.8Z"/></svg><span>Phab</span></button>
+                                <button class="integration-icon" data-integration="linear" title="Linear"><svg width="24" height="24" viewBox="0 0 100 100" fill="#5E6AD2"><path d="M12.9266 16.3713c-.5283.5806-.4933 1.4714.0617 2.0265l68.5946 68.5946c.5551.555 1.4459.59 2.0265.0617 10.0579-9.1522 16.3713-22.3478 16.3713-37.0179C99.9807 22.402 77.5788 0 49.9445 0 35.2744 0 22.0788 6.31337 12.9266 16.3713ZM4.35334 29.3894c-.25348.5589-.12567 1.2142.30824 1.6481L68.9432 95.3191c.4339.4339 1.0892.5617 1.6481.3083 1.485-.6736 2.9312-1.4176 4.3344-2.2277.8341-.4815.9618-1.6195.2808-2.3005L8.88146 24.7742c-.68097-.681-1.81894-.5532-2.30045.2808-.81013 1.4032-1.55411 2.8494-2.22767 4.3344ZM.453579 47.796c-.300979-.301-.46112014-.7158-.4327856-1.1405.1327026-1.9891.3816396-3.9463.7400796-5.865.214926-1.1505 1.620727-1.5497 2.448307-.7222L59.9124 96.7715c.8275.8276.4283 2.2334-.7222 2.4483-1.9187.3585-3.8759.6074-5.865.7401-.4247.0283-.8395-.1318-1.1405-.4328L.453579 47.796ZM3.93331 61.7589c-1.0331-1.0331-2.70028-.1429-2.32193 1.2683C6.22104 80.2203 19.7604 93.7597 36.9535 98.3693c1.4112.3784 2.3014-1.2888 1.2683-2.3219L3.93331 61.7589Z"/></svg><span>Linear</span></button>
+                            </div>
+                            <div class="integration-options" data-for="jira">
+                                <button class="dropdown-item" id="importJiraBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0052CC" style="vertical-align: -2px;"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.005 1.005 0 0 0 23.013 0z"/></svg></span> Jira API</button>
+                                <button class="dropdown-item" id="importJiraCsvBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0052CC" style="vertical-align: -2px;"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.005 1.005 0 0 0 23.013 0z"/></svg></span> Jira CSV</button>
+                            </div>
+                            <div class="integration-options" data-for="asana">
+                                <button class="dropdown-item" id="importAsanaBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="#F06A6A" style="vertical-align: -2px;"><circle cx="12" cy="4.5" r="4"/><circle cx="4.5" cy="15" r="4"/><circle cx="19.5" cy="15" r="4"/></svg></span> Asana API</button>
+                                <button class="dropdown-item" id="importAsanaCsvBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="#F06A6A" style="vertical-align: -2px;"><circle cx="12" cy="4.5" r="4"/><circle cx="4.5" cy="15" r="4"/><circle cx="19.5" cy="15" r="4"/></svg></span> Asana CSV</button>
+                            </div>
+                            <div class="integration-options" data-for="phabricator">
+                                <button class="dropdown-item" id="importPhabBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 592 592" style="vertical-align: -2px;"><path fill="#069" d="M592.2,51.8V0H329.5C329.2,181.6,181.9,328.8.2,328.9V592h52l6.7-116.3a475.94,475.94,0,0,0,69-13.7l50.4,104.4,96.5-40-38-109.6a489.27,489.27,0,0,0,58.3-39l86.6,77.3,73.9-73.9-77.1-86.8a477.47,477.47,0,0,0,39-58.3L527,274.3l40-96.5L462.6,127.2a486.82,486.82,0,0,0,13.6-68.8Z"/><path fill="#900" d="M0,0V199.8c110.4,0,200-89.4,200.2-199.8Z"/></svg></span> Phabricator API</button>
+                                <button class="dropdown-item" id="importPhabCsvBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 592 592" style="vertical-align: -2px;"><path fill="#069" d="M592.2,51.8V0H329.5C329.2,181.6,181.9,328.8.2,328.9V592h52l6.7-116.3a475.94,475.94,0,0,0,69-13.7l50.4,104.4,96.5-40-38-109.6a489.27,489.27,0,0,0,58.3-39l86.6,77.3,73.9-73.9-77.1-86.8a477.47,477.47,0,0,0,39-58.3L527,274.3l40-96.5L462.6,127.2a486.82,486.82,0,0,0,13.6-68.8Z"/><path fill="#900" d="M0,0V199.8c110.4,0,200-89.4,200.2-199.8Z"/></svg></span> Phabricator CSV</button>
+                            </div>
+                            <div class="integration-options" data-for="linear">
+                                <button class="dropdown-item" id="importLinearBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 100 100" fill="#5E6AD2" style="vertical-align: -2px;"><path d="M12.9266 16.3713c-.5283.5806-.4933 1.4714.0617 2.0265l68.5946 68.5946c.5551.555 1.4459.59 2.0265.0617 10.0579-9.1522 16.3713-22.3478 16.3713-37.0179C99.9807 22.402 77.5788 0 49.9445 0 35.2744 0 22.0788 6.31337 12.9266 16.3713ZM4.35334 29.3894c-.25348.5589-.12567 1.2142.30824 1.6481L68.9432 95.3191c.4339.4339 1.0892.5617 1.6481.3083 1.485-.6736 2.9312-1.4176 4.3344-2.2277.8341-.4815.9618-1.6195.2808-2.3005L8.88146 24.7742c-.68097-.681-1.81894-.5532-2.30045.2808-.81013 1.4032-1.55411 2.8494-2.22767 4.3344ZM.453579 47.796c-.300979-.301-.46112014-.7158-.4327856-1.1405.1327026-1.9891.3816396-3.9463.7400796-5.865.214926-1.1505 1.620727-1.5497 2.448307-.7222L59.9124 96.7715c.8275.8276.4283 2.2334-.7222 2.4483-1.9187.3585-3.8759.6074-5.865.7401-.4247.0283-.8395-.1318-1.1405-.4328L.453579 47.796ZM3.93331 61.7589c-1.0331-1.0331-2.70028-.1429-2.32193 1.2683C6.22104 80.2203 19.7604 93.7597 36.9535 98.3693c1.4112.3784 2.3014-1.2888 1.2683-2.3219L3.93331 61.7589Z"/></svg></span> Linear API</button>
+                                <button class="dropdown-item" id="importLinearCsvBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 100 100" fill="#5E6AD2" style="vertical-align: -2px;"><path d="M12.9266 16.3713c-.5283.5806-.4933 1.4714.0617 2.0265l68.5946 68.5946c.5551.555 1.4459.59 2.0265.0617 10.0579-9.1522 16.3713-22.3478 16.3713-37.0179C99.9807 22.402 77.5788 0 49.9445 0 35.2744 0 22.0788 6.31337 12.9266 16.3713ZM4.35334 29.3894c-.25348.5589-.12567 1.2142.30824 1.6481L68.9432 95.3191c.4339.4339 1.0892.5617 1.6481.3083 1.485-.6736 2.9312-1.4176 4.3344-2.2277.8341-.4815.9618-1.6195.2808-2.3005L8.88146 24.7742c-.68097-.681-1.81894-.5532-2.30045.2808-.81013 1.4032-1.55411 2.8494-2.22767 4.3344ZM.453579 47.796c-.300979-.301-.46112014-.7158-.4327856-1.1405.1327026-1.9891.3816396-3.9463.7400796-5.865.214926-1.1505 1.620727-1.5497 2.448307-.7222L59.9124 96.7715c.8275.8276.4283 2.2334-.7222 2.4483-1.9187.3585-3.8759.6074-5.865.7401-.4247.0283-.8395-.1318-1.1405-.4328L.453579 47.796ZM3.93331 61.7589c-1.0331-1.0331-2.70028-.1429-2.32193 1.2683C6.22104 80.2203 19.7604 93.7597 36.9535 98.3693c1.4112.3784 2.3014-1.2888 1.2683-2.3219L3.93331 61.7589Z"/></svg></span> Linear CSV</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-submenu">
+                        <button class="dropdown-item dropdown-submenu-trigger" id="exportSubmenuTrigger"><span><span class="menu-icon">📤</span> Export</span></button>
+                        <div class="dropdown-submenu-content" id="exportSubmenu">
+                            <div class="submenu-group-label">File</div>
+                            <div class="integration-icons file-icons">
+                                <button class="integration-icon" id="exportMap" title="JSON"><svg width="24" height="24" viewBox="0 0 1321.45 1333.33" fill="#E8960C" fill-rule="evenodd" clip-rule="evenodd"><path d="M221.37 618.44h757.94V405.15H755.14c-23.5 0-56.32-12.74-71.82-28.24-15.5-15.5-25-43.47-25-66.97V82.89H88.39c-1.99 0-3.49 1-4.49 2-1.5 1-2 2.5-2 4.5v1155.04c0 1.5 1 3.5 2 4.5 1 1.49 3 1.99 4.49 1.99H972.8c2 0 1.89-.99 2.89-1.99 1.5-1 3.61-3 3.61-4.5v-121.09H221.36c-44.96 0-82-36.9-82-81.99V700.44c0-45.1 36.9-82 82-82zm126.51 117.47h75.24v146.61c0 30.79-2.44 54.23-7.33 70.31-4.92 16.03-14.8 29.67-29.65 40.85-14.86 11.12-33.91 16.72-57.05 16.72-24.53 0-43.51-3.71-56.94-11.06-13.5-7.36-23.89-18.1-31.23-32.3-7.35-14.14-11.69-31.67-12.99-52.53l71.5-10.81c.11 11.81 1.07 20.61 2.81 26.33 1.76 5.78 4.75 10.37 9 13.95 2.87 2.33 6.94 3.46 12.25 3.46 8.4 0 14.58-3.46 18.53-10.37 3.9-6.92 5.87-18.6 5.87-35V735.92zm112.77 180.67l71.17-4.97c1.54 12.81 4.69 22.62 9.44 29.28 7.74 10.88 18.74 16.34 33.09 16.34 10.68 0 18.93-2.76 24.68-8.36 5.81-5.58 8.7-12.07 8.7-19.41 0-6.97-2.71-13.26-8.2-18.79-5.47-5.53-18.23-10.68-38.28-15.65-32.89-8.17-56.27-19.1-70.26-32.74-14.12-13.57-21.18-30.92-21.18-52.03 0-13.83 3.61-26.89 10.85-39.21 7.22-12.38 18.07-22.06 32.59-29.09 14.52-7.04 34.4-10.56 59.65-10.56 31 0 54.62 6.41 70.88 19.29 16.28 12.81 25.92 33.24 29.04 61.27l-70.5 4.65c-1.87-12.25-5.81-21.17-11.81-26.7-6.05-5.6-14.35-8.36-24.9-8.36-8.71 0-15.31 2.07-19.73 6.16-4.4 4.09-6.59 9.12-6.59 15.02 0 4.27 1.81 8.11 5.37 11.57 3.45 3.59 11.8 6.85 25.02 9.93 32.75 7.86 56.2 15.84 70.31 23.87 14.18 8.05 24.52 17.98 30.96 29.92 6.44 11.88 9.66 25.2 9.66 39.96 0 17.29-4.3 33.24-12.88 47.89-8.63 14.58-20.61 25.7-36.08 33.24-15.41 7.54-34.85 11.31-58.33 11.31-41.24 0-69.81-8.86-85.68-26.52-15.88-17.65-24.85-40.09-26.96-67.3zm248.74-45.5c0-44.05 11.02-78.36 33.09-102.87 22.09-24.57 52.82-36.82 92.24-36.82 40.38 0 71.5 12.07 93.34 36.13 21.86 24.13 32.77 57.94 32.77 101.37 0 31.54-4.75 57.36-14.3 77.54-9.54 20.18-23.37 35.89-41.4 47.13-18.07 11.24-40.55 16.84-67.48 16.84-27.33 0-49.99-4.83-67.94-14.52-17.92-9.74-32.49-25.07-43.62-46.06-11.13-20.92-16.72-47.19-16.72-78.74zm74.89.19c0 27.21 4.57 46.81 13.68 58.68 9.13 11.88 21.57 17.85 37.26 17.85 16.1 0 28.65-5.84 37.45-17.47 8.87-11.68 13.28-32.54 13.28-62.77 0-25.39-4.63-43.92-13.84-55.61-9.26-11.76-21.75-17.6-37.56-17.6-15.13 0-27.34 5.97-36.49 17.85-9.21 11.88-13.78 31.61-13.78 59.07zm209.08-135.36h69.99l90.98 149.05V735.91h70.83v269.96h-70.83l-90.48-148.24v148.24h-70.49V735.91zm67.71-117.47h178.37c45.1 0 82 37.04 82 82v340.91c0 44.96-37.03 81.99-82 81.99h-178.37v147c0 17.5-6.99 32.99-18.5 44.5-11.5 11.49-27 18.5-44.5 18.5H62.97c-17.5 0-32.99-7-44.5-18.5-11.49-11.5-18.5-27-18.5-44.5V63.49c0-17.5 7-33 18.5-44.5S45.97.49 62.97.49H700.1c1.5-.5 3-.5 4.5-.5 7 0 14 3 19 7.49h1c1 .5 1.5 1 2.5 2l325.46 329.47c5.5 5.5 9.5 13 9.5 21.5 0 2.5-.5 4.5-1 7v250.98zM732.61 303.47V96.99l232.48 235.47H761.6c-7.99 0-14.99-3.5-20.5-8.49-4.99-5-8.49-12.5-8.49-20.5z"/></svg><span>JSON</span></button>
+                                <button class="integration-icon" id="exportYamlBtn" title="YAML"><svg width="24" height="24" viewBox="0 0 480 511.65" fill="#CB2A2A" fill-rule="evenodd" clip-rule="evenodd"><path d="M84.68 237.33H375.8v-81.86h-86.02c-9.02 0-21.62-4.88-27.56-10.83-5.95-5.95-9.6-16.68-9.6-25.7V31.81H33.92c-.77 0-1.34.39-1.72.77-.58.38-.77.96-.77 1.73v443.23c0 .58.38 1.34.77 1.73.38.57 1.15.77 1.72.77h339.39c.76 0 .72-.39 1.1-.77.58-.39 1.39-1.15 1.39-1.73v-46.46H84.68c-17.25 0-31.47-14.16-31.47-31.47V268.79c0-17.31 14.16-31.46 31.47-31.46zm1.86 52.82h29.79l17.57 29.23 17.48-29.23h29.63l-33.71 50.47v36.36h-26.92v-36.36l-33.84-50.47zm143.04 72.52h-30.4l-4.36 14.31h-27.39l32.68-86.83h29.37l32.54 86.83h-28.09l-4.35-14.31zm-5.68-18.79-9.48-31.21-9.52 31.21h19zm44.32-53.73h35.4l13.48 52.84 13.52-52.84h35.23v86.83H343.9v-66.19l-16.94 66.19h-19.89l-16.9-66.19v66.19h-21.95v-86.83zm109.98 0H405v65.49h41.96v21.34H378.2v-86.83zm28.98-52.82h41.36c17.3 0 31.46 14.2 31.46 31.46v130.82c0 17.26-14.2 31.47-31.46 31.47h-41.36v56.4c0 6.72-2.69 12.66-7.1 17.08-4.41 4.41-10.36 7.09-17.07 7.09H24.17c-6.71 0-12.66-2.68-17.07-7.09C2.69 500.14 0 494.2 0 487.48V24.37C0 17.65 2.69 11.7 7.1 7.29 11.51 2.88 17.65.19 24.17.19h244.49c.58-.19 1.16-.19 1.73-.19 2.69 0 5.37 1.15 7.29 2.88h.38c.39.19.58.38.96.77l124.9 126.43c2.11 2.1 3.64 4.98 3.64 8.24 0 .96-.19 1.73-.38 2.69v96.32zM281.13 116.45V37.22l89.22 90.36h-78.09c-3.07 0-5.75-1.34-7.86-3.26-1.92-1.92-3.27-4.8-3.27-7.87z"/></svg><span>YAML</span></button>
+                                <button class="integration-icon" id="exportCsvBtn" title="CSV"><svg width="24" height="24" viewBox="0 0 115.28 122.88" fill="#22A559"><path fill-rule="evenodd" clip-rule="evenodd" d="M25.38,57h64.88V37.34H69.59c-2.17,0-5.19-1.17-6.62-2.6c-1.43-1.43-2.3-4.01-2.3-6.17V7.64l0,0H8.15 c-0.18,0-0.32,0.09-0.41,0.18C7.59,7.92,7.55,8.05,7.55,8.24v106.45c0,0.14,0.09,0.32,0.18,0.41c0.09,0.14,0.28,0.18,0.41,0.18 c22.78,0,58.09,0,81.51,0c0.18,0,0.17-0.09,0.27-0.18c0.14-0.09,0.33-0.28,0.33-0.41v-11.16H25.38c-4.14,0-7.56-3.4-7.56-7.56 V64.55C17.82,60.4,21.22,57,25.38,57L25.38,57z M45.88,82.35l6.29,1.9c-0.42,1.76-1.09,3.24-2,4.42c-0.91,1.18-2.03,2.08-3.38,2.68 c-1.35,0.6-3.06,0.9-5.14,0.9c-2.53,0-4.59-0.37-6.19-1.1c-1.6-0.74-2.98-2.03-4.14-3.87c-1.16-1.84-1.75-4.21-1.75-7.09 c0-3.84,1.02-6.79,3.06-8.85c2.05-2.06,4.94-3.09,8.68-3.09c2.92,0,5.23,0.59,6.9,1.77c1.67,1.18,2.92,3,3.73,5.45l-6.32,1.4 c-0.22-0.7-0.45-1.22-0.7-1.54c-0.41-0.55-0.9-0.97-1.48-1.26c-0.58-0.3-1.23-0.44-1.95-0.44c-1.63,0-2.88,0.65-3.75,1.96 c-0.65,0.97-0.98,2.49-0.98,4.56c0,2.57,0.39,4.33,1.17,5.29c0.78,0.95,1.88,1.43,3.3,1.43c1.37,0,2.41-0.38,3.11-1.16 C45.06,84.93,45.56,83.82,45.88,82.35L45.88,82.35z M54.47,84.17l6.81-0.43c0.15,1.1,0.45,1.95,0.9,2.52 c0.74,0.94,1.79,1.41,3.17,1.41c1.02,0,1.81-0.24,2.36-0.72c0.56-0.48,0.83-1.04,0.83-1.67c0-0.6-0.26-1.14-0.78-1.62 c-0.52-0.48-1.75-0.92-3.66-1.35c-3.15-0.7-5.38-1.64-6.72-2.82c-1.35-1.17-2.03-2.66-2.03-4.48c0-1.19,0.35-2.31,1.04-3.37 c0.69-1.06,1.73-1.9,3.12-2.5c1.39-0.61,3.29-0.91,5.71-0.91c2.97,0,5.23,0.55,6.78,1.66c1.56,1.1,2.48,2.86,2.78,5.27l-6.75,0.4 c-0.18-1.05-0.56-1.82-1.13-2.3c-0.58-0.48-1.37-0.72-2.38-0.72c-0.83,0-1.46,0.18-1.89,0.53c-0.42,0.35-0.63,0.78-0.63,1.29 c0,0.37,0.17,0.7,0.51,0.99c0.33,0.31,1.13,0.59,2.39,0.85c3.14,0.68,5.38,1.36,6.73,2.05c1.36,0.69,2.35,1.55,2.96,2.57 c0.62,1.02,0.92,2.17,0.92,3.44c0,1.49-0.41,2.86-1.23,4.12c-0.83,1.25-1.97,2.21-3.45,2.86c-1.48,0.65-3.34,0.97-5.58,0.97 c-3.95,0-6.68-0.76-8.2-2.28C55.53,88.44,54.67,86.51,54.47,84.17L54.47,84.17z M76.91,68.63h7.5l5.23,16.71l5.16-16.71h7.28 l-8.62,23.22h-7.77L76.91,68.63L76.91,68.63z M97.79,57h9.93c4.16,0,7.56,3.41,7.56,7.56v31.42c0,4.15-3.41,7.56-7.56,7.56h-9.93 v13.55c0,1.61-0.65,3.04-1.7,4.1c-1.06,1.06-2.49,1.7-4.1,1.7c-29.44,0-56.59,0-86.18,0c-1.61,0-3.04-0.64-4.1-1.7 c-1.06-1.06-1.7-2.49-1.7-4.1V5.85c0-1.61,0.65-3.04,1.7-4.1c1.06-1.06,2.53-1.7,4.1-1.7h58.72C64.66,0,64.8,0,64.94,0 c0.64,0,1.29,0.28,1.75,0.69h0.09c0.09,0.05,0.14,0.09,0.23,0.18l29.99,30.36c0.51,0.51,0.88,1.2,0.88,1.98 c0,0.23-0.05,0.41-0.09,0.65V57L97.79,57z M67.52,27.97V8.94l21.43,21.7H70.19c-0.74,0-1.38-0.32-1.89-0.78 C67.84,29.4,67.52,28.71,67.52,27.97L67.52,27.97z"/></svg><span>CSV</span></button>
+                            </div>
+                            <div class="submenu-group-label">Integrations</div>
+                            <div class="integration-icons">
+                                <button class="integration-icon" data-integration="jira" title="Jira"><svg width="24" height="24" viewBox="0 0 24 24" fill="#0052CC"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.005 1.005 0 0 0 23.013 0z"/></svg><span>Jira</span></button>
+                                <button class="integration-icon" data-integration="asana" title="Asana"><svg width="24" height="24" viewBox="0 0 24 24" fill="#F06A6A"><circle cx="12" cy="4.5" r="4"/><circle cx="4.5" cy="15" r="4"/><circle cx="19.5" cy="15" r="4"/></svg><span>Asana</span></button>
+                                <button class="integration-icon" data-integration="phabricator" title="Phabricator"><svg width="24" height="24" viewBox="0 0 592 592"><path fill="#069" d="M592.2,51.8V0H329.5C329.2,181.6,181.9,328.8.2,328.9V592h52l6.7-116.3a475.94,475.94,0,0,0,69-13.7l50.4,104.4,96.5-40-38-109.6a489.27,489.27,0,0,0,58.3-39l86.6,77.3,73.9-73.9-77.1-86.8a477.47,477.47,0,0,0,39-58.3L527,274.3l40-96.5L462.6,127.2a486.82,486.82,0,0,0,13.6-68.8Z"/><path fill="#900" d="M0,0V199.8c110.4,0,200-89.4,200.2-199.8Z"/></svg><span>Phab</span></button>
+                                <button class="integration-icon" data-integration="linear" title="Linear"><svg width="24" height="24" viewBox="0 0 100 100" fill="#5E6AD2"><path d="M12.9266 16.3713c-.5283.5806-.4933 1.4714.0617 2.0265l68.5946 68.5946c.5551.555 1.4459.59 2.0265.0617 10.0579-9.1522 16.3713-22.3478 16.3713-37.0179C99.9807 22.402 77.5788 0 49.9445 0 35.2744 0 22.0788 6.31337 12.9266 16.3713ZM4.35334 29.3894c-.25348.5589-.12567 1.2142.30824 1.6481L68.9432 95.3191c.4339.4339 1.0892.5617 1.6481.3083 1.485-.6736 2.9312-1.4176 4.3344-2.2277.8341-.4815.9618-1.6195.2808-2.3005L8.88146 24.7742c-.68097-.681-1.81894-.5532-2.30045.2808-.81013 1.4032-1.55411 2.8494-2.22767 4.3344ZM.453579 47.796c-.300979-.301-.46112014-.7158-.4327856-1.1405.1327026-1.9891.3816396-3.9463.7400796-5.865.214926-1.1505 1.620727-1.5497 2.448307-.7222L59.9124 96.7715c.8275.8276.4283 2.2334-.7222 2.4483-1.9187.3585-3.8759.6074-5.865.7401-.4247.0283-.8395-.1318-1.1405-.4328L.453579 47.796ZM3.93331 61.7589c-1.0331-1.0331-2.70028-.1429-2.32193 1.2683C6.22104 80.2203 19.7604 93.7597 36.9535 98.3693c1.4112.3784 2.3014-1.2888 1.2683-2.3219L3.93331 61.7589Z"/></svg><span>Linear</span></button>
+                            </div>
+                            <div class="integration-options" data-for="jira">
+                                <button class="dropdown-item" id="exportJiraBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0052CC" style="vertical-align: -2px;"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.005 1.005 0 0 0 23.013 0z"/></svg></span> Jira CSV</button>
+                                <button class="dropdown-item" id="exportJiraProxyBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0052CC" style="vertical-align: -2px;"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.005 1.005 0 0 0 23.013 0z"/></svg></span> Jira API</button>
+                            </div>
+                            <div class="integration-options" data-for="asana">
+                                <button class="dropdown-item" id="exportAsanaCsvBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="#F06A6A" style="vertical-align: -2px;"><circle cx="12" cy="4.5" r="4"/><circle cx="4.5" cy="15" r="4"/><circle cx="19.5" cy="15" r="4"/></svg></span> Asana CSV</button>
+                                <button class="dropdown-item" id="exportAsanaProxyBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="#F06A6A" style="vertical-align: -2px;"><circle cx="12" cy="4.5" r="4"/><circle cx="4.5" cy="15" r="4"/><circle cx="19.5" cy="15" r="4"/></svg></span> Asana API</button>
+                            </div>
+                            <div class="integration-options" data-for="phabricator">
+                                <button class="dropdown-item" id="exportPhabProxyBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 592 592" style="vertical-align: -2px;"><path fill="#069" d="M592.2,51.8V0H329.5C329.2,181.6,181.9,328.8.2,328.9V592h52l6.7-116.3a475.94,475.94,0,0,0,69-13.7l50.4,104.4,96.5-40-38-109.6a489.27,489.27,0,0,0,58.3-39l86.6,77.3,73.9-73.9-77.1-86.8a477.47,477.47,0,0,0,39-58.3L527,274.3l40-96.5L462.6,127.2a486.82,486.82,0,0,0,13.6-68.8Z"/><path fill="#900" d="M0,0V199.8c110.4,0,200-89.4,200.2-199.8Z"/></svg></span> Phabricator API</button>
+                                <button class="dropdown-item" id="exportPhabBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 592 592" style="vertical-align: -2px;"><path fill="#069" d="M592.2,51.8V0H329.5C329.2,181.6,181.9,328.8.2,328.9V592h52l6.7-116.3a475.94,475.94,0,0,0,69-13.7l50.4,104.4,96.5-40-38-109.6a489.27,489.27,0,0,0,58.3-39l86.6,77.3,73.9-73.9-77.1-86.8a477.47,477.47,0,0,0,39-58.3L527,274.3l40-96.5L462.6,127.2a486.82,486.82,0,0,0,13.6-68.8Z"/><path fill="#900" d="M0,0V199.8c110.4,0,200-89.4,200.2-199.8Z"/></svg></span> Phabricator Console API</button>
+                            </div>
+                            <div class="integration-options" data-for="linear">
+                                <button class="dropdown-item" id="exportLinearProxyBtn"><span class="menu-icon"><svg width="14" height="14" viewBox="0 0 100 100" fill="#5E6AD2" style="vertical-align: -2px;"><path d="M12.9266 16.3713c-.5283.5806-.4933 1.4714.0617 2.0265l68.5946 68.5946c.5551.555 1.4459.59 2.0265.0617 10.0579-9.1522 16.3713-22.3478 16.3713-37.0179C99.9807 22.402 77.5788 0 49.9445 0 35.2744 0 22.0788 6.31337 12.9266 16.3713ZM4.35334 29.3894c-.25348.5589-.12567 1.2142.30824 1.6481L68.9432 95.3191c.4339.4339 1.0892.5617 1.6481.3083 1.485-.6736 2.9312-1.4176 4.3344-2.2277.8341-.4815.9618-1.6195.2808-2.3005L8.88146 24.7742c-.68097-.681-1.81894-.5532-2.30045.2808-.81013 1.4032-1.55411 2.8494-2.22767 4.3344ZM.453579 47.796c-.300979-.301-.46112014-.7158-.4327856-1.1405.1327026-1.9891.3816396-3.9463.7400796-5.865.214926-1.1505 1.620727-1.5497 2.448307-.7222L59.9124 96.7715c.8275.8276.4283 2.2334-.7222 2.4483-1.9187.3585-3.8759.6074-5.865.7401-.4247.0283-.8395-.1318-1.1405-.4328L.453579 47.796ZM3.93331 61.7589c-1.0331-1.0331-2.70028-.1429-2.32193 1.2683C6.22104 80.2203 19.7604 93.7597 36.9535 98.3693c1.4112.3784 2.3014-1.2888 1.2683-2.3219L3.93331 61.7589Z"/></svg></span> Linear API</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="dropdown-item" id="printMap"><span class="menu-icon">🖨️</span> Print</button>
+                    <button class="dropdown-item" id="backupsBtn"><span class="menu-icon">💾</span> Backups <span class="backup-count-badge hidden" id="backupCountBadge">0</span></button>
+                    <div class="dropdown-divider" id="lockDivider"></div>
+                    <button class="dropdown-item" id="lockMapBtn" title="Password-protect this map to prevent edits">
+                        <span class="lock-menu-icon">🔓</span> Lock Map (Read-only)
+                    </button>
+                    <button class="dropdown-item" id="relockBtn">
+                        <span class="lock-menu-icon">🔒</span> Re-lock Map
+                    </button>
+                    <button class="dropdown-item" id="updatePasswordBtn">
+                        <span class="lock-menu-icon">🔑</span> Change Password
+                    </button>
+                    <button class="dropdown-item" id="removeLockBtn">
+                        <span class="lock-menu-icon">❌</span> Remove Lock
+                    </button>
+                </div>
             </div>
-            <button class="btn" id="add-activity">+ Activity</button>
-            <button class="btn" id="add-release">+ Release</button>
-            <span class="divider"></span>
-            <button class="btn" id="export-json">Export JSON</button>
-            <button class="btn" id="clear-all">Clear All</button>
-            <span class="divider"></span>
-            <button class="btn btn-icon" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">🌙</button>
-            <button class="btn btn-primary" id="share">Share</button>
         </div>
     </header>
 
-    <main class="story-map-wrapper">
-        <div id="story-map" class="story-map"></div>
-    </main>
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-split">
+            <div class="welcome-content">
+                <h1>Welcome to Storymaps.io</h1>
+                <p class="welcome-subtitle">The <mark class="highlight">free &amp; open-source</mark> user story mapping tool.<br>No sign-up needed. Start mapping now.</p>
+                <p class="welcome-integrations-text">or import the story map hidden inside your existing backlog:</p>
+                <div class="welcome-integrations">
+                    <button class="welcome-integration" data-import="jira"><svg viewBox="0 0 24 24" fill="#0052CC"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.005 1.005 0 0 0 23.013 0z"/></svg>Jira</button>
+                    <button class="welcome-integration" data-import="asana"><svg viewBox="0 0 24 24" fill="#F06A6A"><circle cx="12" cy="4.5" r="4"/><circle cx="4.5" cy="15" r="4"/><circle cx="19.5" cy="15" r="4"/></svg>Asana</button>
+                    <button class="welcome-integration" data-import="phabricator"><svg viewBox="0 0 592 592"><path fill="#069" d="M592.2,51.8V0H329.5C329.2,181.6,181.9,328.8.2,328.9V592h52l6.7-116.3a475.94,475.94,0,0,0,69-13.7l50.4,104.4,96.5-40-38-109.6a489.27,489.27,0,0,0,58.3-39l86.6,77.3,73.9-73.9-77.1-86.8a477.47,477.47,0,0,0,39-58.3L527,274.3l40-96.5L462.6,127.2a486.82,486.82,0,0,0,13.6-68.8Z"/><path fill="#900" d="M0,0V199.8c110.4,0,200-89.4,200.2-199.8Z"/></svg>Phabricator</button>
+                    <button class="welcome-integration" data-import="linear"><svg viewBox="0 0 100 100" fill="#5E6AD2"><path d="M12.9266 16.3713c-.5283.5806-.4933 1.4714.0617 2.0265l68.5946 68.5946c.5551.555 1.4459.59 2.0265.0617 10.0579-9.1522 16.3713-22.3478 16.3713-37.0179C99.9807 22.402 77.5788 0 49.9445 0 35.2744 0 22.0788 6.31337 12.9266 16.3713ZM4.35334 29.3894c-.25348.5589-.12567 1.2142.30824 1.6481L68.9432 95.3191c.4339.4339 1.0892.5617 1.6481.3083 1.485-.6736 2.9312-1.4176 4.3344-2.2277.8341-.4815.9618-1.6195.2808-2.3005L8.88146 24.7742c-.68097-.681-1.81894-.5532-2.30045.2808-.81013 1.4032-1.55411 2.8494-2.22767 4.3344ZM.453579 47.796c-.300979-.301-.46112014-.7158-.4327856-1.1405.1327026-1.9891.3816396-3.9463.7400796-5.865.214926-1.1505 1.620727-1.5497 2.448307-.7222L59.9124 96.7715c.8275.8276.4283 2.2334-.7222 2.4483-1.9187.3585-3.8759.6074-5.865.7401-.4247.0283-.8395-.1318-1.1405-.4328L.453579 47.796ZM3.93331 61.7589c-1.0331-1.0331-2.70028-.1429-2.32193 1.2683C6.22104 80.2203 19.7604 93.7597 36.9535 98.3693c1.4112.3784 2.3014-1.2888 1.2683-2.3219L3.93331 61.7589Z"/></svg>Linear</button>
+                </div>
+                <div class="welcome-actions">
+                    <div class="welcome-cta-row">
+                        <button class="btn btn-large" id="welcomeTourBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: -2px;"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none"/></svg>Take the Tour</button>
+                        <button class="btn btn-large btn-secondary" id="welcomeNewBtn">Start Mapping</button>
+                    </div>
+                    <span class="welcome-counter" id="welcomeCounter"></span>
+                    <div class="welcome-samples">
+                        <p class="welcome-samples-label">Try a sample story map</p>
+                        <div class="welcome-samples-list">
+                            <button class="btn-sample btn-sample-purple" data-sample="coffee-ordering">Coffee Ordering App</button>
+                            <button class="btn-sample btn-sample-green" data-sample="holiday-rentals">Holiday Rentals App</button>
+                            <button class="btn-sample btn-sample-yellow" data-sample="recipe-app">Recipe Sharing App</button>
+                            <button class="btn-sample btn-sample-teal" data-sample="subscription-tracker">Subscription Tracker</button>
+                            <button class="btn-sample btn-sample-cyan" data-sample="mobile-banking">Mobile Banking</button>
+                            <button class="btn-sample btn-sample-pink" data-sample="brochure-site">Brochure Site</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="welcome-visual">
+                <img src="/resources/screenshot.png" alt="Storymaps.io user story mapping interface" class="welcome-hero-img" fetchpriority="high" width="1532" height="886">
+                <div class="sim-cursor" id="cursor-jessica">
+                    <svg viewBox="0 0 16 20" fill="none"><path d="M1 1l5.5 17L9 11.5 15.5 9z" fill="#ef4444" stroke="#fff" stroke-width="1.2"/></svg>
+                    <span class="sim-cursor-label" style="background:#ef4444">Jessica</span>
+                </div>
+                <div class="sim-cursor" id="cursor-alex">
+                    <svg viewBox="0 0 16 20" fill="none"><path d="M1 1l5.5 17L9 11.5 15.5 9z" fill="#3b82f6" stroke="#fff" stroke-width="1.2"/></svg>
+                    <span class="sim-cursor-label" style="background:#3b82f6">Alex</span>
+                </div>
+                <div class="sim-cursor" id="cursor-priya">
+                    <svg viewBox="0 0 16 20" fill="none"><path d="M1 1l5.5 17L9 11.5 15.5 9z" fill="#a855f7" stroke="#fff" stroke-width="1.2"/></svg>
+                    <span class="sim-cursor-label" style="background:#a855f7">Priya</span>
+                </div>
+            </div>
+        </div>
+        <div class="welcome-bottom">
+            <div class="welcome-learn">
+                <p class="welcome-samples-label"><strong class="welcome-label">Learn more</strong> about user story mapping:</p>
+                <div class="welcome-learn-groups">
+                    <div class="welcome-learn-group">
+                        <span class="welcome-learn-group-label">Watch</span>
+                        <div class="welcome-learn-group-cards">
+                            <a href="https://www.youtube.com/watch?v=TaMLUf3gISo" target="_blank" rel="noopener" class="welcome-learn-card">
+                                <svg class="welcome-learn-icon" viewBox="0 0 24 24" width="48" height="48" fill="#FF0000">
+                                    <path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.6 9.5.6 9.5.6s7.6 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.5v-7l6.4 3.5-6.4 3.5z"/>
+                                </svg>
+                                <span>Intro</span>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=AorAgSrHjKM" target="_blank" rel="noopener" class="welcome-learn-card">
+                                <svg class="welcome-learn-icon" viewBox="0 0 24 24" width="48" height="48" fill="#FF0000">
+                                    <path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.6 9.5.6 9.5.6s7.6 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.5v-7l6.4 3.5-6.4 3.5z"/>
+                                </svg>
+                                <span>Presentation</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="welcome-learn-group">
+                        <span class="welcome-learn-group-label">Read</span>
+                        <div class="welcome-learn-group-cards">
+                            <a href="https://raw.githubusercontent.com/jackgleeson/storymaps.io/main/public/resources/story_mapping_slides.pdf" target="_blank" rel="noopener" class="welcome-learn-card">
+                                <svg class="welcome-learn-icon" viewBox="0 0 24 24" width="48" height="48" fill="#E53935">
+                                    <path d="M20 3H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h6l-2 4h2l2-4h0l2 4h2l-2-4h6c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 12H4V5h16v10z"/>
+                                    <path d="M10 7v6l5-3-5-3z"/>
+                                </svg>
+                                <span>Slides</span>
+                            </a>
+                            <a href="https://www.amazon.com/User-Story-Mapping-Discover-Product/dp/1491904909" target="_blank" rel="noopener" class="welcome-learn-card">
+                                <img src="/book-cover.jpg" alt="User Story Mapping book cover" class="welcome-learn-book">
+                                <span>The Book</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="welcome-learn-group">
+                        <span class="welcome-learn-group-label">Reference</span>
+                        <div class="welcome-learn-group-cards">
+                            <a href="/resources/story_mapping.pdf" download target="_blank" rel="noopener" class="welcome-learn-card">
+                                <svg class="welcome-learn-icon" viewBox="0 0 24 24" width="48" height="48" fill="#E53935">
+                                    <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+                                    <path d="M8 12h8v2H8zm0 3h8v2H8z"/>
+                                </svg>
+                                <span>Concepts</span>
+                            </a>
+                            <a href="/resources/story_essentials_quickref.pdf" download target="_blank" rel="noopener" class="welcome-learn-card">
+                                <svg class="welcome-learn-icon" viewBox="0 0 24 24" width="48" height="48" fill="#E53935">
+                                    <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+                                    <path d="M8 12h8v2H8zm0 3h8v2H8z"/>
+                                </svg>
+                                <span>Agile Stories</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="welcome-footer">
+            <div class="footer-main">
+                <div class="footer-text">
+                    This software is free to use and open-source. <a href="https://github.com/jackgleeson/storymaps.io" target="_blank" rel="noopener">View on GitHub</a>
+                    <br>
+                    Thanks to Jeff Patton for pioneering user story mapping. <a href="https://jpattonassociates.com/story-mapping/" target="_blank" rel="noopener">Learn more</a>
+                </div>
+                <div class="footer-support">
+                    <a class="bmc-btn" href="https://buymeacoffee.com/jackgleeson" target="_blank" rel="noopener" title="Buy me a coffee"><svg viewBox="0 0 884 1279" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M472.623 590.836C426.682 610.503 374.546 632.802 306.976 632.802C278.71 632.746 250.58 628.868 223.353 621.274L270.086 1101.08C271.74 1121.13 280.876 1139.83 295.679 1153.46C310.482 1167.09 329.87 1174.65 349.992 1174.65C349.992 1174.65 416.254 1178.09 438.365 1178.09C462.161 1178.09 533.516 1174.65 533.516 1174.65C553.636 1174.65 573.019 1167.08 587.819 1153.45C602.619 1139.82 611.752 1121.13 613.406 1101.08L663.459 570.876C641.091 563.237 618.516 558.161 593.068 558.161C549.054 558.144 513.591 573.303 472.623 590.836Z" fill="#fff"/><path d="M879.567 341.849L872.53 306.352C866.215 274.503 851.882 244.409 819.19 232.898C808.711 229.215 796.821 227.633 788.786 220.01C780.751 212.388 778.376 200.55 776.518 189.572C773.076 169.423 769.842 149.257 766.314 129.143C763.269 111.85 760.86 92.4243 752.928 76.56C742.604 55.2584 721.182 42.8009 699.88 34.559C688.965 30.4844 677.826 27.0375 666.517 24.2352C613.297 10.1947 557.342 5.03277 502.591 2.09047C436.875-1.53577 370.983-.443234 305.422 5.35968C256.625 9.79894 205.229 15.1674 158.858 32.0469C141.91 38.224 124.445 45.6399 111.558 58.7341C95.7448 74.8221 90.5829 99.7026 102.128 119.765C110.336 134.012 124.239 144.078 138.985 150.737C158.192 159.317 178.251 165.846 198.829 170.215C256.126 182.879 315.471 187.851 374.007 189.968C438.887 192.586 503.87 190.464 568.44 183.618C584.408 181.863 600.347 179.758 616.257 177.304C634.995 174.43 647.022 149.928 641.499 132.859C634.891 112.453 617.134 104.538 597.055 107.618C594.095 108.082 591.153 108.512 588.193 108.942L586.06 109.252C579.257 110.113 572.455 110.915 565.653 111.661C551.601 113.175 537.515 114.414 523.394 115.378C491.768 117.58 460.057 118.595 428.363 118.647C397.219 118.647 366.058 117.769 334.983 115.722C320.805 114.793 306.661 113.611 292.552 112.177C286.134 111.506 279.733 110.801 273.333 110.009L267.241 109.235L265.917 109.046L259.602 108.134C246.697 106.189 233.792 103.953 221.025 101.251C219.737 100.965 218.584 100.249 217.758 99.2193C216.932 98.1901 216.482 96.9099 216.482 95.5903C216.482 94.2706 216.932 92.9904 217.758 91.9612C218.584 90.9319 219.737 90.2152 221.025 89.9293H221.266C232.33 87.5721 243.479 85.5589 254.663 83.8038C258.392 83.2188 262.131 82.6453 265.882 82.0832H265.985C272.988 81.6186 280.026 80.3625 286.994 79.5366C347.624 73.2301 408.614 71.0801 469.538 73.1014C499.115 73.9618 528.676 75.6996 558.116 78.6935C564.448 79.3474 570.746 80.0357 577.043 80.8099C579.452 81.1025 581.878 81.4465 584.305 81.7391L589.191 82.4445C603.438 84.5667 617.61 87.1419 631.708 90.1703C652.597 94.7128 679.422 96.1925 688.713 119.077C691.673 126.338 693.015 134.408 694.649 142.03L696.732 151.752C696.786 151.926 696.826 152.105 696.852 152.285C701.773 175.227 706.7 198.169 711.632 221.111C711.994 222.806 712.002 224.557 711.657 226.255C711.312 227.954 710.621 229.562 709.626 230.982C708.632 232.401 707.355 233.6 705.877 234.504C704.398 235.408 702.75 235.997 701.033 236.236H700.895L697.884 236.649L694.908 237.044C685.478 238.272 676.038 239.419 666.586 240.486C647.968 242.608 629.322 244.443 610.648 245.992C573.539 249.077 536.356 251.102 499.098 252.066C480.114 252.57 461.135 252.806 442.162 252.771C366.643 252.712 291.189 248.322 216.173 239.625C208.051 238.662 199.93 237.629 191.808 236.58C198.106 237.389 187.231 235.96 185.029 235.651C179.867 234.928 174.705 234.177 169.543 233.397C152.216 230.798 134.993 227.598 117.7 224.793C96.7944 221.352 76.8005 223.073 57.8906 233.397C42.3685 241.891 29.8055 254.916 21.8776 270.735C13.7217 287.597 11.2956 305.956 7.64786 324.075C4.00009 342.193-1.67805 361.688.472751 380.288C5.10128 420.431 33.165 453.054 73.5313 460.35C111.506 467.232 149.687 472.807 187.971 477.556C338.361 495.975 490.294 498.178 641.155 484.129C653.44 482.982 665.708 481.732 677.959 480.378C681.786 479.958 685.658 480.398 689.292 481.668C692.926 482.938 696.23 485.005 698.962 487.717C701.694 490.429 703.784 493.718 705.08 497.342C706.377 500.967 706.846 504.836 706.453 508.665L702.633 545.797C694.936 620.828 687.239 695.854 679.542 770.874C671.513 849.657 663.431 928.434 655.298 1007.2C653.004 1029.39 650.71 1051.57 648.416 1073.74C646.213 1095.58 645.904 1118.1 641.757 1139.68C635.218 1173.61 612.248 1194.45 578.73 1202.07C548.022 1209.06 516.652 1212.73 485.161 1213.01C450.249 1213.2 415.355 1211.65 380.443 1211.84C343.173 1212.05 297.525 1208.61 268.756 1180.87C243.479 1156.51 239.986 1118.36 236.545 1085.37C231.957 1041.7 227.409 998.039 222.9 954.381L197.607 711.615L181.244 554.538C180.968 551.94 180.693 549.376 180.435 546.76C178.473 528.023 165.207 509.681 144.301 510.627C126.407 511.418 106.069 526.629 108.168 546.76L120.298 663.214L145.385 904.104C152.532 972.528 159.661 1040.96 166.773 1109.41C168.15 1122.52 169.44 1135.67 170.885 1148.78C178.749 1220.43 233.465 1259.04 301.224 1269.91C340.799 1276.28 381.337 1277.59 421.497 1278.24C472.979 1279.07 524.977 1281.05 575.615 1271.72C650.653 1257.95 706.952 1207.85 714.987 1130.13C717.282 1107.69 719.576 1085.25 721.87 1062.8C729.498 988.559 737.115 914.313 744.72 840.061L769.601 597.451L781.009 486.263C781.577 480.749 783.905 475.565 787.649 471.478C791.392 467.391 796.352 464.617 801.794 463.567C823.25 459.386 843.761 452.245 859.023 435.916C883.318 409.918 888.153 376.021 879.567 341.849ZM800.796 382.989C793.088 390.319 781.473 393.726 769.996 395.43C641.292 414.529 510.713 424.199 380.597 419.932C287.476 416.749 195.336 406.407 103.144 393.382C94.1102 392.109 84.3197 390.457 78.1082 383.798C66.4078 371.237 72.1548 345.944 75.2003 330.768C77.9878 316.865 83.3218 298.334 99.8572 296.355C125.667 293.327 155.64 304.218 181.175 308.09C211.917 312.781 242.774 316.538 273.745 319.36C405.925 331.405 540.325 329.529 671.92 311.91C695.906 308.686 719.805 304.941 743.619 300.674C764.835 296.871 788.356 289.731 801.175 311.703C809.967 326.673 811.137 346.701 809.778 363.615C809.359 370.984 806.139 377.915 800.779 382.989Z" fill="#0D0C22"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <a href="/terms.html" target="_blank" rel="noopener">Terms of Service</a>
+                <span class="footer-dot">&middot;</span>
+                <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
+            </div>
+        </footer>
+    </div>
 
-    <!-- Floating colour-picker popover (built by JS) -->
-    <div id="color-popover" class="popover hidden" role="menu" aria-label="Card colour"></div>
-    <!-- Floating status popover -->
-    <div id="status-popover" class="popover hidden" role="menu" aria-label="Card status"></div>
+    <div class="story-map-wrapper" id="storyMapWrapper">
+        <div class="story-map" id="storyMap">
+            <!-- Story map content rendered here -->
+        </div>
+    </div>
 
-    <div id="toast" class="toast hidden"></div>
+    <div class="controls-right hidden" id="controlsRight">
+        <div class="panel-body" id="panelBody">
+            <div class="panel-section" id="legendPanel" data-section="legend">
+                <div class="legend-body" id="legendBody">
+                    <div class="legend-entries" id="legendEntries"></div>
+                    <button class="legend-add-btn" id="legendAddBtn" title="Add legend entry">+ Add</button>
+                </div>
+            </div>
+            <div class="panel-section" id="partialsPanel" data-section="partials">
+                <div class="partials-body" id="partialsBody">
+                    <div class="partials-list" id="partialsList"></div>
+                </div>
+            </div>
+            <div class="panel-section" id="notesPanel" data-section="notepad">
+                <div class="notes-body" id="notesBody">
+                    <div class="notes-header">
+                        <span class="notes-title">Notes</span>
+                        <button class="notes-close" id="notesClose" title="Close panel" aria-label="Close panel">&times;</button>
+                    </div>
+                    <div class="notes-editor" id="notesEditor"></div>
+                </div>
+            </div>
+            <div class="panel-section" id="logPanel" data-section="log">
+                <div class="log-body" id="logBody">
+                    <div class="log-caption">Last 20 events</div>
+                    <div class="log-list" id="logList"></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-tabs">
+            <button class="panel-tab" id="legendToggle" data-section="legend" title="Legend">Legend</button>
+            <button class="panel-tab" id="partialsToggle" data-section="partials" title="Map Partials">Partials</button>
+            <button class="panel-tab" id="notesToggle" data-section="notepad" title="Notepad">Notes</button>
+            <button class="panel-tab" id="logToggle" data-section="log" title="Log">Log</button>
+        </div>
+        <div class="bottom-controls">
+            <div class="view-controls" id="viewControls">
+                <button class="view-btn" id="toggleFocusModeBtn" title="Focus mode">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </button>
+                <button class="view-btn" id="toggleFullscreenBtn" title="Full screen">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                </button>
+                <button class="view-btn" id="toggleDarkModeBtn" title="Dark mode">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="view-btn" id="toggleCursorsBtn" title="Hide external cursors">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2l1 15 3.5-4 4.5 6 2.5-1.5-4.5-6H18L6 2z"/><line x1="3" y1="21" x2="21" y2="3"/></svg>
+                </button>
+            </div>
+            <div class="zoom-controls" id="zoomControls">
+                <button class="zoom-btn" id="zoomIn" title="Zoom in">+</button>
+                <button class="zoom-btn zoom-level" id="zoomReset" title="Reset zoom">100%</button>
+                <button class="zoom-btn" id="zoomOut" title="Zoom out">−</button>
+            </div>
+        </div>
+    </div>
 
-    <script type="module" src="./app.js"></script>
+    <div class="read-only-banner" id="readOnlyBanner">
+        <span class="read-only-banner-text">🔒 This map is read-only. Unlock from the menu to edit.</span>
+    </div>
+
+    <div class="loading-indicator" id="loadingIndicator">
+        <div class="loading-spinner"></div>
+        <span>Loading map...</span>
+    </div>
+
+    <div class="app-toast" id="appToast" role="status" aria-live="polite"></div>
+
+    <div class="tutorial-toast" id="tutorialToast">
+        <span><strong>Ctrl + scroll</strong> to zoom · <strong>Right-click drag</strong> to pan · <strong class="reset-shortcut-key">Alt + R</strong> to reset view</span>
+        <button class="tutorial-toast-close" id="tutorialToastClose">&times;</button>
+    </div>
+
+    <div class="modal-overlay" id="importModal">
+        <div class="modal import-modal">
+            <div class="modal-header">
+                <h2>Import Story Map</h2>
+                <button class="modal-close" id="importModalClose">&times;</button>
+            </div>
+            <div class="modal-body import-modal-body">
+                <div class="import-column import-column-json">
+                    <h3>Paste JSON</h3>
+                    <p>Paste your story map JSON data below</p>
+                    <textarea class="import-textarea" id="importJsonText" placeholder='{"app":"storymap","v":1,"name":"My Map",...}'></textarea>
+                    <button class="btn" id="importJsonBtn" title="Ctrl+Enter to import">Import JSON</button>
+                </div>
+                <div class="import-divider">
+                    <span>or</span>
+                </div>
+                <div class="import-column import-column-file">
+                    <h3>Upload File</h3>
+                    <p>Select a .json file from your computer</p>
+                    <div class="import-file-dropzone" id="importDropzone">
+                        <svg class="import-file-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="12" y1="18" x2="12" y2="12"/>
+                            <line x1="9" y1="15" x2="12" y2="12"/>
+                            <line x1="15" y1="15" x2="12" y2="12"/>
+                        </svg>
+                        <span>Drop file here or click to browse</span>
+                        <input type="file" id="importFileInput" accept=".json" hidden>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="importYamlModal">
+        <div class="modal import-modal">
+            <div class="modal-header">
+                <h2>Import from YAML</h2>
+                <button class="modal-close" id="importYamlModalClose">&times;</button>
+            </div>
+            <div class="modal-body import-modal-body">
+                <div class="import-column import-column-json">
+                    <h3>Paste YAML</h3>
+                    <p>Paste your story map YAML data below</p>
+                    <textarea class="import-textarea" id="importYamlText" placeholder="name: My Story Map&#10;steps:&#10;  - Step 1&#10;  - Step 2&#10;slices:&#10;  - name: MVP&#10;    stories:&#10;      Step 1:&#10;        - name: My first task"></textarea>
+                    <div class="import-validation-error hidden" id="importYamlValidationError"></div>
+                    <button class="btn" id="importYamlBtn" title="Ctrl+Enter to import">Import YAML</button>
+                </div>
+                <div class="import-divider">
+                    <span>or</span>
+                </div>
+                <div class="import-column import-column-file">
+                    <h3>Upload File</h3>
+                    <p>Select a .yaml file from your computer</p>
+                    <div class="import-file-dropzone" id="importYamlDropzone">
+                        <svg class="import-file-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="12" y1="18" x2="12" y2="12"/>
+                            <line x1="9" y1="15" x2="12" y2="12"/>
+                            <line x1="15" y1="15" x2="12" y2="12"/>
+                        </svg>
+                        <span>Drop file here or click to browse</span>
+                        <input type="file" id="importYamlFileInput" accept=".yaml,.yml" hidden>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="importCsvModal">
+        <div class="modal import-modal">
+            <div class="modal-header">
+                <h2>Import from CSV</h2>
+                <button class="modal-close" id="importCsvModalClose">&times;</button>
+            </div>
+            <div class="modal-body import-modal-body">
+                <div class="import-column import-column-json">
+                    <h3>Paste CSV</h3>
+                    <p>Paste your story map CSV data below</p>
+                    <textarea class="import-textarea" id="importCsvText" placeholder="name:,My Story Map&#10;steps:,Step 1,Step 2&#10;slice:MVP,story:First task,story:Second task"></textarea>
+                    <div class="import-validation-error hidden" id="importCsvValidationError"></div>
+                    <button class="btn" id="importCsvBtn" title="Ctrl+Enter to import">Import CSV</button>
+                </div>
+                <div class="import-divider">
+                    <span>or</span>
+                </div>
+                <div class="import-column import-column-file">
+                    <h3>Upload File</h3>
+                    <p>Select a .csv file from your computer</p>
+                    <div class="import-file-dropzone" id="importCsvDropzone">
+                        <svg class="import-file-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="12" y1="18" x2="12" y2="12"/>
+                            <line x1="9" y1="15" x2="12" y2="12"/>
+                            <line x1="15" y1="15" x2="12" y2="12"/>
+                        </svg>
+                        <span>Drop file here or click to browse</span>
+                        <input type="file" id="importCsvFileInput" accept=".csv" hidden>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="exportModal">
+        <div class="modal export-modal">
+            <div class="modal-header">
+                <h2>Export Story Map</h2>
+                <button class="modal-close" id="exportModalClose">&times;</button>
+            </div>
+            <div class="modal-body export-modal-body">
+                <div class="export-column export-column-json">
+                    <div class="export-header">
+                        <h3>JSON Data</h3>
+                        <label class="export-toggle">
+                            <input type="checkbox" id="exportMinify">
+                            <span>Minify</span>
+                        </label>
+                    </div>
+                    <p>Copy the JSON data below or download as a file</p>
+                    <textarea class="export-textarea" id="exportJsonText" readonly></textarea>
+                    <div class="export-actions">
+                        <button class="btn" id="exportCopyBtn">Copy to Clipboard</button>
+                    </div>
+                </div>
+                <div class="export-divider">
+                    <span>or</span>
+                </div>
+                <div class="export-column export-column-file">
+                    <h3>Download File</h3>
+                    <p>Save as a .json file to your computer</p>
+                    <div class="export-file-section">
+                        <div class="export-filename-row">
+                            <input type="text" class="export-filename" id="exportFilename" placeholder="story-map">
+                            <span class="export-filename-ext">.json</span>
+                        </div>
+                        <button class="btn" id="exportDownloadBtn">Download File</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="exportYamlModal">
+        <div class="modal export-modal">
+            <div class="modal-header">
+                <h2>Export as YAML</h2>
+                <button class="modal-close" id="exportYamlModalClose">&times;</button>
+            </div>
+            <div class="modal-body export-modal-body">
+                <div class="export-column export-column-json">
+                    <h3>YAML Data</h3>
+                    <p>Copy the YAML data below or download as a file</p>
+                    <textarea class="export-textarea" id="exportYamlText" readonly></textarea>
+                    <div class="export-actions">
+                        <button class="btn" id="exportYamlCopyBtn">Copy to Clipboard</button>
+                    </div>
+                </div>
+                <div class="export-divider">
+                    <span>or</span>
+                </div>
+                <div class="export-column export-column-file">
+                    <h3>Download File</h3>
+                    <p>Save as a .yaml file to your computer</p>
+                    <div class="export-file-section">
+                        <div class="export-filename-row">
+                            <input type="text" class="export-filename" id="exportYamlFilename" placeholder="story-map">
+                            <span class="export-filename-ext">.yaml</span>
+                        </div>
+                        <button class="btn" id="exportYamlDownloadBtn">Download File</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="exportCsvModal">
+        <div class="modal export-modal">
+            <div class="modal-header">
+                <h2>Export as CSV</h2>
+                <button class="modal-close" id="exportCsvModalClose">&times;</button>
+            </div>
+            <div class="modal-body export-modal-body">
+                <div class="export-column export-column-json">
+                    <h3>CSV Data</h3>
+                    <p>Copy the CSV data below or download as a file</p>
+                    <textarea class="export-textarea" id="exportCsvText" readonly></textarea>
+                    <div class="export-actions">
+                        <button class="btn" id="exportCsvCopyBtn">Copy to Clipboard</button>
+                    </div>
+                </div>
+                <div class="export-divider">
+                    <span>or</span>
+                </div>
+                <div class="export-column export-column-file">
+                    <h3>Download File</h3>
+                    <p>Save as a .csv file to your computer</p>
+                    <div class="export-file-section">
+                        <div class="export-filename-row">
+                            <input type="text" class="export-filename" id="exportCsvFilename" placeholder="story-map">
+                            <span class="export-filename-ext">.csv</span>
+                        </div>
+                        <button class="btn" id="exportCsvDownloadBtn">Download File</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="jiraExportModal">
+        <div class="modal jira-export-modal">
+            <div class="modal-header">
+                <h2>Export to Jira CSV <a href="https://support.atlassian.com/jira-cloud-administration/docs/import-data-from-a-csv-file/" target="_blank" rel="noopener" class="jira-export-help-link">(How to import)</a></h2>
+                <button class="modal-close" id="jiraExportModalClose">&times;</button>
+            </div>
+            <div class="modal-body jira-export-modal-body">
+                <!-- Warning Notice -->
+                <div class="jira-csv-warning">
+                    <strong>⚠️ Limitation:</strong> Jira CSV imports currently do not support automatically linking Epics to Stories due to a <a href="https://community.atlassian.com/forums/Jira-questions/Trouble-importing-csv/qaq-p/2960795" target="_blank" rel="noopener">bug in Jira</a>. If Epic-Story linking is required, use the <strong>API</strong> export option instead.
+                </div>
+                <!-- Project Settings -->
+                <div class="jira-export-section">
+                    <div class="jira-project-row">
+                        <label for="jiraProjectName" class="jira-project-label">Project Name</label>
+                        <input type="text" class="jira-project-input" id="jiraProjectName" placeholder="e.g. My Project" spellcheck="false">
+                        <label for="jiraProjectKey" class="jira-project-label">Project Key</label>
+                        <input type="text" class="jira-project-input jira-project-key" id="jiraProjectKey" placeholder="e.g. PROJ" spellcheck="false">
+                        <label for="jiraProjectType" class="jira-project-label">Project Type</label>
+                        <select class="jira-project-input" id="jiraProjectType">
+                            <option value="software">Software</option>
+                            <option value="business">Business</option>
+                        </select>
+                    </div>
+                    <p class="jira-export-section-desc">Required to import into an existing Jira project. Leave blank to choose during import.</p>
+                </div>
+
+                <!-- Global Settings -->
+                <div class="jira-export-filters">
+                    <div class="jira-export-filter-group">
+                        <h3 class="jira-export-section-title">Releases</h3>
+                        <div class="jira-export-slices" id="jiraExportSlices">
+                            <!-- Slice checkboxes populated here -->
+                        </div>
+                    </div>
+                    <div class="jira-export-filter-group">
+                        <h3 class="jira-export-section-title">Status</h3>
+                        <div class="jira-export-statuses" id="jiraExportStatuses">
+                            <label class="export-slice-checkbox checked">
+                                <input type="checkbox" id="jiraFilterNone" checked>
+                                <span class="export-slice-name">No Status</span>
+                            </label>
+                            <label class="export-slice-checkbox checked">
+                                <input type="checkbox" id="jiraFilterPlanned" checked>
+                                <span class="export-slice-name">Planned</span>
+                            </label>
+                            <label class="export-slice-checkbox checked">
+                                <input type="checkbox" id="jiraFilterInProgress" checked>
+                                <span class="export-slice-name">In Progress</span>
+                            </label>
+                            <label class="export-slice-checkbox checked">
+                                <input type="checkbox" id="jiraFilterDone" checked>
+                                <span class="export-slice-name">Done</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="jira-export-section">
+                    <h3 class="jira-export-section-title">Status Mapping</h3>
+                    <div class="jira-export-status-mapping">
+                        <div class="jira-status-row">
+                            <span class="jira-status-label">No Status →</span>
+                            <input type="text" class="jira-status-input" id="jiraStatusNone" value="To Do" placeholder="Jira status">
+                        </div>
+                        <div class="jira-status-row">
+                            <span class="jira-status-label">Planned →</span>
+                            <input type="text" class="jira-status-input" id="jiraStatusPlanned" value="To Do" placeholder="Jira status">
+                        </div>
+                        <div class="jira-status-row">
+                            <span class="jira-status-label">In Progress →</span>
+                            <input type="text" class="jira-status-input" id="jiraStatusInProgress" value="In Progress" placeholder="Jira status">
+                        </div>
+                        <div class="jira-status-row">
+                            <span class="jira-status-label">Done →</span>
+                            <input type="text" class="jira-status-input" id="jiraStatusDone" value="Done" placeholder="Jira status">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Epics Section -->
+                <div class="jira-export-section">
+                    <h3 class="jira-export-section-title">Epics & Tasks <span class="jira-export-count" id="jiraExportCount"></span></h3>
+                    <div class="jira-export-epics" id="jiraExportEpics">
+                        <!-- Epics will be populated here -->
+                    </div>
+                </div>
+
+                <div class="jira-export-actions">
+                    <button class="btn btn-secondary" id="jiraExportCancel">Cancel</button>
+                    <button class="btn" id="jiraExportDownload">Download CSV</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="phabExportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2 id="phabExportTitle">Export to Phabricator</h2>
+                <button class="modal-close" id="phabExportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <!-- Stage 1: Selection -->
+                <div class="export-stage" id="phabStage1">
+                    <!-- Filters -->
+                    <div class="export-filters">
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Releases</h3>
+                            <div class="export-slices" id="phabExportSlices">
+                                <!-- Slice checkboxes populated here -->
+                            </div>
+                        </div>
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Status</h3>
+                            <div class="export-statuses" id="phabExportStatuses">
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="phabFilterNone" checked>
+                                    <span class="export-slice-name">No Status</span>
+                                </label>
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="phabFilterPlanned" checked>
+                                    <span class="export-slice-name">Planned</span>
+                                </label>
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="phabFilterInProgress" checked>
+                                    <span class="export-slice-name">In Progress</span>
+                                </label>
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="phabFilterDone" checked>
+                                    <span class="export-slice-name">Done</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Epics Section -->
+                    <div class="export-section">
+                        <h3 class="export-section-title">Epics & Tasks <span class="export-count" id="phabExportCount"></span></h3>
+                        <div class="export-epics" id="phabExportEpics">
+                            <!-- Epics will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="phabExportCancel">Cancel</button>
+                        <button class="btn" id="phabExportNext">Step 2: Import →</button>
+                    </div>
+                </div>
+
+                <!-- Stage 2: Instructions -->
+                <div class="export-stage hidden" id="phabStage2">
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Enter your Phabricator details</span>
+                            </div>
+                            <div class="export-step-content">
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Instance URL</label>
+                                        <input type="text" id="phabInstanceUrl" class="export-field-input" placeholder="phabricator.example.com" spellcheck="false">
+                                    </div>
+                                    <div class="export-field">
+                                        <label class="export-field-label">API Token <span class="export-token-help">— <a href="#" id="phabTokenHelpLink">How do I get this?</a></span></label>
+                                        <input type="text" id="phabApiToken" class="export-field-input" placeholder="api-abc123..." spellcheck="false" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="export-field export-field-tags">
+                                    <label class="export-field-label">Project Tags <span class="export-field-recommended">(recommended)</span></label>
+                                    <input type="text" id="phabTags" class="export-field-input" placeholder="project-tag, another-tag" spellcheck="false">
+                                    <span class="export-field-hint">Use the slug from the project's /tag/ URL, or type the name with spaces (comma-separated)</span>
+                                </div>
+                                <div class="export-info-banner">
+                                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                    <span>Your API token is never stored or sent to our servers</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">2</span>
+                                <span class="export-step-title">Paste temporary import function into browser console</span>
+                            </div>
+                            <p class="export-step-desc">Open your Phabricator site, open DevTools (<span class="devtools-instructions"></span>), go to <strong>Console</strong>, paste this code and press Enter:</p>
+                            <div class="export-code-block">
+                                <pre id="phabImportFunction"></pre>
+                                <button class="btn btn-secondary export-copy-btn" id="phabCopyFunction">Copy</button>
+                            </div>
+                        </div>
+
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">3</span>
+                                <span class="export-step-title">Run the import</span>
+                            </div>
+                            <p class="export-step-desc">Still in the console, paste this code and press Enter:</p>
+                            <div class="export-code-block">
+                                <pre id="phabImportCall"></pre>
+                                <button class="btn btn-secondary export-copy-btn" id="phabCopyCall">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="phabExportBack">← Step 1: Select Tasks</button>
+                        <button class="btn" id="phabExportDone">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jira API Export Modal -->
+    <div class="modal-overlay" id="jiraApiExportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2 id="jiraApiExportTitle">Export to Jira</h2>
+                <button class="modal-close" id="jiraApiExportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <!-- Stage 1: Selection -->
+                <div class="export-stage" id="jiraApiStage1">
+                    <!-- Filters -->
+                    <div class="export-filters">
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Releases</h3>
+                            <div class="export-slices" id="jiraApiExportSlices">
+                                <!-- Slice checkboxes populated here -->
+                            </div>
+                        </div>
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Status</h3>
+                            <div class="export-statuses" id="jiraApiExportStatuses">
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="jiraApiFilterNone" checked>
+                                    <span class="export-slice-name">No Status</span>
+                                </label>
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="jiraApiFilterPlanned" checked>
+                                    <span class="export-slice-name">Planned</span>
+                                </label>
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="jiraApiFilterInProgress" checked>
+                                    <span class="export-slice-name">In Progress</span>
+                                </label>
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="jiraApiFilterDone" checked>
+                                    <span class="export-slice-name">Done</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Epics Section -->
+                    <div class="export-section">
+                        <h3 class="export-section-title">Epics & Stories <span class="export-count" id="jiraApiExportCount"></span></h3>
+                        <div class="export-epics" id="jiraApiExportEpics">
+                            <!-- Epics will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="jiraApiExportCancel">Cancel</button>
+                        <button class="btn" id="jiraApiExportNext">Step 2: Import →</button>
+                    </div>
+                </div>
+
+                <!-- Stage 2: Instructions -->
+                <div class="export-stage hidden" id="jiraApiStage2">
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Enter your Jira details</span>
+                            </div>
+                            <div class="export-step-content">
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Email</label>
+                                        <input type="email" id="jiraApiEmail" class="export-field-input" placeholder="you@company.com" spellcheck="false">
+                                    </div>
+                                    <div class="export-field">
+                                        <label class="export-field-label">API Token <span class="export-token-help">— <a href="https://id.atlassian.com/manage-profile/security/api-tokens" target="_blank" rel="noopener">Get token</a></span></label>
+                                        <input type="text" id="jiraApiToken" class="export-field-input" placeholder="your-api-token" spellcheck="false" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Project Key</label>
+                                        <input type="text" id="jiraApiProjectKey" class="export-field-input" placeholder="PROJ" spellcheck="false" style="width: 120px; text-transform: uppercase;">
+                                    </div>
+                                </div>
+                                <div class="export-info-banner">
+                                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                    <span>Your credentials are never stored or sent to our servers</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">2</span>
+                                <span class="export-step-title">Paste temporary import function into browser console</span>
+                            </div>
+                            <p class="export-step-desc">Open your Jira project, open DevTools (<span class="devtools-instructions"></span>), go to <strong>Console</strong>, paste this code and press Enter:</p>
+                            <div class="export-code-block">
+                                <pre id="jiraApiImportFunction"></pre>
+                                <button class="btn btn-secondary export-copy-btn" id="jiraApiCopyFunction">Copy</button>
+                            </div>
+                        </div>
+
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">3</span>
+                                <span class="export-step-title">Run the import</span>
+                            </div>
+                            <p class="export-step-desc">Still in the console, paste this code and press Enter:</p>
+                            <div class="export-code-block">
+                                <pre id="jiraApiImportCall"></pre>
+                                <button class="btn btn-secondary export-copy-btn" id="jiraApiCopyCall">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="jiraApiExportBack">← Step 1: Select Tasks</button>
+                        <button class="btn" id="jiraApiExportDone">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Asana Export Modal -->
+    <div class="modal-overlay" id="asanaExportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2 id="asanaExportTitle">Export to Asana</h2>
+                <button class="modal-close" id="asanaExportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <!-- Stage 1: Selection -->
+                <div class="export-stage" id="asanaStage1">
+                    <!-- Filters -->
+                    <div class="export-filters">
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Releases</h3>
+                            <div class="export-slices" id="asanaExportSlices">
+                                <!-- Slice checkboxes populated here -->
+                            </div>
+                        </div>
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Status</h3>
+                            <div class="export-statuses" id="asanaExportStatuses">
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="asanaFilterNone" checked>
+                                    <span class="export-slice-name">No Status</span>
+                                </label>
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="asanaFilterPlanned" checked>
+                                    <span class="export-slice-name">Planned</span>
+                                </label>
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="asanaFilterInProgress" checked>
+                                    <span class="export-slice-name">In Progress</span>
+                                </label>
+                                <label class="export-slice-checkbox checked">
+                                    <input type="checkbox" id="asanaFilterDone" checked>
+                                    <span class="export-slice-name">Done</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <label class="export-slice-checkbox" style="margin-top: 8px;">
+                        <input type="checkbox" id="asanaCreateSections">
+                        <span class="export-slice-name">Also create Asana sections for parent tasks?</span>
+                    </label>
+
+                    <!-- Epics Section -->
+                    <div class="export-section">
+                        <h3 class="export-section-title">Parent Tasks & Subtasks <span class="export-count" id="asanaExportCount"></span></h3>
+                        <div class="export-epics" id="asanaExportEpics">
+                            <!-- Epics will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="asanaExportCancel">Cancel</button>
+                        <button class="btn" id="asanaExportNext">Step 2: Import →</button>
+                    </div>
+                </div>
+
+                <!-- Stage 2: Instructions -->
+                <div class="export-stage hidden" id="asanaStage2">
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Enter your Asana details</span>
+                            </div>
+                            <div class="export-step-content">
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Personal Access Token <span class="export-token-help">— <a href="https://app.asana.com/0/my-apps" target="_blank" rel="noopener">Get token</a></span></label>
+                                        <input type="text" id="asanaApiToken" class="export-field-input" placeholder="1/12345:abcdef..." spellcheck="false" autocomplete="off">
+                                    </div>
+                                    <div class="export-field">
+                                        <label class="export-field-label">Project Page URL</label>
+                                        <input type="text" id="asanaProjectUrl" class="export-field-input" placeholder="https://app.asana.com/1/.../project/1234567890/list/..." spellcheck="false">
+                                    </div>
+                                </div>
+                                <div class="export-info-banner">
+                                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                    <span>Your token is never stored or sent to our servers</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">2</span>
+                                <span class="export-step-title">Paste temporary import function into browser console</span>
+                            </div>
+                            <p class="export-step-desc">Open <strong>app.asana.com</strong>, open DevTools (<span class="devtools-instructions"></span>), go to <strong>Console</strong>, paste this code and press Enter:</p>
+                            <div class="export-code-block">
+                                <pre id="asanaImportFunction"></pre>
+                                <button class="btn btn-secondary export-copy-btn" id="asanaCopyFunction">Copy</button>
+                            </div>
+                        </div>
+
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">3</span>
+                                <span class="export-step-title">Run the import</span>
+                            </div>
+                            <p class="export-step-desc">Still in the console, paste this code and press Enter:</p>
+                            <div class="export-code-block">
+                                <pre id="asanaImportCall"></pre>
+                                <button class="btn btn-secondary export-copy-btn" id="asanaCopyCall">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="asanaExportBack">← Step 1: Select Tasks</button>
+                        <button class="btn" id="asanaExportDone">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jira Proxy Export Modal -->
+    <div class="modal-overlay" id="jiraProxyExportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2 id="jiraProxyExportTitle">Export to Jira</h2>
+                <button class="modal-close" id="jiraProxyExportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <!-- Stage 1: Selection -->
+                <div class="export-stage" id="jiraProxyStage1">
+                    <div class="export-filters">
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Releases</h3>
+                            <div class="export-slices" id="jiraProxyExportSlices"></div>
+                        </div>
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Status</h3>
+                            <div class="export-statuses">
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="jiraProxyFilterNone" checked><span class="export-slice-name">No Status</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="jiraProxyFilterPlanned" checked><span class="export-slice-name">Planned</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="jiraProxyFilterInProgress" checked><span class="export-slice-name">In Progress</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="jiraProxyFilterDone" checked><span class="export-slice-name">Done</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-section">
+                        <h3 class="export-section-title">Epics & Stories <span class="export-count" id="jiraProxyExportCount"></span></h3>
+                        <div class="export-epics" id="jiraProxyExportEpics"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="jiraProxyExportCancel">Cancel</button>
+                        <button class="btn" id="jiraProxyExportNext">Step 2: Credentials →</button>
+                    </div>
+                </div>
+                <!-- Stage 2: Credentials + Export -->
+                <div class="export-stage hidden" id="jiraProxyStage2">
+                    <div class="export-summary" id="jiraProxySummary"></div>
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Enter your Jira details</span>
+                            </div>
+                            <div class="export-step-content">
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Jira Instance URL</label>
+                                        <input type="text" id="jiraProxyInstanceUrl" class="export-field-input" placeholder="your-team.atlassian.net" spellcheck="false">
+                                    </div>
+                                    <div class="export-field" style="flex: 0 0 120px;">
+                                        <label class="export-field-label">Project Key</label>
+                                        <input type="text" id="jiraProxyProjectKey" class="export-field-input" placeholder="PROJ" spellcheck="false" style="text-transform: uppercase;">
+                                    </div>
+                                </div>
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Email</label>
+                                        <input type="email" id="jiraProxyEmail" class="export-field-input" placeholder="you@company.com" spellcheck="false">
+                                    </div>
+                                    <div class="export-field">
+                                        <label class="export-field-label">API Token <span class="export-token-help">— <a href="https://id.atlassian.com/manage-profile/security/api-tokens" target="_blank" rel="noopener">Get token</a></span></label>
+                                        <input type="password" id="jiraProxyToken" class="export-field-input" placeholder="your-api-token" spellcheck="false" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="export-info-banner">
+                                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                    <span>We don't store or log your credentials. They're sent directly to Jira and discarded after your session</span>
+                                </div>
+                                <div class="export-verify-row">
+                                    <button class="btn-verify" id="jiraProxyVerifyBtn"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6 12 2.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verify Connection</button>
+                                    <span class="export-verify-status" id="jiraProxyVerifyStatus">Optional - test before exporting</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-progress hidden" id="jiraProxyProgress">
+                        <div class="export-progress-bar-container"><div class="export-progress-bar" id="jiraProxyProgressBar"></div></div>
+                        <div class="export-progress-items" id="jiraProxyProgressItems"></div>
+                        <div class="export-progress-summary" id="jiraProxyProgressSummary"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="jiraProxyExportBack">← Step 1: Select Stories</button>
+                        <button class="btn" id="jiraProxyExportRun">Export to Jira</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phabricator Proxy Export Modal -->
+    <div class="modal-overlay" id="phabProxyExportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2 id="phabProxyExportTitle">Export to Phabricator</h2>
+                <button class="modal-close" id="phabProxyExportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <!-- Stage 1: Selection -->
+                <div class="export-stage" id="phabProxyStage1">
+                    <div class="export-filters">
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Releases</h3>
+                            <div class="export-slices" id="phabProxyExportSlices"></div>
+                        </div>
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Status</h3>
+                            <div class="export-statuses">
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="phabProxyFilterNone" checked><span class="export-slice-name">No Status</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="phabProxyFilterPlanned" checked><span class="export-slice-name">Planned</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="phabProxyFilterInProgress" checked><span class="export-slice-name">In Progress</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="phabProxyFilterDone" checked><span class="export-slice-name">Done</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-section">
+                        <h3 class="export-section-title">Epics & Tasks <span class="export-count" id="phabProxyExportCount"></span></h3>
+                        <div class="export-epics" id="phabProxyExportEpics"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="phabProxyExportCancel">Cancel</button>
+                        <button class="btn" id="phabProxyExportNext">Step 2: Credentials →</button>
+                    </div>
+                </div>
+                <!-- Stage 2: Credentials + Export -->
+                <div class="export-stage hidden" id="phabProxyStage2">
+                    <div class="export-summary" id="phabProxySummary"></div>
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Enter your Phabricator details</span>
+                            </div>
+                            <div class="export-step-content">
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Instance URL</label>
+                                        <input type="text" id="phabProxyInstanceUrl" class="export-field-input" placeholder="phabricator.example.com" spellcheck="false">
+                                    </div>
+                                    <div class="export-field">
+                                        <label class="export-field-label">API Token <span class="export-token-help">— <a href="#" id="phabProxyTokenHelpLink">How do I get this?</a></span></label>
+                                        <input type="password" id="phabProxyApiToken" class="export-field-input" placeholder="api-abc123..." spellcheck="false" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="export-field export-field-tags">
+                                    <label class="export-field-label">Project Tags <span class="export-field-recommended">(recommended)</span></label>
+                                    <input type="text" id="phabProxyTags" class="export-field-input" placeholder="project-tag, another-tag" spellcheck="false">
+                                    <span class="export-field-hint">Use the slug from the project's /tag/ URL, or type the name with spaces (comma-separated)</span>
+                                </div>
+                                <div class="export-info-banner">
+                                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                    <span>We don't store or log your API token. It's sent directly to Phabricator and discarded after your session</span>
+                                </div>
+                                <div class="export-verify-row">
+                                    <button class="btn-verify" id="phabProxyVerifyBtn"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6 12 2.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verify Connection</button>
+                                    <span class="export-verify-status" id="phabProxyVerifyStatus">Optional - test before exporting</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-progress hidden" id="phabProxyProgress">
+                        <div class="export-progress-bar-container"><div class="export-progress-bar" id="phabProxyProgressBar"></div></div>
+                        <div class="export-progress-items" id="phabProxyProgressItems"></div>
+                        <div class="export-progress-summary" id="phabProxyProgressSummary"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="phabProxyExportBack">← Step 1: Select Tasks</button>
+                        <button class="btn" id="phabProxyExportRun">Export to Phabricator</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Asana Proxy Export Modal -->
+    <div class="modal-overlay" id="asanaProxyExportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2 id="asanaProxyExportTitle">Export to Asana</h2>
+                <button class="modal-close" id="asanaProxyExportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <!-- Stage 1: Selection -->
+                <div class="export-stage" id="asanaProxyStage1">
+                    <div class="export-filters">
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Releases</h3>
+                            <div class="export-slices" id="asanaProxyExportSlices"></div>
+                        </div>
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Status</h3>
+                            <div class="export-statuses">
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="asanaProxyFilterNone" checked><span class="export-slice-name">No Status</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="asanaProxyFilterPlanned" checked><span class="export-slice-name">Planned</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="asanaProxyFilterInProgress" checked><span class="export-slice-name">In Progress</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="asanaProxyFilterDone" checked><span class="export-slice-name">Done</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="export-slice-checkbox" style="margin-top: 8px;">
+                        <input type="checkbox" id="asanaProxyCreateSections">
+                        <span class="export-slice-name">Also create Asana sections for parent tasks?</span>
+                    </label>
+                    <div class="export-section">
+                        <h3 class="export-section-title">Parent Tasks & Subtasks <span class="export-count" id="asanaProxyExportCount"></span></h3>
+                        <div class="export-epics" id="asanaProxyExportEpics"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="asanaProxyExportCancel">Cancel</button>
+                        <button class="btn" id="asanaProxyExportNext">Step 2: Credentials →</button>
+                    </div>
+                </div>
+                <!-- Stage 2: Credentials + Export -->
+                <div class="export-stage hidden" id="asanaProxyStage2">
+                    <div class="export-summary" id="asanaProxySummary"></div>
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Enter your Asana details</span>
+                            </div>
+                            <div class="export-step-content">
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Personal Access Token <span class="export-token-help">— <a href="https://app.asana.com/0/my-apps" target="_blank" rel="noopener">Get token</a></span></label>
+                                        <input type="password" id="asanaProxyApiToken" class="export-field-input" placeholder="1/12345:abcdef..." spellcheck="false" autocomplete="off">
+                                    </div>
+                                    <div class="export-field">
+                                        <label class="export-field-label">Project Page URL</label>
+                                        <input type="text" id="asanaProxyProjectUrl" class="export-field-input" placeholder="https://app.asana.com/1/.../project/1234567890/list/..." spellcheck="false">
+                                    </div>
+                                </div>
+                                <div class="export-info-banner">
+                                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                    <span>We don't store or log your token. It's sent directly to Asana and discarded after your session</span>
+                                </div>
+                                <div class="export-verify-row">
+                                    <button class="btn-verify" id="asanaProxyVerifyBtn"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6 12 2.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verify Connection</button>
+                                    <span class="export-verify-status" id="asanaProxyVerifyStatus">Optional - test before exporting</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-progress hidden" id="asanaProxyProgress">
+                        <div class="export-progress-bar-container"><div class="export-progress-bar" id="asanaProxyProgressBar"></div></div>
+                        <div class="export-progress-items" id="asanaProxyProgressItems"></div>
+                        <div class="export-progress-summary" id="asanaProxyProgressSummary"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="asanaProxyExportBack">← Step 1: Select Tasks</button>
+                        <button class="btn" id="asanaProxyExportRun">Export to Asana</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Linear Proxy Export Modal -->
+    <div class="modal-overlay" id="linearProxyExportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2 id="linearProxyExportTitle">Export to Linear</h2>
+                <button class="modal-close" id="linearProxyExportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <!-- Stage 1: Selection -->
+                <div class="export-stage" id="linearProxyStage1">
+                    <div class="export-filters">
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Releases</h3>
+                            <div class="export-slices" id="linearProxyExportSlices"></div>
+                        </div>
+                        <div class="export-filter-group">
+                            <h3 class="export-section-title">Status</h3>
+                            <div class="export-statuses">
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="linearProxyFilterNone" checked><span class="export-slice-name">No Status</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="linearProxyFilterPlanned" checked><span class="export-slice-name">Planned</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="linearProxyFilterInProgress" checked><span class="export-slice-name">In Progress</span></label>
+                                <label class="export-slice-checkbox checked"><input type="checkbox" id="linearProxyFilterDone" checked><span class="export-slice-name">Done</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-section">
+                        <h3 class="export-section-title">Parent Issues & Sub-issues <span class="export-count" id="linearProxyExportCount"></span></h3>
+                        <div class="export-epics" id="linearProxyExportEpics"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="linearProxyExportCancel">Cancel</button>
+                        <button class="btn" id="linearProxyExportNext">Step 2: Credentials &#x2192;</button>
+                    </div>
+                </div>
+                <!-- Stage 2: Credentials + Export -->
+                <div class="export-stage hidden" id="linearProxyStage2">
+                    <div class="export-summary" id="linearProxySummary"></div>
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Enter your Linear details</span>
+                            </div>
+                            <div class="export-step-content">
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">API Key <span class="export-token-help">- <a href="https://linear.app/settings/api" target="_blank" rel="noopener">Get API key</a></span></label>
+                                        <input type="password" id="linearProxyApiKey" class="export-field-input" placeholder="lin_api_..." spellcheck="false" autocomplete="off">
+                                    </div>
+                                    <div class="export-field">
+                                        <label class="export-field-label">Team Key</label>
+                                        <input type="text" id="linearProxyTeamKey" class="export-field-input" placeholder="ENG" spellcheck="false">
+                                    </div>
+                                </div>
+                                <div class="export-info-banner">
+                                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                    <span>We don't store or log your API key. It's sent directly to Linear and discarded after your session</span>
+                                </div>
+                                <div class="export-verify-row">
+                                    <button class="btn-verify" id="linearProxyVerifyBtn"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6 12 2.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verify Connection</button>
+                                    <span class="export-verify-status" id="linearProxyVerifyStatus">Optional - test before exporting</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-progress hidden" id="linearProxyProgress">
+                        <div class="export-progress-bar-container"><div class="export-progress-bar" id="linearProxyProgressBar"></div></div>
+                        <div class="export-progress-items" id="linearProxyProgressItems"></div>
+                        <div class="export-progress-summary" id="linearProxyProgressSummary"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="linearProxyExportBack">&larr; Step 1: Select Issues</button>
+                        <button class="btn" id="linearProxyExportRun">Export to Linear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Asana CSV Export Modal -->
+    <div class="modal-overlay" id="asanaCsvExportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2>Export to Asana CSV</h2>
+                <button class="modal-close" id="asanaCsvExportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <div class="export-info-banner">
+                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                    <span>Import via your Asana project: click the project name dropdown → <strong>Import</strong> → <strong>CSV</strong></span>
+                </div>
+
+                <div class="export-filters">
+                    <div class="export-filter-group">
+                        <h3 class="export-section-title">Releases</h3>
+                        <div class="export-slices" id="asanaCsvExportSlices"></div>
+                    </div>
+                    <div class="export-filter-group">
+                        <h3 class="export-section-title">Status</h3>
+                        <div class="export-statuses" id="asanaCsvExportStatuses">
+                            <label class="export-slice-checkbox checked">
+                                <input type="checkbox" id="asanaCsvFilterNone" checked>
+                                <span class="export-slice-name">No Status</span>
+                            </label>
+                            <label class="export-slice-checkbox checked">
+                                <input type="checkbox" id="asanaCsvFilterPlanned" checked>
+                                <span class="export-slice-name">Planned</span>
+                            </label>
+                            <label class="export-slice-checkbox checked">
+                                <input type="checkbox" id="asanaCsvFilterInProgress" checked>
+                                <span class="export-slice-name">In Progress</span>
+                            </label>
+                            <label class="export-slice-checkbox checked">
+                                <input type="checkbox" id="asanaCsvFilterDone" checked>
+                                <span class="export-slice-name">Done</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <label class="export-slice-checkbox" style="margin-top: 8px;">
+                    <input type="checkbox" id="asanaCsvCreateSections">
+                    <span class="export-slice-name">Also create Asana sections for parent tasks?</span>
+                </label>
+
+                <div class="export-section">
+                    <h3 class="export-section-title">Parent Tasks & Subtasks <span class="export-count" id="asanaCsvExportCount"></span></h3>
+                    <div class="export-epics" id="asanaCsvExportEpics"></div>
+                </div>
+
+                <div class="export-actions">
+                    <button class="btn btn-secondary" id="asanaCsvExportCancel">Cancel</button>
+                    <button class="btn" id="asanaCsvExportDownload">Download CSV</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jira Import Modal -->
+    <div class="modal-overlay" id="jiraImportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2 id="jiraImportTitle">Import from Jira</h2>
+                <button class="modal-close" id="jiraImportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <!-- Stage 1: Credentials + Fetch -->
+                <div class="export-stage" id="jiraImportStage1">
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Enter your Jira details</span>
+                            </div>
+                            <div class="export-step-content">
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Jira Instance URL</label>
+                                        <input type="text" id="jiraImportInstanceUrl" class="export-field-input" placeholder="your-team.atlassian.net" spellcheck="false">
+                                    </div>
+                                    <div class="export-field" style="flex: 0 0 120px;">
+                                        <label class="export-field-label">Project Key</label>
+                                        <input type="text" id="jiraImportProjectKey" class="export-field-input" placeholder="PROJ" spellcheck="false" style="text-transform: uppercase;">
+                                    </div>
+                                </div>
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Email</label>
+                                        <input type="email" id="jiraImportEmail" class="export-field-input" placeholder="you@company.com" spellcheck="false">
+                                    </div>
+                                    <div class="export-field">
+                                        <label class="export-field-label">API Token <span class="export-token-help">- <a href="https://id.atlassian.com/manage-profile/security/api-tokens" target="_blank" rel="noopener">Get token</a></span></label>
+                                        <input type="password" id="jiraImportToken" class="export-field-input" placeholder="your-api-token" spellcheck="false" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="export-info-banner">
+                                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                    <span>We don't store or log your credentials. They're sent directly to Jira and discarded after your session</span>
+                                </div>
+                                <div class="export-verify-row">
+                                    <button class="btn-verify" id="jiraImportVerifyBtn"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6 12 2.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verify Connection</button>
+                                    <span class="export-verify-status" id="jiraImportVerifyStatus">Optional - test before fetching</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-progress hidden" id="jiraImportProgress">
+                        <div class="export-progress-bar-container"><div class="export-progress-bar" id="jiraImportProgressBar"></div></div>
+                        <div class="import-progress-items" id="jiraImportProgressItems"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="jiraImportCancel">Cancel</button>
+                        <button class="btn" id="jiraImportFetchBtn">Fetch from Jira</button>
+                    </div>
+                </div>
+                <!-- CSV Stage 1: File Upload -->
+                <div class="export-stage hidden" id="jiraCsvImportStage1">
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Upload Jira CSV export</span>
+                            </div>
+                            <div class="export-step-content">
+                                <p style="margin: 0 0 8px; color: var(--text-secondary); font-size: 13px;">Export from Jira: Issues > ... > Export > CSV (all fields)</p>
+                                <div class="import-file-dropzone" id="jiraCsvDropzone">
+                                    <svg class="import-file-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                        <line x1="12" y1="18" x2="12" y2="12"/>
+                                        <line x1="9" y1="15" x2="12" y2="12"/>
+                                        <line x1="15" y1="15" x2="12" y2="12"/>
+                                    </svg>
+                                    <span>Drop .csv file here or click to browse</span>
+                                    <input type="file" id="jiraCsvFileInput" accept=".csv" hidden>
+                                </div>
+                                <div class="import-validation-error hidden" id="jiraCsvValidationError"></div>
+                            </div>
+                        </div>
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">2</span>
+                                <span class="export-step-title">Jira instance URL <span style="font-weight: normal; color: var(--text-secondary);">(optional)</span></span>
+                            </div>
+                            <div class="export-step-content">
+                                <p style="margin: 0 0 8px; color: var(--text-secondary); font-size: 13px;">Provide your Jira URL to link imported cards back to their issues</p>
+                                <input type="text" id="jiraCsvInstanceUrl" class="export-field-input" placeholder="your-team.atlassian.net" spellcheck="false">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="jiraCsvImportCancel">Cancel</button>
+                        <button class="btn" id="jiraCsvImportParseBtn" disabled>Continue</button>
+                    </div>
+                </div>
+                <!-- Stage 2: Preview + Confirm -->
+                <div class="export-stage hidden" id="jiraImportStage2">
+                    <div class="import-mapping-mode hidden" id="jiraImportMode">
+                        <span class="import-mapping-label">Import mode:</span>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="jiraImportMode" value="append" checked>
+                            Add to existing map
+                        </label>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="jiraImportMode" value="replace">
+                            Replace map
+                        </label>
+                    </div>
+                    <div class="import-preview-header" id="jiraImportPreviewHeader"></div>
+                    <div class="import-preview" id="jiraImportPreview"></div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="jiraImportBack">← Back</button>
+                        <span class="import-count" id="jiraImportCount"></span>
+                        <button class="btn" id="jiraImportConfirmBtn">Import to Map</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Asana Import Modal -->
+    <div class="modal-overlay" id="asanaImportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2 id="asanaImportTitle">Import from Asana</h2>
+                <button class="modal-close" id="asanaImportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <!-- Stage 1: Credentials + Fetch -->
+                <div class="export-stage" id="asanaImportStage1">
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Enter your Asana details</span>
+                            </div>
+                            <div class="export-step-content">
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Personal Access Token <span class="export-token-help">- <a href="https://app.asana.com/0/my-apps" target="_blank" rel="noopener">Get token</a></span></label>
+                                        <input type="password" id="asanaImportToken" class="export-field-input" placeholder="your-personal-access-token" spellcheck="false" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Project URL or GID</label>
+                                        <input type="text" id="asanaImportProjectUrl" class="export-field-input" placeholder="https://app.asana.com/0/1234567890/list" spellcheck="false">
+                                    </div>
+                                </div>
+                                <div class="export-info-banner">
+                                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                    <span>We don't store or log your credentials. They're sent directly to Asana and discarded after your session</span>
+                                </div>
+                                <div class="export-verify-row">
+                                    <button class="btn-verify" id="asanaImportVerifyBtn"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6 12 2.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verify Connection</button>
+                                    <span class="export-verify-status" id="asanaImportVerifyStatus">Optional - test before fetching</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-progress hidden" id="asanaImportProgress">
+                        <div class="export-progress-bar-container"><div class="export-progress-bar" id="asanaImportProgressBar"></div></div>
+                        <div class="import-progress-items" id="asanaImportProgressItems"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="asanaImportCancel">Cancel</button>
+                        <button class="btn" id="asanaImportFetchBtn">Fetch from Asana</button>
+                    </div>
+                </div>
+                <!-- CSV Stage 1: File Upload -->
+                <div class="export-stage hidden" id="asanaCsvImportStage1">
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Upload Asana CSV export</span>
+                            </div>
+                            <div class="export-step-content">
+                                <p style="margin: 0 0 8px; color: var(--text-secondary); font-size: 13px;">Export from Asana: Project > ... > Export/Print > CSV</p>
+                                <div class="import-file-dropzone" id="asanaCsvDropzone">
+                                    <svg class="import-file-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                        <line x1="12" y1="18" x2="12" y2="12"/>
+                                        <line x1="9" y1="15" x2="12" y2="12"/>
+                                        <line x1="15" y1="15" x2="12" y2="12"/>
+                                    </svg>
+                                    <span>Drop .csv file here or click to browse</span>
+                                    <input type="file" id="asanaCsvFileInput" accept=".csv" hidden>
+                                </div>
+                                <div class="import-validation-error hidden" id="asanaCsvValidationError"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="asanaCsvImportCancel">Cancel</button>
+                        <button class="btn" id="asanaCsvImportParseBtn" disabled>Continue</button>
+                    </div>
+                </div>
+                <!-- Stage 2: Preview + Confirm -->
+                <div class="export-stage hidden" id="asanaImportStage2">
+                    <div class="import-mapping-mode hidden" id="asanaImportMode">
+                        <span class="import-mapping-label">Import mode:</span>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="asanaImportMode" value="append" checked>
+                            Add to existing map
+                        </label>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="asanaImportMode" value="replace">
+                            Replace map
+                        </label>
+                    </div>
+                    <div class="import-mapping-mode hidden" id="asanaImportMappingMode">
+                        <span class="import-mapping-label">Tag by:</span>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="asanaMappingMode" value="sections" checked>
+                            Group by sections
+                        </label>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="asanaMappingMode" value="tasks">
+                            Group by tasks &amp; subtasks
+                        </label>
+                    </div>
+                    <div class="import-preview-header" id="asanaImportPreviewHeader"></div>
+                    <div class="import-preview" id="asanaImportPreview"></div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="asanaImportBack">&larr; Back</button>
+                        <span class="import-count" id="asanaImportCount"></span>
+                        <button class="btn" id="asanaImportConfirmBtn">Import to Map</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phabricator CSV Import Modal -->
+    <div class="modal-overlay" id="phabImportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2 id="phabImportTitle">Import from Phabricator CSV</h2>
+                <button class="modal-close" id="phabImportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <!-- Stage 1 API: Credentials + Fetch -->
+                <div class="export-stage hidden" id="phabImportStage1">
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Enter your Phabricator details</span>
+                            </div>
+                            <div class="export-step-content">
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Instance URL</label>
+                                        <input type="text" id="phabImportInstanceUrl" class="export-field-input" placeholder="phabricator.example.com" spellcheck="false">
+                                    </div>
+                                    <div class="export-field">
+                                        <label class="export-field-label">API Token <span class="export-token-help">— <a href="#" id="phabImportTokenHelp">How do I get this?</a></span></label>
+                                        <input type="password" id="phabImportToken" class="export-field-input" placeholder="api-abc123..." spellcheck="false" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="export-field export-field-tags">
+                                    <label class="export-field-label">Project Tags <span class="export-field-recommended">(required)</span></label>
+                                    <input type="text" id="phabImportProjectTags" class="export-field-input" placeholder="project-tag, another-tag" spellcheck="false">
+                                    <span class="export-field-hint">Use the slug from the project's /tag/ URL, or type the name with spaces (comma-separated)</span>
+                                </div>
+                                <div class="export-info-banner">
+                                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                    <span>We don't store or log your API token. It's sent directly to Phabricator and discarded after your session</span>
+                                </div>
+                                <div class="export-verify-row">
+                                    <button class="btn-verify" id="phabImportVerifyBtn"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6 12 2.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verify Connection</button>
+                                    <span class="export-verify-status" id="phabImportVerifyStatus">Optional - test before fetching</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-progress hidden" id="phabImportProgress">
+                        <div class="export-progress-bar-container"><div class="export-progress-bar" id="phabImportProgressBar"></div></div>
+                        <div class="import-progress-items" id="phabImportProgressItems"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="phabImportCancel">Cancel</button>
+                        <button class="btn" id="phabImportFetchBtn">Fetch from Phabricator</button>
+                    </div>
+                </div>
+                <!-- Stage 1 CSV: CSV File Upload -->
+                <div class="export-stage hidden" id="phabCsvImportStage1">
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Upload Maniphest CSV export</span>
+                            </div>
+                            <div class="export-step-content">
+                                <p style="margin: 0 0 8px; color: var(--text-secondary); font-size: 13px;">Export from Phabricator: Maniphest > select tasks > Export as CSV</p>
+                                <div class="import-file-dropzone" id="phabCsvDropzone">
+                                    <svg class="import-file-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                        <line x1="12" y1="18" x2="12" y2="12"/>
+                                        <line x1="9" y1="15" x2="12" y2="12"/>
+                                        <line x1="15" y1="15" x2="12" y2="12"/>
+                                    </svg>
+                                    <span>Drop .csv file here or click to browse</span>
+                                    <input type="file" id="phabCsvFileInput" accept=".csv" hidden>
+                                </div>
+                                <div class="import-validation-error hidden" id="phabCsvValidationError"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="phabCsvImportCancel">Cancel</button>
+                        <button class="btn" id="phabCsvImportParseBtn" disabled>Continue</button>
+                    </div>
+                </div>
+                <!-- Stage 2: Preview + Confirm -->
+                <div class="export-stage hidden" id="phabImportStage2">
+                    <div class="import-mapping-mode hidden" id="phabImportMode">
+                        <span class="import-mapping-label">Import mode:</span>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="phabImportMode" value="append" checked>
+                            Add to existing map
+                        </label>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="phabImportMode" value="replace">
+                            Replace map
+                        </label>
+                    </div>
+                    <div class="import-status-filters" id="phabImportStatusFilters"></div>
+                    <div class="import-preview-header" id="phabImportPreviewHeader"></div>
+                    <div class="import-preview" id="phabImportPreview"></div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="phabImportBack">&larr; Back</button>
+                        <span class="import-count" id="phabImportCount"></span>
+                        <button class="btn" id="phabImportConfirmBtn">Import to Map</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Linear Import Modal -->
+    <div class="modal-overlay" id="linearImportModal">
+        <div class="modal api-export-modal">
+            <div class="modal-header">
+                <h2 id="linearImportTitle">Import from Linear</h2>
+                <button class="modal-close" id="linearImportModalClose">&times;</button>
+            </div>
+            <div class="modal-body api-export-modal-body">
+                <!-- Stage 1: API Credentials + Fetch -->
+                <div class="export-stage" id="linearImportStage1">
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Enter your Linear details</span>
+                            </div>
+                            <div class="export-step-content">
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">API Key <span class="export-token-help">- <a href="https://linear.app/settings/account/security/api-keys/new" target="_blank" rel="noopener">Create key</a></span></label>
+                                        <input type="password" id="linearImportApiKey" class="export-field-input" placeholder="lin_api_..." spellcheck="false" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="export-fields-row">
+                                    <div class="export-field">
+                                        <label class="export-field-label">Team Key <span class="export-token-help">- e.g. "JAC" from issue ID JAC-5</span></label>
+                                        <input type="text" id="linearImportTeamKey" class="export-field-input" placeholder="TEAM" spellcheck="false">
+                                    </div>
+                                </div>
+                                <div class="export-info-banner">
+                                    <svg class="export-info-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                                    <span>We don't store or log your credentials. They're sent directly to Linear and discarded after your session</span>
+                                </div>
+                                <div class="export-verify-row">
+                                    <button class="btn-verify" id="linearImportVerifyBtn"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6 12 2.5 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verify Connection</button>
+                                    <span class="export-verify-status" id="linearImportVerifyStatus">Optional - test before fetching</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-progress hidden" id="linearImportProgress">
+                        <div class="export-progress-bar-container"><div class="export-progress-bar" id="linearImportProgressBar"></div></div>
+                        <div class="import-progress-items" id="linearImportProgressItems"></div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="linearImportCancel">Cancel</button>
+                        <button class="btn" id="linearImportFetchBtn">Fetch from Linear</button>
+                    </div>
+                </div>
+                <!-- CSV Stage 1: File Upload -->
+                <div class="export-stage hidden" id="linearCsvImportStage1">
+                    <div class="export-instructions">
+                        <div class="export-step">
+                            <div class="export-step-header">
+                                <span class="export-step-number">1</span>
+                                <span class="export-step-title">Upload Linear CSV export</span>
+                            </div>
+                            <div class="export-step-content">
+                                <p style="margin: 0 0 8px; color: var(--text-secondary); font-size: 13px;">Export from Linear: Settings > Export > Export CSV</p>
+                                <div class="import-file-dropzone" id="linearCsvDropzone">
+                                    <svg class="import-file-icon" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                        <line x1="12" y1="18" x2="12" y2="12"/>
+                                        <line x1="9" y1="15" x2="12" y2="12"/>
+                                        <line x1="15" y1="15" x2="12" y2="12"/>
+                                    </svg>
+                                    <span>Drop .csv file here or click to browse</span>
+                                    <input type="file" id="linearCsvFileInput" accept=".csv" hidden>
+                                </div>
+                                <div class="import-validation-error hidden" id="linearCsvValidationError"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="linearCsvImportCancel">Cancel</button>
+                        <button class="btn" id="linearCsvImportParseBtn" disabled>Continue</button>
+                    </div>
+                </div>
+                <!-- Stage 2: Preview + Confirm -->
+                <div class="export-stage hidden" id="linearImportStage2">
+                    <div class="import-mapping-mode hidden" id="linearImportMode">
+                        <span class="import-mapping-label">Import mode:</span>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="linearImportMode" value="append" checked>
+                            Add to existing map
+                        </label>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="linearImportMode" value="replace">
+                            Replace map
+                        </label>
+                    </div>
+                    <div class="import-mapping-mode" id="linearImportMappingMode">
+                        <span class="import-mapping-label">Tag by:</span>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="linearMappingMode" value="project" checked>
+                            Group by projects
+                        </label>
+                        <label class="import-mapping-option">
+                            <input type="radio" name="linearMappingMode" value="parent">
+                            Group by parent issues
+                        </label>
+                    </div>
+                    <div class="import-preview-header" id="linearImportPreviewHeader"></div>
+                    <div class="import-preview" id="linearImportPreview"></div>
+                    <div class="export-actions">
+                        <button class="btn btn-secondary" id="linearImportBack">&larr; Back</button>
+                        <span class="import-count" id="linearImportCount"></span>
+                        <button class="btn" id="linearImportConfirmBtn">Import to Map</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="backupsModal">
+        <div class="modal backups-modal">
+            <div class="modal-header">
+                <h2>Backups</h2>
+                <button class="modal-close" id="backupsModalClose">&times;</button>
+            </div>
+            <div class="modal-body backups-modal-body">
+                <div class="backups-toolbar">
+                    <p class="backups-desc">Snapshots of your map. Up to 5 kept.</p>
+                    <button class="btn backups-create-btn" id="createBackupBtn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        Create Backup
+                    </button>
+                </div>
+                <div class="backups-list" id="backupsList">
+                    <div class="backups-empty">
+                        <svg class="backups-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                        <span>No backups yet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="lockModal">
+        <div class="modal lock-modal">
+            <div class="modal-header">
+                <h2 id="lockModalTitle">Lock This Map</h2>
+                <button class="modal-close" id="lockModalClose">&times;</button>
+            </div>
+            <div class="modal-body lock-modal-body">
+                <p id="lockModalDescription">Create a password to lock this map. Anyone with the password can unlock it to edit.</p>
+                <div class="lock-password-field">
+                    <label for="lockPasswordInput">Password</label>
+                    <input type="password" id="lockPasswordInput" placeholder="Enter password" autocomplete="off">
+                </div>
+                <p class="lock-modal-note" id="lockModalNote">Keep your password safe — there's no recovery option. If you lose it, you can still use <strong>Menu → Copy this map</strong> to create a new editable copy.</p>
+                <div class="lock-modal-actions">
+                    <button class="btn btn-secondary" id="lockModalCancel">Cancel</button>
+                    <button class="btn" id="lockModalConfirm">Lock Map</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="cardExpandModal">
+        <div class="modal card-expand-modal">
+            <div class="modal-header">
+                <h2 id="cardExpandTitle">Card</h2>
+                <button class="modal-close" id="cardExpandModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea class="card-expand-name" id="cardExpandName" placeholder="Card title..."></textarea>
+                <textarea class="card-expand-body" id="cardExpandBody" placeholder="Add details or description..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="buildAiModal">
+        <div class="build-ai-modal">
+            <div class="build-ai-glow"></div>
+            <div class="build-ai-header">
+                <div class="build-ai-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="#f59e0b"/></svg>Build with AI <span class="build-ai-subtitle">Turn your story map into a prototype or full app with one prompt.</span></div>
+                <button class="build-ai-close" id="buildAiModalClose">&times;</button>
+            </div>
+            <div class="build-ai-body">
+                <label class="build-ai-label">App Builders <span style="text-transform:none;font-weight:400;color:var(--color-text-faint)">- managed stack</span></label>
+                <div class="build-ai-targets" id="buildAiTargets">
+                    <button class="build-ai-target" data-target="lovable" data-kind="builder">
+                        <svg class="build-ai-logo" viewBox="0 0 121 122" fill="none"><defs><linearGradient id="lovGrad" x1="33%" y1="18%" x2="63%" y2="100%"><stop offset="0%" stop-color="#FF8E63"/><stop offset="56%" stop-color="#FF7EB0"/><stop offset="95%" stop-color="#4B73FF"/></linearGradient></defs><path fill-rule="evenodd" clip-rule="evenodd" d="M36.07 0C55.99 0 72.14 16.16 72.14 36.08V49.8H84.14c19.92 0 36.07 16.15 36.07 36.08 0 19.93-16.15 36.08-36.07 36.08H0V36.08C0 16.16 16.15 0 36.07 0Z" fill="url(#lovGrad)"/></svg>
+                        <span>Lovable</span>
+                    </button>
+                    <button class="build-ai-target" data-target="v0" data-kind="builder">
+                        <svg class="build-ai-logo" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="currentColor"/><text x="12" y="16" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="system-ui">v0</text></svg>
+                        <span>v0</span>
+                    </button>
+                    <button class="build-ai-target" data-target="replit" data-kind="builder">
+                        <svg class="build-ai-logo" viewBox="0 0 24 24" fill="none"><path d="M2 1.5A1.5 1.5 0 0 1 3.5 0h7A1.5 1.5 0 0 1 12 1.5V8H3.5A1.5 1.5 0 0 1 2 6.5ZM12 8h8.5A1.5 1.5 0 0 1 22 9.5v5a1.5 1.5 0 0 1-1.5 1.5H12ZM2 17.5A1.5 1.5 0 0 1 3.5 16H12v6.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 2 22.5Z" fill="#F26207"/></svg>
+                        <span>Replit</span>
+                    </button>
+                    <button class="build-ai-target" data-target="base44" data-kind="builder">
+                        <svg class="build-ai-logo" viewBox="0 0 24 24" fill="none"><defs><mask id="b44m"><circle cx="12" cy="12" r="10" fill="white"/><rect x="0" y="13" width="24" height="1" fill="black"/><rect x="0" y="15.5" width="24" height="1.2" fill="black"/><rect x="0" y="18" width="24" height="1.4" fill="black"/><rect x="0" y="20.5" width="24" height="2" fill="black"/></mask></defs><circle cx="12" cy="12" r="10" fill="#f26522" mask="url(#b44m)"/></svg>
+                        <span>Base44</span>
+                    </button>
+                    <button class="build-ai-target" data-target="bolt" data-kind="builder">
+                        <svg class="build-ai-logo" viewBox="0 0 24 24" fill="none"><path d="M10.797 14.182H3.635L16.728 0l-3.525 9.818h7.162L7.272 24l3.524-9.818Z" fill="#f59e0b"/></svg>
+                        <span>Bolt</span>
+                    </button>
+                </div>
+                <label class="build-ai-label">AI Chat <span style="text-transform:none;font-weight:400;color:var(--color-text-faint)">- you choose the stack</span></label>
+                <div class="build-ai-targets" id="buildAiTargets2">
+                    <button class="build-ai-target" data-target="chatgpt" data-kind="assistant">
+                        <svg class="build-ai-logo" viewBox="0 0 24 24" fill="none"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z" fill="#10a37f"/></svg>
+                        <span>ChatGPT</span>
+                    </button>
+                    <button class="build-ai-target" data-target="claude" data-kind="assistant">
+                        <svg class="build-ai-logo" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#d4a27f"/><circle cx="12" cy="12" r="4.5" fill="#fff" opacity="0.5"/><circle cx="12" cy="12" r="2" fill="#fff"/></svg>
+                        <span>Claude</span>
+                    </button>
+                    <button class="build-ai-target" data-target="gemini" data-kind="assistant">
+                        <svg class="build-ai-logo" viewBox="0 0 24 24" fill="none"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81" fill="#4285f4"/></svg>
+                        <span>Gemini</span>
+                    </button>
+                </div>
+                <label class="build-ai-label" id="buildAiAgentsLabel">AI Coding Agents <span style="text-transform:none;font-weight:400;color:var(--color-text-faint)">- CLI and IDE</span></label>
+                <div class="build-ai-targets" id="buildAiTargets3">
+                    <button class="build-ai-target" data-target="claude-code" data-kind="assistant">
+                        <svg class="build-ai-logo" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" fill="#d4a27f"/><text x="12" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" font-family="monospace">&gt;_</text></svg>
+                        <span>Claude Code</span>
+                    </button>
+                    <button class="build-ai-target" data-target="codex" data-kind="assistant">
+                        <svg class="build-ai-logo" viewBox="0 0 24 28" fill="none"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z" fill="#10a37f"/><rect x="4" y="25" width="16" height="3" rx="1" fill="#10a37f" opacity="0.5"/><text x="12" y="27.7" text-anchor="middle" font-size="3" font-weight="700" fill="#fff" font-family="monospace">&gt;_</text></svg>
+                        <span>Codex</span>
+                    </button>
+                    <button class="build-ai-target" data-target="gemini-cli" data-kind="assistant">
+                        <svg class="build-ai-logo" viewBox="0 0 24 28" fill="none"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81" fill="#4285f4"/><rect x="4" y="25" width="16" height="3" rx="1" fill="#4285f4" opacity="0.5"/><text x="12" y="27.7" text-anchor="middle" font-size="3" font-weight="700" fill="#fff" font-family="monospace">&gt;_</text></svg>
+                        <span>Gemini CLI</span>
+                    </button>
+                    <button class="build-ai-target" data-target="cursor" data-kind="assistant">
+                        <svg class="build-ai-logo" viewBox="0 0 24 24" fill="none"><path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23" fill="#7c3aed"/></svg>
+                        <span>Cursor</span>
+                    </button>
+                    <button class="build-ai-target" data-target="windsurf" data-kind="assistant">
+                        <svg class="build-ai-logo" viewBox="0 0 24 24" fill="none"><path d="M23.55 5.067c-1.2038-.002-2.1806.973-2.1806 2.1765v4.8676c0 .972-.8035 1.7594-1.7597 1.7594-.568 0-1.1352-.286-1.4718-.7659l-4.9713-7.1003c-.4125-.5896-1.0837-.941-1.8103-.941-1.1334 0-2.1533.9635-2.1533 2.153v4.8957c0 .972-.7969 1.7594-1.7596 1.7594-.57 0-1.1363-.286-1.4728-.7658L.4076 5.1598C.2822 4.9798 0 5.0688 0 5.2882v4.2452c0 .2147.0656.4228.1884.599l5.4748 7.8183c.3234.462.8006.8052 1.3509.9298 1.3771.313 2.6446-.747 2.6446-2.0977v-4.893c0-.972.7875-1.7593 1.7596-1.7593h.003a1.798 1.798 0 0 1 1.4718.7658l4.9723 7.0994c.4135.5905 1.05.941 1.8093.941 1.1587 0 2.1515-.9645 2.1515-2.153v-4.8948c0-.972.7875-1.7594 1.7596-1.7594h.194a.22.22 0 0 0 .2204-.2202v-4.622a.22.22 0 0 0-.2203-.2203Z" fill="#0d9488"/></svg>
+                        <span>Windsurf</span>
+                    </button>
+                    <button class="build-ai-target" data-target="github-copilot" data-kind="assistant">
+                        <svg class="build-ai-logo" viewBox="0 0 24 24" fill="none"><path d="M23.922 16.997C23.061 18.492 18.063 22.02 12 22.02 5.937 22.02.939 18.492.078 16.997A.641.641 0 0 1 0 16.741v-2.869a.883.883 0 0 1 .053-.22c.372-.935 1.347-2.292 2.605-2.656.167-.429.414-1.055.644-1.517a10.098 10.098 0 0 1-.052-1.086c0-1.331.282-2.499 1.132-3.368.397-.406.89-.717 1.474-.952C7.255 2.937 9.248 1.98 11.978 1.98c2.731 0 4.767.957 6.166 2.093.584.235 1.077.546 1.474.952.85.869 1.132 2.037 1.132 3.368 0 .368-.014.733-.052 1.086.23.462.477 1.088.644 1.517 1.258.364 2.233 1.721 2.605 2.656a.841.841 0 0 1 .053.22v2.869a.641.641 0 0 1-.078.256Zm-11.75-5.992h-.344a4.359 4.359 0 0 1-.355.508c-.77.947-1.918 1.492-3.508 1.492-1.725 0-2.989-.359-3.782-1.259a2.137 2.137 0 0 1-.085-.104L4 11.746v6.585c1.435.779 4.514 2.179 8 2.179 3.486 0 6.565-1.4 8-2.179v-6.585l-.098-.104s-.033.045-.085.104c-.793.9-2.057 1.259-3.782 1.259-1.59 0-2.738-.545-3.508-1.492a4.359 4.359 0 0 1-.355-.508Zm2.328 3.25c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm-5 0c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm3.313-6.185c.136 1.057.403 1.913.878 2.497.442.544 1.134.938 2.344.938 1.573 0 2.292-.337 2.657-.751.384-.435.558-1.15.558-2.361 0-1.14-.243-1.847-.705-2.319-.477-.488-1.319-.862-2.824-1.025-1.487-.161-2.192.138-2.533.529-.269.307-.437.808-.438 1.578v.021c0 .265.021.562.063.893Zm-1.626 0c.042-.331.063-.628.063-.894v-.02c-.001-.77-.169-1.271-.438-1.578-.341-.391-1.046-.69-2.533-.529-1.505.163-2.347.537-2.824 1.025-.462.472-.705 1.179-.705 2.319 0 1.211.175 1.926.558 2.361.365.414 1.084.751 2.657.751 1.21 0 1.902-.394 2.344-.938.475-.584.742-1.44.878-2.497Z" fill="currentColor"/></svg>
+                        <span>GitHub Copilot</span>
+                    </button>
+                </div>
+                <div class="build-ai-selects-grid">
+                    <div>
+                        <label class="build-ai-label">Storymap Slice</label>
+                        <select class="build-ai-slice" id="buildAiSlice"></select>
+                    </div>
+                    <div>
+                        <label class="build-ai-label">Build Mode</label>
+                        <select class="build-ai-slice" id="buildAiModeSelect">
+                            <option value="prototype">Prototype</option>
+                            <option value="full">Full App</option>
+                        </select>
+                    </div>
+                </div>
+                <label class="build-ai-label">Additional Instructions <span style="text-transform:none;font-weight:400;color:var(--color-text-faint)">(optional)</span></label>
+                <textarea class="build-ai-instructions-input" id="buildAiInstructionsInput" rows="2" placeholder="Look and feel, key features, target audience..."></textarea>
+                <div class="build-ai-toggle-row" id="buildAiCliToggleRow" style="display:none">
+                    <label style="display:contents">
+                        <input type="checkbox" id="buildAiCliToggle" checked>
+                        <span class="build-ai-toggle-switch"></span>
+                        <span class="build-ai-toggle-text">Use<code style="font-size:12px;background:#1e1e2e;color:#a6e3a1;padding:1px 5px;border-radius:3px;margin:0 3px;vertical-align:1px">npx storymaps</code></span>
+                    </label>
+                    <a href="https://www.npmjs.com/package/storymaps" target="_blank" rel="noopener" style="display:inline-block;font-size:10px;font-weight:700;background:#cb3837;color:#fff;padding:1px 6px;border-radius:3px;text-decoration:none;vertical-align:1px;letter-spacing:0.03em">npm</a>
+                </div>
+                <label class="build-ai-toggle-row" id="buildAiFetchToggleRow">
+                    <input type="checkbox" id="buildAiFetchToggle" checked>
+                    <span class="build-ai-toggle-switch"></span>
+                    <span class="build-ai-toggle-text">Include fetch URL <span style="font-weight:400;color:var(--color-text-faint)">(uncheck to inline JSON)</span></span>
+                </label>
+                <label class="build-ai-label">Prompt</label>
+                <div class="build-ai-prompt-wrap">
+                    <textarea class="build-ai-prompt" id="buildAiPrompt" readonly rows="3"></textarea>
+                </div>
+                <p class="build-ai-instructions" id="buildAiInstructions"></p>
+                <div class="build-ai-actions">
+                    <button class="build-ai-copy" id="buildAiCopy">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                        <span>Copy Prompt</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tour-backdrop" id="tourBackdrop"></div>
+    <div class="tour-spotlight" id="tourSpotlight"></div>
+    <div class="tour-tooltip" id="tourTooltip">
+        <div class="tour-tooltip-content">
+            <span class="tour-tooltip-icon"></span>
+            <div class="tour-tooltip-title"></div>
+            <div class="tour-tooltip-body"></div>
+        </div>
+        <div class="tour-tooltip-progress" id="tourProgress"></div>
+        <div class="tour-tooltip-footer">
+            <button class="tour-btn-skip">Skip</button>
+            <div class="tour-tooltip-nav">
+                <button class="tour-btn-back">Back</button>
+                <button class="tour-btn-next">Next <svg class="tour-btn-next-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/app.js"></script>
 </body>
 </html>

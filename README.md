@@ -1,56 +1,53 @@
-# Storymap
+# storymap.sh
 
-A lightweight **user story mapping board** — a clean-room clone of the
-[storymaps.io](https://storymaps.io) interface, reproducing its exact colour
-palette, light/dark themes, and layout.
+A pixel-for-pixel static replica of [storymaps.io](https://storymaps.io) — the
+free user story mapping tool. This repository mirrors the application's complete
+client-side source tree (HTML, CSS, ES modules, vendored libraries, fonts, and
+image assets) exactly as served, so the layout, colour codings, and theming are
+byte-identical to the original.
 
-Organise a product backlog into **activities** (the backbone), break each into
-**tasks**, then slot **stories** into **releases** (swimlanes).
-
-## Features
-
-- **Activities backbone** with spanning header cards and per-task columns.
-- **Releases as swimlanes** — drop stories under the relevant task column.
-- **Exact colour palette** — the 14 card colours, status colours, and the
-  full light + dark theme variables match storymaps.io values exactly.
-- **Inline editing** — click any card title, activity, or release to edit.
-- **Colour picker & status pills** per story (Done / In Progress / Planned / Blocked).
-- **Theme toggle** (light / dark).
-- **Export to JSON** and **localStorage persistence** — your board is saved automatically.
-- Zero build step, zero dependencies — pure HTML/CSS/JS.
+> storymaps.io is published under the **GNU Affero General Public License v3.0**.
+> This mirror preserves that license. See `LICENSE` and `NOTICE.md`.
 
 ## Run locally
 
-It's a static site. Open `index.html` directly, or serve it:
+It's a static, build-free site of native ES modules. Serve it over HTTP (ES
+modules won't load from `file://`):
 
 ```bash
 python3 -m http.server 8000
-# then visit http://localhost:8000
+# then open http://localhost:8000
 ```
 
-## Files
+Everything client-side renders identically: the welcome screen, the board, the
+full colour palette, light/dark themes, exports (JSON/YAML/CSV), and image
+rendering.
 
-| File         | Purpose                                            |
-|--------------|----------------------------------------------------|
-| `index.html` | Page shell — header bar and board container.       |
-| `styles.css` | Colour system (light + dark) and board layout.     |
-| `app.js`     | Board model, rendering, and interactivity.         |
+### What needs the original backend
 
-## Colour reference
+A few features call storymaps.io's server and won't function on a local mirror:
 
-Card palette (`CARD_COLORS`) and default card-type colours match storymaps.io:
+- **Real-time collaboration / shared boards** — the board content behind share
+  URLs (e.g. `/85s8v6mv`) syncs over a Yjs **WebSocket** to the live backend, so
+  it cannot be reconstructed from static files.
+- **`/api/*` endpoints** — e.g. `/api/stats`, new-map IDs, server-side backups.
 
-| Type       | Hex       |
-|------------|-----------|
-| Users      | `#fca5a5` |
-| Activities | `#93c5fd` |
-| Story      | `#fef08a` |
+The UI, layout, and colour system are fully intact regardless.
 
-Status colours: Done `#22c55e`, In Progress `#eab308`, Planned `#3b82f6`, Blocked `#ef4444`.
+## Structure
 
-## Attribution
+| Path           | Contents                                                      |
+|----------------|--------------------------------------------------------------|
+| `index.html`   | App shell, import map, header markup.                         |
+| `styles.css`   | Complete colour system (light + dark) and layout.            |
+| `fonts.css`    | `@font-face` for Inter + Outfit (woff2 in `fonts/`).          |
+| `src/`         | Application ES modules — `core/`, `ui/`, `features/`, `transfer/`. |
+| `vendor/`      | Bundled libraries — Yjs, CodeMirror, js-yaml, html2canvas, html-to-image. |
+| `resources/`   | Screenshot and reference PDFs.                                |
+| `privacy.html`, `terms.html` | Static legal pages.                            |
 
-This is an independent, from-scratch reimplementation inspired by
-[storymaps.io](https://storymaps.io), which is licensed under **AGPL-3.0**.
-No source code from the original project was copied; only publicly visible
-colour values and the general UI layout were referenced. See `NOTICE.md`.
+## Provenance
+
+Mirrored from `https://storymaps.io` by recursively following every `import`,
+`href`, and `url()` reference from the entry point until the dependency graph was
+closed. See `NOTICE.md` for details and the AGPL-3.0 obligations.
