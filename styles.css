@@ -2306,6 +2306,23 @@ body.main-menu-open .step:hover {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+/* Slice collapse/expand chevron */
+.slice-collapse-toggle {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    font-size: 11px;
+    line-height: 1;
+    padding: 3px 5px;
+    border-radius: 3px;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+.slice-collapse-toggle:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-hover-bg);
+}
+
 /* Slice Menu */
 .slice-menu {
     position: relative;

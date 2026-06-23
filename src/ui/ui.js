@@ -1178,6 +1178,9 @@ export const createSliceContainer = (slice, index) => {
 
     if (slice.collapsed) {
         const controlsRow = el('div', 'slice-controls-row');
+        const expandToggle = el('button', 'slice-collapse-toggle', { html: '▸', title: 'Expand slice', ariaLabel: 'Expand slice' });
+        expandToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleSliceCollapsed(slice.id, false); });
+        controlsRow.appendChild(expandToggle);
         const dragHandle = el('div', 'slice-drag-handle', { html: '↕', title: 'Drag to reorder' });
         controlsRow.appendChild(dragHandle);
 
@@ -1214,10 +1217,14 @@ export const createSliceContainer = (slice, index) => {
             storiesRow.appendChild(placeholder);
         }
 
-        const isClosed = slice.closedReason === 'closed';
-        const completedBanner = el('div', `slice-completed-banner${isClosed ? ' slice-closed-banner' : ''}`);
+        const reason = slice.closedReason;
+        const isClosed = reason === 'closed';
+        const isComplete = reason === 'complete';
+        const isNeutral = !isClosed && !isComplete;
+        const completedBanner = el('div', `slice-completed-banner${isClosed ? ' slice-closed-banner' : ''}${isNeutral ? ' slice-collapsed-banner' : ''}`);
+        const statusWord = isClosed ? 'Closed' : isComplete ? 'Complete' : 'Collapsed';
         const sliceName = slice.name ? `${slice.name} - ` : '';
-        const bannerText = el('span', 'slice-completed-text', { text: `${sliceName}${isClosed ? 'Closed' : 'Complete'}` });
+        const bannerText = el('span', 'slice-completed-text', { text: `${sliceName}${statusWord}` });
         completedBanner.appendChild(bannerText);
         storiesRow.appendChild(completedBanner);
 
@@ -1264,6 +1271,9 @@ export const createSliceContainer = (slice, index) => {
     }
 
     const controlsRow = el('div', 'slice-controls-row');
+    const collapseToggle = el('button', 'slice-collapse-toggle', { html: '▾', title: 'Collapse slice', ariaLabel: 'Collapse slice' });
+    collapseToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleSliceCollapsed(slice.id, true, 'collapsed'); });
+    controlsRow.appendChild(collapseToggle);
     const dragHandle = el('div', 'slice-drag-handle', { html: '↕', title: 'Drag to reorder' });
     controlsRow.appendChild(dragHandle);
 
