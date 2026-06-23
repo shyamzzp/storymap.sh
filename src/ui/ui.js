@@ -1240,10 +1240,14 @@ export const createSliceContainer = (slice, index) => {
         return container;
     }
 
+    const titleRow = el('div', 'slice-title-row');
+    const collapseLeft = el('button', 'slice-collapse-toggle slice-collapse-left', { html: '▾', title: 'Collapse slice', ariaLabel: 'Collapse slice' });
+    collapseLeft.addEventListener('click', (e) => { e.stopPropagation(); toggleSliceCollapsed(slice.id, true, 'collapsed'); });
     const labelInput = createTextarea('slice-label', 'Release...', slice.name,
         (val) => slice.name = val,
         () => _logTextEdit?.('slice name', slice.id));
-    labelContainer.appendChild(labelInput);
+    titleRow.append(collapseLeft, labelInput);
+    labelContainer.appendChild(titleRow);
 
     const progress = getSliceProgress(slice);
     const points = getSlicePoints(slice);
@@ -1277,9 +1281,6 @@ export const createSliceContainer = (slice, index) => {
     }
 
     const controlsRow = el('div', 'slice-controls-row');
-    const collapseToggle = el('button', 'slice-collapse-toggle', { html: '▾', title: 'Collapse slice', ariaLabel: 'Collapse slice' });
-    collapseToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleSliceCollapsed(slice.id, true, 'collapsed'); });
-    controlsRow.appendChild(collapseToggle);
     const dragHandle = el('div', 'slice-drag-handle', { html: '↕', title: 'Drag to reorder' });
     controlsRow.appendChild(dragHandle);
 
