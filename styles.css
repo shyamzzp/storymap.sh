@@ -2507,6 +2507,30 @@ body.main-menu-open .step:hover {
     background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
     border-color: #93c5fd;
 }
+
+/* Neutral (chevron) collapse: a full-width, theme-aware bar, click to expand */
+.slice-collapsed-banner {
+    right: 0;
+    gap: 7px;
+    background: var(--color-bg-elevated);
+    border: 1px dashed var(--color-border-strong);
+    border-radius: 6px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: background .12s ease, border-color .12s ease;
+}
+.slice-collapsed-banner:hover {
+    background: var(--color-hover-bg);
+    border-color: var(--color-teal);
+}
+.slice-collapsed-banner .slice-completed-text {
+    color: var(--color-text-secondary);
+}
+.slice-collapsed-chevron {
+    color: var(--color-text-muted);
+    font-size: 10px;
+    line-height: 1;
+}
 .slice-closed-banner .slice-completed-text {
     color: #1e40af;
 }

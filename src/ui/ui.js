@@ -1229,7 +1229,12 @@ export const createSliceContainer = (slice, index) => {
         const isNeutral = !isClosed && !isComplete;
         const completedBanner = el('div', `slice-completed-banner${isClosed ? ' slice-closed-banner' : ''}${isNeutral ? ' slice-collapsed-banner' : ''}`);
         const statusWord = isClosed ? 'Closed' : isComplete ? 'Complete' : 'Collapsed';
-        const sliceName = slice.name ? `${slice.name} - ` : '';
+        const sliceName = slice.name ? `${slice.name} — ` : '';
+        if (isNeutral) {
+            completedBanner.appendChild(el('span', 'slice-collapsed-chevron', { html: '▸' }));
+            completedBanner.title = 'Click to expand';
+            completedBanner.addEventListener('click', () => toggleSliceCollapsed(slice.id, false));
+        }
         const bannerText = el('span', 'slice-completed-text', { text: `${sliceName}${statusWord}` });
         completedBanner.appendChild(bannerText);
         storiesRow.appendChild(completedBanner);
