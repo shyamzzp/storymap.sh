@@ -29,7 +29,7 @@ const setCounterValue = (count) => {
 
 const updateActiveMappers = async () => {
     try {
-        const res = await fetch('/api/stats');
+        const res = await fetch('api/stats');
         const data = await res.json();
         if (!counterLoaded) {
             const count = data.mapCount || 0;
@@ -75,8 +75,10 @@ const unsubscribeFromCounter = () => {
 };
 
 const incrementMapCounter = async () => {
+    // Offline/static mode: no backend to record the increment against.
+    if (window.STORYMAP_OFFLINE !== false) return;
     try {
-        const res = await fetch('/api/stats', { method: 'POST' });
+        const res = await fetch('api/stats', { method: 'POST' });
         const data = await res.json();
         localStorage.setItem('mapCount', data.mapCount);
     } catch {
@@ -172,7 +174,7 @@ export const startWithSample = async (sampleName, { showToast = true } = {}) => 
     history.replaceState({ mapId }, '', `/storymap.sh/${mapId}`);
 
     try {
-        const response = await fetch(`/samples/${sampleName}.json`, { cache: 'no-cache' });
+        const response = await fetch(`samples/${sampleName}.json`, { cache: 'no-cache' });
         if (!response.ok) throw new Error();
         deserialize(await response.json());
     } catch {
@@ -246,7 +248,7 @@ export const loadSample = async (name) => {
 
     showLoading();
     try {
-        const response = await fetch(`/samples/${name}.json`, { cache: 'no-cache' });
+        const response = await fetch(`samples/${name}.json`, { cache: 'no-cache' });
         if (!response.ok) throw new Error();
         pushUndo();
         deserialize(await response.json());

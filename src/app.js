@@ -39,6 +39,8 @@ const STORAGE_KEY = 'storymap';
 
 // Generate a unique map ID, checking server-side SQLite for collisions
 const newMapId = async () => {
+    // Offline/static mode: no backend to check collisions against — generate locally.
+    if (window.STORYMAP_OFFLINE !== false) return generateId();
     try {
         const res = await fetch('/api/maps/new-id');
         if (res.ok) return (await res.json()).id;
@@ -56,6 +58,15 @@ const subscribeToMap = async (mapId) => {
     render();
 
     const deferredTracking = async () => {
+        const provider = getProvider();
+        // Offline/static mode: no realtime provider, so skip presence tracking,
+        // server-side lock state, and backup fetches. The map stays editable
+        // (lockState defaults to unlocked).
+        if (!provider) {
+            updateLockUI();
+            updateEditability();
+            return;
+        }
         await trackPresence();
         trackCursor();
         await loadLockState(mapId);
@@ -66,7 +77,6 @@ const subscribeToMap = async (mapId) => {
         // Fetch backup count for menu badge
         fetch(`/api/backups/${mapId}`).then(r => r.json()).then(b => updateBackupBadge(b.length)).catch(() => {});
 
-        const provider = getProvider();
         if (provider) {
             provider.awareness.on('change', () => {
                 const ydoc = getYdoc();

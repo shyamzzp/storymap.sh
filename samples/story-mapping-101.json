@@ -1,0 +1,170 @@
+{
+  "app": "storymap",
+  "v": 1,
+  "name": "Build a Lego House",
+  "users": [
+    [
+      {
+        "name": "Lego Builder",
+        "color": "#fda4af"
+      }
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
+  "activities": [
+    [
+      {
+        "name": "Build a Lego House",
+        "color": "#93c5fd"
+      }
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ],
+  "steps": [
+    {
+      "name": "Look at picture on box",
+      "color": "#86efac"
+    },
+    {
+      "name": "Open box",
+      "color": "#86efac"
+    },
+    {
+      "name": "Layout lego pieces",
+      "color": "#86efac"
+    },
+    {
+      "name": "Read instructions",
+      "color": "#86efac"
+    },
+    {
+      "name": "Start: Build walls"
+    },
+    {
+      "name": "Add doors and windows"
+    },
+    {
+      "name": "Add roof"
+    },
+    {
+      "name": "Done!"
+    }
+  ],
+  "slices": [
+    {
+      "name": "V1:\nBasic House",
+      "stories": [
+        [],
+        [
+          {
+            "name": "Design easy-open packaging",
+            "color": "#fef08a"
+          },
+          {
+            "name": "Include a 'getting started' card",
+            "color": "#fef08a"
+          }
+        ],
+        [
+          {
+            "name": "Package pieces in numbered bags",
+            "color": "#fef08a"
+          },
+          {
+            "name": "Include a parts checklist",
+            "color": "#fef08a"
+          }
+        ],
+        [
+          {
+            "name": "Write instructions",
+            "color": "#fef08a"
+          },
+          {
+            "name": "Indicate the pieces required at each step",
+            "color": "#fef08a"
+          },
+          {
+            "name": "Show estimated time for each step",
+            "color": "#fef08a"
+          }
+        ],
+        [
+          {
+            "name": "Include base plate in set",
+            "color": "#fef08a"
+          },
+          {
+            "name": "Design interlocking wall sections",
+            "color": "#fef08a"
+          },
+          {
+            "name": "Ensure pieces snap together easily",
+            "color": "#fef08a"
+          }
+        ],
+        [
+          {
+            "name": "Design door piece to fit standard wall gap",
+            "color": "#fef08a"
+          },
+          {
+            "name": "Include window frame pieces",
+            "color": "#fef08a"
+          },
+          {
+            "name": "Provide extra wall bricks for upper level",
+            "color": "#fef08a"
+          }
+        ],
+        [
+          {
+            "name": "Include angled roof pieces",
+            "color": "#fef08a"
+          },
+          {
+            "name": "Design ridge cap to seal roof",
+            "color": "#fef08a"
+          }
+        ],
+        [
+          {
+            "name": "Add display stand or mini-figures",
+            "color": "#fef08a"
+          }
+        ]
+      ]
+    }
+  ],
+  "legend": [
+    {
+      "color": "#fef08a",
+      "label": "Task"
+    },
+    {
+      "color": "#bef264",
+      "label": "Question"
+    },
+    {
+      "color": "#a5f3fc",
+      "label": "Note"
+    },
+    {
+      "color": "#fecdd3",
+      "label": "Edge Case"
+    }
+  ],
+  "notes": "Planning meeting 12 Jan\n- Agreed on V1 scope: basic house with walls, doors, windows, roof\n- Target age range: 6-12\n- Keep piece count under 200 for V1\n\nOpen items\n- Need to finalise box art before printing deadline\n- Staircase design for V2 still in review\n- Check choking hazard compliance for small window pieces"
+}

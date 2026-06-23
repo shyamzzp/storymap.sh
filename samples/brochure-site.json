@@ -1,0 +1,382 @@
+{
+  "app": "storymap",
+  "v": 1,
+  "name": "Build Brochure Site",
+  "users": [
+    [
+      {
+        "name": "Potential Client",
+        "color": "#fda4af"
+      }
+    ],
+    [],
+    [],
+    [],
+    []
+  ],
+  "activities": [
+    [
+      {
+        "name": "Evaluate Company",
+        "color": "#93c5fd"
+      }
+    ],
+    [],
+    [],
+    [],
+    []
+  ],
+  "steps": [
+    {
+      "name": "Land on Site",
+      "color": "#86efac"
+    },
+    {
+      "name": "Learn About Company",
+      "color": "#86efac"
+    },
+    {
+      "name": "View Services",
+      "color": "#86efac"
+    },
+    {
+      "name": "See Social Proof",
+      "color": "#86efac"
+    },
+    {
+      "name": "Get in Touch",
+      "color": "#86efac"
+    }
+  ],
+  "slices": [
+    {
+      "name": "MVP",
+      "stories": [
+        [
+          {
+            "name": "Hero banner with headline",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "design"
+            ]
+          },
+          {
+            "name": "Navigation menu",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "dev"
+            ]
+          },
+          {
+            "name": "Value proposition tagline",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "content"
+            ]
+          },
+          {
+            "name": "Need brand guidelines from client",
+            "color": "#a5f3fc"
+          }
+        ],
+        [
+          {
+            "name": "Company intro",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "content"
+            ]
+          },
+          {
+            "name": "Mission statement",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "content"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Service list",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "dev",
+              "content"
+            ]
+          },
+          {
+            "name": "Basic descriptions",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "content"
+            ]
+          },
+          {
+            "name": "Add SEO meta tags",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "seo"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Client logos",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "design"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Contact form",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "dev"
+            ]
+          },
+          {
+            "name": "Email address",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "content"
+            ]
+          },
+          {
+            "name": "Phone number",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "content"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "name": "V1",
+      "stories": [
+        [
+          {
+            "name": "Animated hero",
+            "url": "https://www.figma.com/",
+            "status": "in-progress",
+            "tags": [
+              "design",
+              "dev"
+            ]
+          },
+          {
+            "name": "Call to action button",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "design"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Team photos",
+            "status": "in-progress",
+            "tags": [
+              "content"
+            ]
+          },
+          {
+            "name": "Company history",
+            "status": "planned",
+            "tags": [
+              "content"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Service detail pages",
+            "status": "in-progress",
+            "tags": [
+              "dev",
+              "content"
+            ]
+          },
+          {
+            "name": "Pricing info",
+            "status": "planned",
+            "tags": [
+              "content"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Written testimonials",
+            "status": "in-progress",
+            "tags": [
+              "content"
+            ]
+          },
+          {
+            "name": "Case studies",
+            "status": "planned",
+            "tags": [
+              "content",
+              "design"
+            ]
+          },
+          {
+            "name": "Who provides testimonial copy?",
+            "color": "#bef264"
+          }
+        ],
+        [
+          {
+            "name": "Location map",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "dev"
+            ]
+          },
+          {
+            "name": "Social media links",
+            "status": "in-progress",
+            "tags": [
+              "dev"
+            ]
+          },
+          {
+            "name": "Form queues if connection drops",
+            "color": "#fecdd3"
+          }
+        ]
+      ]
+    },
+    {
+      "name": "V2",
+      "stories": [
+        [
+          {
+            "name": "Video background",
+            "status": "planned",
+            "tags": [
+              "design",
+              "dev"
+            ]
+          },
+          {
+            "name": "Live chat widget",
+            "status": "planned",
+            "tags": [
+              "dev"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Blog section",
+            "status": "planned",
+            "tags": [
+              "dev",
+              "content"
+            ]
+          },
+          {
+            "name": "News & updates feed",
+            "status": "planned",
+            "tags": [
+              "dev",
+              "content"
+            ]
+          },
+          {
+            "name": "Who writes the blog content?",
+            "color": "#bef264"
+          }
+        ],
+        [
+          {
+            "name": "Service comparison table",
+            "status": "planned",
+            "tags": [
+              "dev",
+              "design"
+            ]
+          },
+          {
+            "name": "FAQ section",
+            "status": "planned",
+            "tags": [
+              "content",
+              "dev"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Video testimonials",
+            "status": "planned",
+            "tags": [
+              "content",
+              "design"
+            ]
+          },
+          {
+            "name": "Awards & certifications",
+            "status": "planned",
+            "tags": [
+              "content"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Booking calendar",
+            "status": "planned",
+            "tags": [
+              "dev"
+            ]
+          },
+          {
+            "name": "Newsletter signup",
+            "status": "planned",
+            "tags": [
+              "dev"
+            ]
+          }
+        ]
+      ]
+    }
+  ],
+  "legend": [
+    {
+      "color": "#fef08a",
+      "label": "Tasks"
+    },
+    {
+      "color": "#a5f3fc",
+      "label": "Notes"
+    },
+    {
+      "color": "#bef264",
+      "label": "Questions"
+    },
+    {
+      "color": "#fecdd3",
+      "label": "Edge cases"
+    }
+  ],
+  "notes": "AL: Client launch deadline is the March 15 trade show, no scope creep\n\nLM: Stock photos are placeholder, real shoot next week\n\nAL: V1 is parked until MVP is live\n\nWaiting on brand guidelines from client before finalising fonts and colours"
+}

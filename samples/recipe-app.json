@@ -1,0 +1,473 @@
+{
+  "app": "storymap",
+  "v": 1,
+  "name": "Recipe App",
+  "users": [
+    [
+      {
+        "name": "Home Cook",
+        "color": "#fda4af"
+      }
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      {
+        "name": "Content Creator",
+        "color": "#fda4af"
+      }
+    ],
+    []
+  ],
+  "activities": [
+    [
+      {
+        "name": "Find & Cook Recipes",
+        "color": "#93c5fd"
+      }
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      {
+        "name": "Share & Create Recipes",
+        "color": "#93c5fd"
+      }
+    ],
+    []
+  ],
+  "steps": [
+    {
+      "name": "Browse Recipes",
+      "color": "#86efac"
+    },
+    {
+      "name": "View Recipe",
+      "color": "#86efac"
+    },
+    {
+      "name": "Cook Along",
+      "color": "#86efac"
+    },
+    {
+      "name": "Save Favourites",
+      "color": "#86efac"
+    },
+    {
+      "name": "",
+      "color": "#e5e7eb",
+      "hidden": true
+    },
+    {
+      "name": "Create Recipe",
+      "color": "#86efac"
+    },
+    {
+      "name": "Share Recipe",
+      "color": "#86efac"
+    }
+  ],
+  "slices": [
+    {
+      "name": "MVP",
+      "stories": [
+        [
+          {
+            "name": "Search by name",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "frontend"
+            ]
+          },
+          {
+            "name": "Category filters",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "frontend",
+              "backend"
+            ]
+          },
+          {
+            "name": "Recipe cards with photo",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "frontend",
+              "design"
+            ]
+          },
+          {
+            "name": "Show cook time and difficulty on cards",
+            "color": "#d8b4fe"
+          }
+        ],
+        [
+          {
+            "name": "Ingredients list",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "frontend"
+            ]
+          },
+          {
+            "name": "Step-by-step instructions",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "frontend"
+            ]
+          },
+          {
+            "name": "Serving size",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "frontend"
+            ]
+          },
+          {
+            "name": "Metric vs imperial units?",
+            "color": "#bef264"
+          }
+        ],
+        [
+          {
+            "name": "Timer button per step",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "frontend",
+              "mobile"
+            ]
+          },
+          {
+            "name": "Check off completed steps",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "frontend"
+            ]
+          },
+          {
+            "name": "Keep recipe view minimal while cooking",
+            "color": "#d8b4fe"
+          }
+        ],
+        [
+          {
+            "name": "Heart button to save",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "frontend"
+            ]
+          },
+          {
+            "name": "Saved recipes list",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "frontend",
+              "backend"
+            ]
+          },
+          {
+            "name": "What if saved recipe is deleted by author?",
+            "color": "#fecdd3"
+          }
+        ],
+        [],
+        [
+          {
+            "name": "Add title and photo",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "frontend"
+            ]
+          },
+          {
+            "name": "Add ingredients",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "frontend"
+            ]
+          },
+          {
+            "name": "Add steps",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "frontend"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Copy link to recipe",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "frontend"
+            ]
+          },
+          {
+            "name": "Recipe URLs need to work without login",
+            "color": "#a5f3fc"
+          }
+        ]
+      ]
+    },
+    {
+      "name": "V1",
+      "stories": [
+        [
+          {
+            "name": "Filter by dietary needs",
+            "status": "in-progress",
+            "tags": [
+              "frontend",
+              "backend"
+            ]
+          },
+          {
+            "name": "Sort by rating",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "frontend"
+            ]
+          },
+          {
+            "name": "How granular should dietary filters be?",
+            "color": "#bef264"
+          }
+        ],
+        [
+          {
+            "name": "Nutrition info",
+            "status": "in-progress",
+            "tags": [
+              "backend",
+              "api"
+            ]
+          },
+          {
+            "name": "User ratings & reviews",
+            "status": "planned",
+            "tags": [
+              "frontend",
+              "backend"
+            ]
+          },
+          {
+            "name": "Scale ingredients to servings",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "frontend"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Voice command: next step",
+            "status": "planned",
+            "tags": [
+              "mobile",
+              "accessibility"
+            ]
+          },
+          {
+            "name": "Keep screen awake while cooking",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "mobile"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Organise into collections",
+            "status": "in-progress",
+            "tags": [
+              "frontend",
+              "backend"
+            ]
+          },
+          {
+            "name": "Meal planner calendar",
+            "status": "planned",
+            "tags": [
+              "frontend",
+              "backend"
+            ]
+          }
+        ],
+        [],
+        [
+          {
+            "name": "Import from URL",
+            "status": "in-progress",
+            "tags": [
+              "backend",
+              "api"
+            ]
+          },
+          {
+            "name": "AI-generated description",
+            "status": "planned",
+            "tags": [
+              "ai",
+              "backend"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Share to social media",
+            "status": "planned",
+            "tags": [
+              "frontend"
+            ]
+          },
+          {
+            "name": "Generate share image",
+            "status": "in-progress",
+            "tags": [
+              "frontend",
+              "design"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "name": "V2",
+      "stories": [
+        [
+          {
+            "name": "Personalised recommendations",
+            "status": "planned",
+            "tags": [
+              "ai",
+              "backend"
+            ]
+          },
+          {
+            "name": "Seasonal recipe spotlight",
+            "status": "planned",
+            "tags": [
+              "backend"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Step-by-step video",
+            "status": "planned",
+            "tags": [
+              "frontend",
+              "mobile"
+            ]
+          },
+          {
+            "name": "Substitution suggestions",
+            "status": "planned",
+            "tags": [
+              "backend",
+              "ai"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Shopping list from recipe",
+            "status": "planned",
+            "tags": [
+              "frontend",
+              "backend"
+            ]
+          },
+          {
+            "name": "Nearby store availability",
+            "status": "blocked",
+            "tags": [
+              "api",
+              "backend"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Sync across devices",
+            "status": "planned",
+            "tags": [
+              "backend"
+            ]
+          }
+        ],
+        [],
+        [
+          {
+            "name": "Video upload for steps",
+            "status": "planned",
+            "tags": [
+              "frontend",
+              "backend"
+            ]
+          },
+          {
+            "name": "Collaborative recipes",
+            "status": "planned",
+            "tags": [
+              "frontend",
+              "backend"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Embeddable recipe widget",
+            "status": "planned",
+            "tags": [
+              "frontend"
+            ]
+          }
+        ]
+      ]
+    }
+  ],
+  "legend": [
+    {
+      "color": "#fef08a",
+      "label": "Tasks"
+    },
+    {
+      "color": "#a5f3fc",
+      "label": "Notes"
+    },
+    {
+      "color": "#bef264",
+      "label": "Questions"
+    },
+    {
+      "color": "#fecdd3",
+      "label": "Edge Cases"
+    },
+    {
+      "color": "#d8b4fe",
+      "label": "Design"
+    }
+  ],
+  "notes": "MP: Dietary filters are V1 priority, highest-voted feature request\n\nTN: Lock down recipe data schema before API work starts\n\nAL: Accessibility audit booked for post-V1, don't let it slip\n\nMP: Grocery API partner search ongoing, blocked for V2 until signed"
+}

@@ -150,6 +150,11 @@ export const bindYjs = async (ydoc, ytext, provider) => {
         });
     }
 
+    // Offline/static mode: no realtime provider, so there's no awareness object
+    // for collaborative cursors. The editor is already populated from ytext above;
+    // skip the yCollab extension (which requires awareness) to avoid a null deref.
+    if (!provider) return;
+
     const extensions = yCollab(ytext, provider.awareness, { undoManager: false });
 
     view.dispatch({

@@ -1,0 +1,735 @@
+{
+  "app": "storymap",
+  "v": 1,
+  "name": "Mobile Banking",
+  "users": [
+    [
+      {
+        "name": "Bank Customer",
+        "color": "#fda4af"
+      }
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      {
+        "name": "Bank Customer",
+        "color": "#fda4af"
+      }
+    ],
+    [],
+    [],
+    [],
+    [
+      {
+        "name": "Prospective Customer",
+        "color": "#fda4af"
+      }
+    ],
+    [],
+    []
+  ],
+  "activities": [
+    [
+      {
+        "name": "Send Money",
+        "color": "#93c5fd"
+      }
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      {
+        "name": "Move Money",
+        "color": "#93c5fd"
+      }
+    ],
+    [],
+    [],
+    [],
+    [
+      {
+        "name": "Explore Products",
+        "color": "#93c5fd"
+      }
+    ],
+    [],
+    []
+  ],
+  "steps": [
+    {
+      "name": "Find App",
+      "color": "#86efac"
+    },
+    {
+      "name": "Log In",
+      "color": "#86efac"
+    },
+    {
+      "name": "Start Transfer",
+      "color": "#86efac"
+    },
+    {
+      "name": "Select Recipient",
+      "color": "#86efac"
+    },
+    {
+      "name": "Enter Amount",
+      "color": "#86efac"
+    },
+    {
+      "name": "Review",
+      "color": "#86efac"
+    },
+    {
+      "name": "Confirm",
+      "color": "#86efac"
+    },
+    {
+      "name": "Done",
+      "color": "#86efac"
+    },
+    {
+      "name": "",
+      "color": "#e5e7eb",
+      "hidden": true
+    },
+    {
+      "name": "Pick Accounts",
+      "color": "#86efac"
+    },
+    {
+      "name": "Set Amount",
+      "color": "#86efac"
+    },
+    {
+      "name": "Confirm",
+      "color": "#86efac"
+    },
+    {
+      "name": "",
+      "color": "#e5e7eb",
+      "hidden": true
+    },
+    {
+      "name": "Browse Products",
+      "color": "#86efac"
+    },
+    {
+      "name": "Apply",
+      "color": "#86efac"
+    },
+    {
+      "name": "Track",
+      "color": "#86efac"
+    }
+  ],
+  "slices": [
+    {
+      "name": "MVP",
+      "stories": [
+        [
+          {
+            "name": "App store listing with screenshots",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "ux"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Email and password login",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "security",
+              "auth"
+            ]
+          },
+          {
+            "name": "Account locked after failed attempts",
+            "color": "#fecdd3"
+          }
+        ],
+        [
+          {
+            "name": "Transfer button on dashboard",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "ux"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Search contacts",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Recent recipients",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "ux"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Amount input",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Show available balance",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "api"
+            ]
+          },
+          {
+            "name": "Daily transfer limit policy",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "compliance"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Summary screen",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Show fees",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "payments",
+              "api"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Confirm button",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "SMS one-time code",
+            "url": "https://en.wikipedia.org/wiki/Payment_Services_Directive",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "security",
+              "auth"
+            ]
+          },
+          {
+            "name": "Insufficient funds after review",
+            "color": "#fecdd3"
+          }
+        ],
+        [
+          {
+            "name": "Success message",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Reference number",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "payments"
+            ]
+          }
+        ],
+        [],
+        [
+          {
+            "name": "Select source account",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Select destination account",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Same currency only for now",
+            "color": "#a5f3fc"
+          }
+        ],
+        [
+          {
+            "name": "Enter amount",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Show both balances",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "api"
+            ]
+          },
+          {
+            "name": "Transfer entire balance?",
+            "color": "#bef264"
+          }
+        ],
+        [
+          {
+            "name": "Review and confirm",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Instant transfer confirmed",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "api"
+            ]
+          }
+        ],
+        [],
+        [
+          {
+            "name": "List available products",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Product details page",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "ux"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Pre-fill from profile",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "api"
+            ]
+          },
+          {
+            "name": "Submit application",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "ux"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Application status page",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "api"
+            ]
+          },
+          {
+            "name": "Approval notification",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "notifications"
+            ]
+          },
+          {
+            "name": "Credit check failed messaging",
+            "color": "#fecdd3"
+          }
+        ]
+      ]
+    },
+    {
+      "name": "V1",
+      "stories": [
+        [],
+        [
+          {
+            "name": "Biometric login",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "security",
+              "auth"
+            ]
+          },
+          {
+            "name": "Remember device",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "security"
+            ]
+          },
+          {
+            "name": "Biometrics not available on all devices",
+            "color": "#a5f3fc"
+          }
+        ],
+        [
+          {
+            "name": "Quick actions",
+            "status": "in-progress",
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Favorite recipients shortcut",
+            "status": "planned",
+            "tags": [
+              "ux"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Add new recipient",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "payments"
+            ]
+          },
+          {
+            "name": "Mark as favorite",
+            "status": "in-progress",
+            "tags": [
+              "ux"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Preset amounts",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Add memo",
+            "status": "in-progress",
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Select source account",
+            "status": "done",
+            "points": 3,
+            "tags": [
+              "api"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Edit details",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Schedule for later",
+            "status": "planned",
+            "tags": [
+              "payments",
+              "api"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Biometric confirmation",
+            "status": "in-progress",
+            "tags": [
+              "security"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Share receipt",
+            "status": "planned",
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Send another",
+            "status": "planned",
+            "tags": [
+              "ux"
+            ]
+          }
+        ],
+        [],
+        [
+          {
+            "name": "Favourite account pairs",
+            "status": "done",
+            "points": 2,
+            "tags": [
+              "ux"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Preset quick amounts",
+            "status": "in-progress",
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Schedule recurring transfer",
+            "status": "planned",
+            "tags": [
+              "payments",
+              "api"
+            ]
+          }
+        ],
+        [],
+        [],
+        [
+          {
+            "name": "Compare products side by side",
+            "status": "in-progress",
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Personalised recommendations",
+            "status": "planned",
+            "tags": [
+              "api"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Upload documents",
+            "status": "in-progress",
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Save and resume later",
+            "status": "planned",
+            "tags": [
+              "ux"
+            ]
+          },
+          {
+            "name": "Document upload fails on large files",
+            "color": "#fecdd3"
+          }
+        ],
+        [
+          {
+            "name": "Push notification on decision",
+            "status": "done",
+            "points": 1,
+            "tags": [
+              "notifications"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "name": "V2",
+      "stories": [
+        [],
+        [],
+        [
+          {
+            "name": "Recurring transfer",
+            "status": "planned",
+            "tags": [
+              "payments",
+              "api"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Scan QR code",
+            "status": "blocked",
+            "tags": [
+              "ux",
+              "mobile"
+            ]
+          },
+          {
+            "name": "Camera permissions denied on QR scan",
+            "color": "#fecdd3"
+          }
+        ],
+        [],
+        [],
+        [
+          {
+            "name": "Spending limit alert",
+            "status": "planned",
+            "tags": [
+              "compliance",
+              "notifications"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Download PDF receipt",
+            "status": "planned",
+            "tags": [
+              "ux"
+            ]
+          }
+        ],
+        [],
+        [
+          {
+            "name": "Transfer between currencies",
+            "status": "planned",
+            "tags": [
+              "api",
+              "payments"
+            ]
+          }
+        ],
+        [],
+        [
+          {
+            "name": "Round-up savings rule",
+            "status": "planned",
+            "tags": [
+              "ux"
+            ]
+          }
+        ],
+        [],
+        [
+          {
+            "name": "Eligibility pre-check",
+            "status": "planned",
+            "tags": [
+              "api"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "In-app video verification",
+            "status": "planned",
+            "tags": [
+              "mobile",
+              "security"
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Direct activation of approved product",
+            "status": "planned",
+            "tags": [
+              "api"
+            ]
+          }
+        ]
+      ]
+    }
+  ],
+  "legend": [
+    {
+      "color": "#fef08a",
+      "label": "Tasks"
+    },
+    {
+      "color": "#a5f3fc",
+      "label": "Notes"
+    },
+    {
+      "color": "#bef264",
+      "label": "Questions"
+    },
+    {
+      "color": "#fecdd3",
+      "label": "Edge cases"
+    }
+  ],
+  "notes": "KR: MVP scope locked, sprint starts Monday\n\nTN: QR scanning blocked on camera API decision, parked for V2\n\nKR: Legal flagged PSD2 strong customer auth, need compliance sign-off before launch\n\nMP: Product applications flow scoped as lightweight V1, expand after Send Money ships"
+}
