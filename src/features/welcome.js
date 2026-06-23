@@ -150,7 +150,7 @@ export const startNewMap = async () => {
     initState();
     const mapId = await _deps.newMapId();
     state.mapId = mapId;
-    history.replaceState({ mapId }, '', `/${mapId}`);
+    history.replaceState({ mapId }, '', `/storymap.sh/${mapId}`);
     dom.boardName.value = state.name;
     _deps.render();
     await _deps.createYjsDoc(mapId);
@@ -169,7 +169,7 @@ export const startWithSample = async (sampleName, { showToast = true } = {}) => 
     initState();
     const mapId = await _deps.newMapId();
     state.mapId = mapId;
-    history.replaceState({ mapId }, '', `/${mapId}`);
+    history.replaceState({ mapId }, '', `/storymap.sh/${mapId}`);
 
     try {
         const response = await fetch(`/samples/${sampleName}.json`, { cache: 'no-cache' });
@@ -207,7 +207,7 @@ export const newMap = async () => {
 
     const mapId = await _deps.newMapId();
     state.mapId = mapId;
-    history.pushState({ mapId }, '', `/${mapId}`);
+    history.pushState({ mapId }, '', `/storymap.sh/${mapId}`);
 
     await _deps.createYjsDoc(mapId);
     _deps.subscribeToMap(mapId);
@@ -228,7 +228,7 @@ export const copyMap = async () => {
 
     const mapId = await _deps.newMapId();
     state.mapId = mapId;
-    history.pushState({ mapId }, '', `/${mapId}`);
+    history.pushState({ mapId }, '', `/storymap.sh/${mapId}`);
 
     await _deps.createYjsDoc(mapId);
     _deps.subscribeToMap(mapId);

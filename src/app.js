@@ -208,7 +208,7 @@ const initEventListeners = () => {
         if (!state.mapId) return;
         e.preventDefault();
         if (!hasContent() || await showConfirm('Go to home page?\n\nYou can return to this map using the back button.')) {
-            window.location.href = '/';
+            window.location.href = BASE_PATH;
         }
     });
 
@@ -1676,8 +1676,13 @@ const loadMapById = async (mapId) => {
     return false;
 };
 
+// Deployment base path (GitHub Pages project site). Routing parses paths as if
+// served from the root, so strip this prefix from the real pathname first.
+const BASE_PATH = '/storymap.sh/';
+
 const init = async () => {
-    const path = window.location.pathname;
+    const rawPath = window.location.pathname;
+    const path = rawPath.startsWith(BASE_PATH) ? '/' + rawPath.slice(BASE_PATH.length) : rawPath;
     const sampleMatch = path.match(/^\/sample\/([a-z0-9-]+)$/);
     const mapId = sampleMatch ? null : (path.slice(1) || null);
 

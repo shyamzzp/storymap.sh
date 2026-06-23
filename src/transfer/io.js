@@ -40,7 +40,7 @@ export const init = (deps) => {
                 initState();
                 const mapId = await _deps.newMapId();
                 state.mapId = mapId;
-                history.replaceState({ mapId }, '', `/${mapId}`);
+                history.replaceState({ mapId }, '', `/storymap.sh/${mapId}`);
                 await _deps.createYjsDoc(mapId);
             } else {
                 await createAutoBackup(isAppend ? 'Auto: before append import' : 'Auto: before import');
@@ -142,7 +142,7 @@ const doImport = async (deserializeFn) => {
             initState();
             const mapId = await _deps.newMapId();
             state.mapId = mapId;
-            history.replaceState({ mapId }, '', `/${mapId}`);
+            history.replaceState({ mapId }, '', `/storymap.sh/${mapId}`);
             await _deps.createYjsDoc(mapId);
         } else {
             await createAutoBackup('Auto: before import');
